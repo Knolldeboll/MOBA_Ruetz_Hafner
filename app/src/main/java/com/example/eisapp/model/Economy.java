@@ -9,6 +9,8 @@ public class Economy {
    double dailyIncome;
    //Optional: Einkommen/Verkaufte eis pro Film
 
+   //TODO: Initilaisieren mit anzahl 0
+   //TODO: schauen, wie sich dictinaries zusammenfügen lassen, alternativ selber schreiben
    float getSum(Dictionary<Eis,Integer> list){
 
        return 0;
