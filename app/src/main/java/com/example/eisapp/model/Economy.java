@@ -2,39 +2,75 @@ package com.example.eisapp.model;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Enumeration;
 
 public class Economy {
 
    HashMap<Eis, Integer> dailySoldIce;
    LinkedHashMap<Eis, Integer> currentSoldIce;
-
+   public static Economy Instance;
 
    double dailyIncome;
+
+
+   public static Economy getInstance(){
+      if(Instance == null){
+         Eis eins = new Eis("eins");
+         Eis zwei = new Eis("zwei");
+         Eis drei = new Eis("dreoi");
+         Instance = new Economy(new Eis[]{eins, zwei, drei} );
+
+      }
+      return Instance;
+
+   }
+
    //Optional: Einkommen/Verkaufte eis pro Film
 
+   //TODO: Konstruktor so abändern, dass der sich direkt die verfügbaren eise ausm markenmanager zieht
    public Economy(Eis[] eise){
-      //TODO: hol die eisliste aus dem Markenmanager
+
+
+      //LinkedHashmap hat den vorteil der stabilen reihenfolge
+      // (Last added last)
       dailySoldIce = new LinkedHashMap<Eis,Integer>();
       currentSoldIce = new LinkedHashMap<Eis, Integer>();
 
+
      // Sicher, dass alle mit 0 initilaisiert werden sollen ? Das macht das resetten komplexer
+      // bei der dailyliste egal!
       for(Eis eis : eise){
        dailySoldIce.put(eis,0);
 
     }
 
    }
-  //TODO: Remove aus der current liste
 
-   public float getSum(LinkedHashMap<Eis, Integer> list) {
+   // Bei Tagesende wird getsum von dailysales berechnet. Differenz zum gesamtertrag gibt tip
+   private float getSum(LinkedHashMap<Eis, Integer> list) {
 
-      return 0;
+      float val = 0;
+
+      // Hat ja auch gar nicht lange gedauert die scheiße
+      for(Map.Entry<Eis,Integer> ent : list.entrySet()){
+         val += ent.getKey().preis * ent.getValue();
+
+      }
+
+      return val;
+   }
+
+   // Remove aus current liste
+   // kopplung an "-" Button
+   public void removeSoldIce(Eis eis){
+      if(currentSoldIce.containsKey(eis)) {
+         currentSoldIce.put(eis, currentSoldIce.get(eis) - 1);
+      }
+      return;
    }
 
    // zählt gedrücktes eis zu current dazu
+   //Kopplung an eisbutton
    public void addSoldIce(Eis eis) {
 
       if(currentSoldIce.containsKey(eis)){
@@ -45,9 +81,15 @@ public class Economy {
 
    }
 
+   // View holt sich dies
+   public float getCurrentValue(){
+      return getSum(currentSoldIce);
+
+   }
 
 
    // zählt currentsoldice zu daily dazu
+   // Wert addition kommt vom paymentmanager
    public void finishCurrentSale() {
 
       currentSoldIce.forEach((key,value) ->
@@ -56,6 +98,7 @@ public class Economy {
               dailySoldIce.put(key,dailySoldIce.get(key)+value)
       );
 
+      // Wie geht bezahlen ?
 
       currentSoldIce.clear();
    }
