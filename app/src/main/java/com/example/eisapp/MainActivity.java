@@ -3,6 +3,7 @@ package com.example.eisapp;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.eisapp.model.MarkenManager;
 import com.example.eisapp.model.Economy;
 import com.example.eisapp.model.Eis;
 import com.example.eisapp.model.PaymentHandler;
@@ -17,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        MarkenManager markenManager = new MarkenManager(this);
+        markenManager.fillWithExampleData();
+        markenManager.printList();
 
         eco = Economy.getInstance();
         pay = new PaymentHandler();
@@ -44,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
         //Dann : pay
 
         pay.pay();
-
-
 
     }
 }
