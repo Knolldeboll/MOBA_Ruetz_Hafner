@@ -44,6 +44,7 @@ public class MarkenManager {
     private List<Marke> getBrandsFromFile() {
         System.out.println("Called getBrandsFromFile()");
         try {
+            context.openFileInput(this.filename).close();
             FileInputStream fis = context.openFileInput(this.filename);
             ObjectInputStream ois = new ObjectInputStream(fis);
             List<Marke> returnList = (List<Marke>) ois.readObject();

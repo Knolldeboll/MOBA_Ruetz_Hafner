@@ -15,9 +15,9 @@ public class Economy {
 
    public static Economy getInstance(){
       if(Instance == null){
-         Eis eins = new Eis("eins");
-         Eis zwei = new Eis("zwei");
-         Eis drei = new Eis("dreoi");
+         Eis eins = new Eis("eins", 1.5f);
+         Eis zwei = new Eis("zwei",1.5f);
+         Eis drei = new Eis("dreoi",1.5f);
          Instance = new Economy(new Eis[]{eins, zwei, drei} );
 
       }
