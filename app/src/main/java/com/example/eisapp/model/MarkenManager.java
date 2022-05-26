@@ -18,6 +18,7 @@ public class MarkenManager {
 
     Context context;
     List<Marke> marken;
+    //getter + singleton
     private final String filename = "marken.txt";
 
     //TODO: Marken im Konstruktor(evtl) aus einer Datei ziehen
