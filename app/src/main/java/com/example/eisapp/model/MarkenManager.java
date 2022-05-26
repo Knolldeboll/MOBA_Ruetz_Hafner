@@ -16,13 +16,22 @@ import java.util.List;
 
 public class MarkenManager {
 
+    public static MarkenManager Instance;
+
+    public static MarkenManager getInstance(Context callingContext){
+        if(Instance == null){
+            Instance = new MarkenManager(callingContext);
+        }
+            return Instance;
+    }
     Context context;
-    List<Marke> marken;
+    public List<Marke> marken;
     private final String filename = "marken.txt";
 
     //TODO: Marken im Konstruktor(evtl) aus einer Datei ziehen
     public MarkenManager(Context context) {
         this.context = context;
+        //this.fillWithExampleData();
         this.marken = getBrandsFromFile();
     }
 
@@ -44,9 +53,14 @@ public class MarkenManager {
     private List<Marke> getBrandsFromFile() {
         System.out.println("Called getBrandsFromFile()");
         try {
+
             FileInputStream fis = context.openFileInput(this.filename);
+
+            System.out.println("AAAAAAA");
             ObjectInputStream ois = new ObjectInputStream(fis);
+            System.out.println("BBBBBB");
             List<Marke> returnList = (List<Marke>) ois.readObject();
+            System.out.println("CCCCCC");
             ois.close();
             fis.close();
             System.out.println("read brands from file!");
@@ -86,6 +100,7 @@ public class MarkenManager {
         }
     }
 
+    // TODO: Prüfen, ob datei bisher leer
     public void fillWithExampleData() {
         List<Marke> data = new ArrayList<>();
         Marke schöller = new Marke("Schöller");

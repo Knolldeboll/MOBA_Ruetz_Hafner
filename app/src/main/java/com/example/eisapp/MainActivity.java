@@ -3,6 +3,7 @@ package com.example.eisapp;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.eisapp.model.Marke;
 import com.example.eisapp.model.MarkenManager;
 import com.example.eisapp.model.Economy;
 import com.example.eisapp.model.Eis;
@@ -18,9 +19,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MarkenManager markenManager = new MarkenManager(this);
-        markenManager.fillWithExampleData();
+        MarkenManager markenManager = MarkenManager.getInstance(this);
+       // markenManager.fillWithExampleData();
         markenManager.printList();
+
+
+
 
         eco = Economy.getInstance();
         pay = new PaymentHandler();
@@ -31,6 +35,17 @@ public class MainActivity extends AppCompatActivity {
         // Eis adden blablabla
 
         //Dann : press auf zahlen!
+
+
+        Marke m = new Marke("Langneso");
+        m.addEis(new Eis("Vanillollololol",2.0f));
+        markenManager.addBrand(m);
+        //eco.printDay();
+
+        eco.addSoldIce(markenManager.marken.get(1).sorten.get(1));
+        eco.addSoldIce(markenManager.marken.get(3).sorten.get(0));
+
+
         pay.currentSum = eco.getCurrentValue();
         // Wenn summenfeld geändert: ändere auch currentvalue im pay
         //pay.currentSum = inputfieldsum.value oder so
@@ -48,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
         //Dann : pay
 
         pay.pay();
+
+        eco.printDay();
 
     }
 }

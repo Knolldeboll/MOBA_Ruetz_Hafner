@@ -11,7 +11,7 @@ import java.util.List;
     public class Marke implements Serializable {
 
         String name;
-        List<Eis> sorten;
+        public List<Eis> sorten;
 
         public Marke(String name) {
             this.name = name;
