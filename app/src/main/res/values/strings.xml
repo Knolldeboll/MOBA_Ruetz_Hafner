@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">EisApp</string>
+    <string name="preis">Preis:</string>
 </resources>
