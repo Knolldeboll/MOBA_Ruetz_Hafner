@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.eisapp.model.Marke;
+import com.example.eisapp.model.MarkenManager;
 import com.example.eisapp.model.Economy;
 import com.example.eisapp.model.Eis;
 import com.example.eisapp.model.EisAdapter;
@@ -29,7 +31,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         eises = new ArrayList<Eis>();
+
+        MarkenManager markenManager = MarkenManager.getInstance(this);
+       // markenManager.fillWithExampleData();
+        markenManager.printList();
+
+
+
+
 
 
         //Dummydaten erzeugen
@@ -83,7 +94,22 @@ public class MainActivity extends AppCompatActivity {
         // Eis adden blablabla
 
         //Dann : press auf zahlen!
+
         //pay.currentSum = eco.getCurrentValue();
+
+
+
+        Marke m = new Marke("Langneso");
+        m.addEis(new Eis("Vanillollololol",2.0f));
+        markenManager.addBrand(m);
+        //eco.printDay();
+
+        eco.addSoldIce(markenManager.marken.get(1).sorten.get(1));
+        eco.addSoldIce(markenManager.marken.get(3).sorten.get(0));
+
+
+        pay.currentSum = eco.getCurrentValue();
+
         // Wenn summenfeld geändert: ändere auch currentvalue im pay
         //pay.currentSum = inputfieldsum.value oder so
         //Tagestrinkgeld errechnet sich dann aus daylist.getsum - dailysum
@@ -101,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
         //pay.pay();
 
-
+        eco.printDay();
 
     }
 }
