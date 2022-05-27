@@ -15,6 +15,7 @@ import java.util.List;
 
 
 public class EisAdapter extends RecyclerView.Adapter<EisAdapter.ViewHolder> {
+    private List<Eis> eisliste;
 
 
     // Der viewholder stellt struktur zur späteren speicherung der view, wie sie in der xml definiert ist
@@ -39,7 +40,6 @@ public class EisAdapter extends RecyclerView.Adapter<EisAdapter.ViewHolder> {
     }
 
     // Hier werden die anzuzeigenden eise gespiechert
-    private List<Eis> eisliste;
 
     // Beim erstellen des Objekts die eisliste hier befüllen mit werten von aussen, z.b. aus dem model
     public EisAdapter(List<Eis> eisList){eisliste = eisList; }
@@ -65,6 +65,7 @@ public class EisAdapter extends RecyclerView.Adapter<EisAdapter.ViewHolder> {
 
         // die anzuzeigenden daten wählen
         Eis eis = eisliste.get(position);
+        System.out.println("onBindViewHolder CALLED");
         //hier dann die im viewholder gespeicherten elemente aus dem layout holen und bestücken
         TextView t1 = holder.t1;
         TextView t2 = holder.t2;
@@ -76,6 +77,8 @@ public class EisAdapter extends RecyclerView.Adapter<EisAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
+
+        System.out.println("Anz eise : " + eisliste.size());
         return eisliste.size();
     }
 }

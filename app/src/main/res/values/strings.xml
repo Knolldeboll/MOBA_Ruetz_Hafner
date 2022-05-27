@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">EisApp</string>
     <string name="preis">Preis:</string>
+    <string name="neues_eis">neues eis</string>
 </resources>

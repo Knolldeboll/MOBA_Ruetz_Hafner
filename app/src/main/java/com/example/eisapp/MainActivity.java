@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.eisapp.model.Economy;
 import com.example.eisapp.model.Eis;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     PaymentHandler pay;
     List<Eis> eises;
     EisAdapter ea;
+    Button b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,25 +31,48 @@ public class MainActivity extends AppCompatActivity {
 
         eises = new ArrayList<Eis>();
 
+
         //Dummydaten erzeugen
         //eises.add(new Eis("popel"));
-        eises.add(new Eis("schoko"));
+        /*eises.add(new Eis("schoko"));
         eises.add(new Eis("erdbeer"));
-
+        eises.add(new Eis("derdbeer"));
+        eises.add(new Eis("ferdbeer"));
+        eises.add(new Eis("rerdbeer"));
+        eises.add(new Eis("kerdbeer"));
+        eises.add(new Eis("perdbeer"));
+        eises.add(new Eis("äerdbeer"));
+        */
         // Rv holen
         RecyclerView rv = (RecyclerView) findViewById(R.id.recv);
 
         // Adapter für die daten erzeugen
         ea = new EisAdapter(eises);
 
+
         // beim rv den adapter setzen
 
+
+        // IDEE FÜR DYNAMISCHE Unterlisten pro marken-"Item" : Recyclerview im recyclerview, oder einfach gridview darin
         rv.setAdapter(ea);
 
-        //rv.setHasFixedSize(true);
+        rv.setHasFixedSize(true);
 
         //Layoutmanager setzen
         rv.setLayoutManager(new LinearLayoutManager(this));
+
+
+/*
+        b = (Button) findViewById(R.id.button);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                eises.add(new Eis("neu"));
+                ea.notifyItemInserted(ea.getItemCount());
+
+            }
+        });
+        */
 
         //eco = Economy.getInstance();
         //pay = new PaymentHandler();
