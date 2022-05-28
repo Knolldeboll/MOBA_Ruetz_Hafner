@@ -80,7 +80,7 @@ public class MarkenManager {
     }
 
     public void addBrand(Marke m){
-        this.marken = getBrandsFromFile();
+        //this.marken = getBrandsFromFile();
         if (marken == null) {
             marken = new ArrayList<>();
         }
@@ -89,6 +89,19 @@ public class MarkenManager {
         saveBrandsToFile(marken);
     }
 
+    public void removeBrand(Marke m){
+        System.out.println("remove  " + marken.size()+ "  "+ m.name);
+        //this.marken = getBrandsFromFile();
+        if(marken == null || !marken.contains(m)) {
+            return;
+        }
+
+        marken.remove(m);
+
+        saveBrandsToFile(marken);
+        printList();
+
+    }
     public void printList() {
         if(marken == null) {
             System.out.println("List is empty!!");
@@ -110,6 +123,8 @@ public class MarkenManager {
         schöller.addEis(new Eis("Kaktus", 1.50f));
         schöller.addEis(new Eis("Pirulo", 2.00f));
         schöller.addEis(new Eis("Frutti", 1.40f));
+        schöller.addEis(new Eis("Nutti", 1.40f));
+        schöller.addEis(new Eis("Pluutti", 1.40f));
 
         Marke magnum = new Marke("Magnum");
         magnum.addEis(new Eis("Classic", 2.00f));
