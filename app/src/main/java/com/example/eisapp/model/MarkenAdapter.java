@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eisapp.R;
@@ -72,7 +73,8 @@ public class MarkenAdapter extends RecyclerView.Adapter<MarkenAdapter.ViewHolder
         t1.setText(marke.name);
 
         // Hier den layoutmanager für den child-rv erstellen
-        GridLayoutManager gm = new GridLayoutManager(holder.recv.getContext(),3);
+        LinearLayoutManager gm = new LinearLayoutManager(holder.recv.getContext());
+        gm.setOrientation(RecyclerView.HORIZONTAL);
 
         // Hier den Adapter für den child-rv erstellen und die daten übergeben
         EisAdapter eisAdapter = new EisAdapter(marke.sorten);

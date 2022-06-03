@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.eisapp.model.Marke;
 import com.example.eisapp.model.MarkenManager;
@@ -28,16 +29,22 @@ public class MainActivity extends AppCompatActivity {
     MarkenAdapter ma;
     Button b;
     GridLayoutManager layoutManager;
+    TextView teis;
+    MarkenManager markenManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        teis = findViewById(R.id.textVieweis);
+        System.out.println(teis);
 
 
 
-        MarkenManager markenManager = MarkenManager.getInstance(this);
+
+
+        markenManager = MarkenManager.getInstance(this);
        // markenManager.fillWithExampleData();
         markenManager.printList();
 
@@ -105,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         //pay.currentSum = eco.getCurrentValue();
 
         // TODO: Das Layout vom Parentrv so machen, dass sich die größe an die kinder anpasst!
-/*
+
         Marke m = new Marke("Langneso");
         m.addEis(new Eis("Vanillollololol",2.0f));
         m.addEis(new Eis("Vanillolol",2.0f));
@@ -113,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         m.addEis(new Eis("Vanllolol",2.0f));
         m.addEis(new Eis("Erde",2.0f));
 
-        markenManager.addBrand(m);*/
+        markenManager.addBrand(m);
         //eco.printDay();
        /* markenManager.removeBrand(markenManager.marken.get(3));
         markenManager.removeBrand(markenManager.marken.get(4));
@@ -145,4 +152,13 @@ public class MainActivity extends AppCompatActivity {
         eco.printDay();
 
     }
+
+    public void onClickEis(View view){
+        TextView t = (TextView) view;
+        System.out.println(t.getText());
+       eco.addSoldIce( markenManager.getEisByName((String) t.getText()));
+
+        eco.printCurr();
+    }
+
 }

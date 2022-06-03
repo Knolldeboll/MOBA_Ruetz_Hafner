@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:onClick="o"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
 
 
     <TextView
         android:id="@+id/textVieweis"
-        android:layout_width="48dp"
-        android:layout_height="44dp"
+        android:layout_width="65dp"
+        android:layout_height="66dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:onClick="onClickEis"
         android:text="@string/eis" />
+
 </FrameLayout>

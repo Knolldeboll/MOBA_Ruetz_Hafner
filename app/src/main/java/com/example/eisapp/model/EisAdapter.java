@@ -71,4 +71,5 @@ public class EisAdapter extends RecyclerView.Adapter<EisAdapter.ChildViewHolder>
         return datalist.size();
     }
 
+
 }

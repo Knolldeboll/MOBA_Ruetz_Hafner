@@ -136,4 +136,16 @@ public class MarkenManager {
 
         saveBrandsToFile(data);
     }
+
+    public Eis getEisByName(String name){
+        for(Marke m : Instance.marken){
+            for (Eis e : m.sorten){
+                if(e.name == name){
+                    return e;
+                }
+            }
+        }
+
+        return null;
+    }
 }
