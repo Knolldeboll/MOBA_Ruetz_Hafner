@@ -8,7 +8,9 @@ public class Economy {
 
    HashMap<Eis, Integer> dailySoldIce;
    LinkedHashMap<Eis, Integer> currentSoldIce;
+   PaymentHandler paymentHandler;
    public static Economy Instance;
+
 
    double dailyIncome;
 
@@ -29,6 +31,7 @@ public class Economy {
    public Economy(){
       MarkenManager mm = MarkenManager.getInstance(null);
 
+      paymentHandler = new PaymentHandler();
       //LinkedHashmap hat den vorteil der stabilen reihenfolge
       // (Last added last)
       dailySoldIce = new LinkedHashMap<Eis,Integer>();

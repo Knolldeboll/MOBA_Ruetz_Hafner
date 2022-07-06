@@ -1,6 +1,7 @@
 package com.example.eisapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,7 @@ import com.example.eisapp.model.Economy;
 import com.example.eisapp.model.Eis;
 import com.example.eisapp.model.MarkenAdapter;
 import com.example.eisapp.model.PaymentHandler;
+import com.example.eisapp.model.SaleFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
     List<Eis> eises;
     MarkenAdapter ma;
     Button b;
+
+    // TODO: Fragment in mainactivity +xml einbauen, recyclerview ins fragment
+    // TODO: NavigationDrawer einbauen! (Evtl neues Projekt und kopieren ?)
+
+
+    // Für die den Child-rv
     GridLayoutManager layoutManager;
     TextView teis;
     MarkenManager markenManager;
@@ -51,10 +59,10 @@ public class MainActivity extends AppCompatActivity {
         eco = Economy.getInstance();
         pay = new PaymentHandler();
 
-        RecyclerView rv = (RecyclerView) findViewById(R.id.recv);
 
-
-        ma = new MarkenAdapter(markenManager.marken);
+       // Auslagern in Fragment ?!?
+    //    RecyclerView rv = (RecyclerView) findViewById(R.id.recv);
+    //    ma = new MarkenAdapter(markenManager.marken);
 
         //Dummydaten erzeugen
         //eises.add(new Eis("popel"));
@@ -78,24 +86,33 @@ public class MainActivity extends AppCompatActivity {
 
 
         // IDEE FÜR DYNAMISCHE Unterlisten pro marken-"Item" : Recyclerview im recyclerview, oder einfach gridview darin
-        rv.setAdapter(ma);
 
-        rv.setHasFixedSize(true);
+    //    rv.setAdapter(ma);
+
+    //    rv.setHasFixedSize(true);
 
         //Layoutmanager setzen
-        rv.setLayoutManager(new LinearLayoutManager(this));
+    //    rv.setLayoutManager(new LinearLayoutManager(this));
 
-        // Für den child-rv:
-        layoutManager= new GridLayoutManager(this,3);
+        // Für den child-rv: hä
+    //    layoutManager= new GridLayoutManager(this,3);
 
 
+
+        // Testbutton!
         b = (Button) findViewById(R.id.button);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               markenManager.removeBrand(markenManager.marken.get(markenManager.marken.size()-1));
-                ma.notifyItemRemoved(ma.getItemCount());
 
+                SaleFragment fragment = new SaleFragment();
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.framemain, fragment, "fragment1");
+                fragmentTransaction.commit();
+
+                /*   markenManager.removeBrand(markenManager.marken.get(markenManager.marken.size()-1));
+                ma.notifyItemRemoved(ma.getItemCount());
+            */
             }
         });
 
@@ -151,12 +168,23 @@ public class MainActivity extends AppCompatActivity {
 
         eco.printDay();
 
+        // TODO: Fragment setzen!
+        /*
+        SaleFragment fragment = new SaleFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.framemain, fragment, "fragment1");
+        fragmentTransaction.commit();*/
+
     }
 
+
+
+// Das vielleicht dann nicht ins fragment ?!?
     public void onClickEis(View view){
         TextView t = (TextView) view;
         System.out.println(t.getText());
        eco.addSoldIce( markenManager.getEisByName((String) t.getText()));
+
 
         eco.printCurr();
     }

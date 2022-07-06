@@ -2,6 +2,10 @@ package com.example.eisapp.model;
 
 public class PaymentHandler {
 
+    // -Auch als Singleton ? damit FragmentSale und das untere Fragment drauf zugreifen können-
+
+    // Oder als Member von Economy erzeugen + darafu zugreifen. !!!!
+
     public float currentSum = 0;
     public float given;
 
