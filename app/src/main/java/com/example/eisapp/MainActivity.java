@@ -1,6 +1,8 @@
 package com.example.eisapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +18,7 @@ import com.example.eisapp.model.MarkenManager;
 import com.example.eisapp.model.Economy;
 import com.example.eisapp.model.Eis;
 import com.example.eisapp.model.MarkenAdapter;
+import com.example.eisapp.model.MenuFragment;
 import com.example.eisapp.model.PaymentHandler;
 import com.example.eisapp.model.SaleFragment;
 
@@ -97,7 +100,10 @@ public class MainActivity extends AppCompatActivity {
         // Für den child-rv: hä
     //    layoutManager= new GridLayoutManager(this,3);
 
-
+        SaleFragment saleFragment = new SaleFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.framemain, saleFragment, "salefrag");
+        fragmentTransaction.commit();
 
         // Testbutton!
         b = (Button) findViewById(R.id.button);
@@ -105,11 +111,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                SaleFragment fragment = new SaleFragment();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.framemain, fragment, "fragment1");
-                fragmentTransaction.commit();
+                Fragment tempfrag = getSupportFragmentManager().findFragmentByTag("menufrag");
+                if(tempfrag != null){
+                    fragmentTransaction.remove(tempfrag);
+                }else{
+                    MenuFragment menuFragment = new MenuFragment();
+                    fragmentTransaction.add(R.id.framemenu,menuFragment,"menufrag");
+                }
 
+
+                fragmentTransaction.commit();
                 /*   markenManager.removeBrand(markenManager.marken.get(markenManager.marken.size()-1));
                 ma.notifyItemRemoved(ma.getItemCount());
             */
