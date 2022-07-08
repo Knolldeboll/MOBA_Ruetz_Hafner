@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Economy {
 
-   HashMap<Eis, Integer> dailySoldIce;
+   LinkedHashMap<Eis, Integer> dailySoldIce;
    LinkedHashMap<Eis, Integer> currentSoldIce;
    PaymentHandler paymentHandler;
    public static Economy Instance;

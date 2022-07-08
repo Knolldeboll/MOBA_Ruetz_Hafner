@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.eisapp.model.FinishFragment;
 import com.example.eisapp.model.Marke;
 import com.example.eisapp.model.MarkenManager;
 import com.example.eisapp.model.Economy;
@@ -111,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                Economy.getInstance().finishCurrentSale();
+                /*
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 Fragment tempfrag = getSupportFragmentManager().findFragmentByTag("menufrag");
                 if(tempfrag != null){
@@ -122,6 +125,13 @@ public class MainActivity extends AppCompatActivity {
 
 
                 fragmentTransaction.commit();
+                 */
+                FinishFragment ff = new FinishFragment();
+                FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction1.replace(R.id.framemain,ff,"finishfrag");
+                fragmentTransaction1.commit();
+
+
                 /*   markenManager.removeBrand(markenManager.marken.get(markenManager.marken.size()-1));
                 ma.notifyItemRemoved(ma.getItemCount());
             */
