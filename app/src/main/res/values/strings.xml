@@ -4,4 +4,7 @@
     <string name="neues_eis">neues eis</string>
     <string name="eis">EIS</string>
     <string name="tagesabschluss">Tagesabschluss</string>
+    <string name="abschluss">Abschluss</string>
+    <string name="home">Home</string>
+    <string name="eissorten">Eissorten</string>
 </resources>
