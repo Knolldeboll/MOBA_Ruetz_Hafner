@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".model.BottomFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/totalLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gesamt"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/TotalInput1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/givenLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gegeben"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/givenInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/TotalWTipLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gesamt mit Trinkgeld"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/WTipInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                android:id="@+id/changeLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rückgeld"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/changeResult"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="0,00 €"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

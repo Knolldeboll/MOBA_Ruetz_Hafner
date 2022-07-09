@@ -1,6 +1,7 @@
 package com.example.eisapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,8 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.eisapp.model.BottomFragment;
 import com.example.eisapp.model.Marke;
 import com.example.eisapp.model.MarkenManager;
 import com.example.eisapp.model.Economy;
@@ -17,7 +20,6 @@ import com.example.eisapp.model.Eis;
 import com.example.eisapp.model.MarkenAdapter;
 import com.example.eisapp.model.PaymentHandler;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     GridLayoutManager layoutManager;
     TextView teis;
     MarkenManager markenManager;
+
+    ImageButton payButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,8 +132,6 @@ public class MainActivity extends AppCompatActivity {
 */
         eco.addSoldIce(markenManager.marken.get(1).sorten.get(1));
 
-
-
         pay.currentSum = eco.getCurrentValue();
 
         // Wenn summenfeld geändert: ändere auch currentvalue im pay
@@ -150,6 +152,17 @@ public class MainActivity extends AppCompatActivity {
         //pay.pay();
 
         eco.printDay();
+
+        payButton = (ImageButton) findViewById(R.id.payButton);
+        payButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BottomFragment bottomFragment = new BottomFragment();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.add(R.id.framemain, bottomFragment, "bottomFragment");
+                transaction.commit();
+            }
+        });
 
     }
 
