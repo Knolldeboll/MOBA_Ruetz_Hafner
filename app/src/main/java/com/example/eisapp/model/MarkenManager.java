@@ -16,13 +16,25 @@ import java.util.List;
 
 public class MarkenManager {
 
+    public static MarkenManager Instance;
+
+    public static MarkenManager getInstance(Context callingContext){
+        if(Instance == null){
+            Instance = new MarkenManager(callingContext);
+        }
+            return Instance;
+    }
     Context context;
-    List<Marke> marken;
+
+    public List<Marke> marken;
+
+
     private final String filename = "marken.txt";
 
     //TODO: Marken im Konstruktor(evtl) aus einer Datei ziehen
     public MarkenManager(Context context) {
         this.context = context;
+        //this.fillWithExampleData();
         this.marken = getBrandsFromFile();
     }
 
@@ -44,10 +56,14 @@ public class MarkenManager {
     private List<Marke> getBrandsFromFile() {
         System.out.println("Called getBrandsFromFile()");
         try {
-            context.openFileInput(this.filename).close();
+
             FileInputStream fis = context.openFileInput(this.filename);
+
+            System.out.println("AAAAAAA");
             ObjectInputStream ois = new ObjectInputStream(fis);
+            System.out.println("BBBBBB");
             List<Marke> returnList = (List<Marke>) ois.readObject();
+            System.out.println("CCCCCC");
             ois.close();
             fis.close();
             System.out.println("read brands from file!");
@@ -64,7 +80,7 @@ public class MarkenManager {
     }
 
     public void addBrand(Marke m){
-        this.marken = getBrandsFromFile();
+        //this.marken = getBrandsFromFile();
         if (marken == null) {
             marken = new ArrayList<>();
         }
@@ -73,6 +89,19 @@ public class MarkenManager {
         saveBrandsToFile(marken);
     }
 
+    public void removeBrand(Marke m){
+        System.out.println("remove  " + marken.size()+ "  "+ m.name);
+        //this.marken = getBrandsFromFile();
+        if(marken == null || !marken.contains(m)) {
+            return;
+        }
+
+        marken.remove(m);
+
+        saveBrandsToFile(marken);
+        printList();
+
+    }
     public void printList() {
         if(marken == null) {
             System.out.println("List is empty!!");
@@ -87,12 +116,15 @@ public class MarkenManager {
         }
     }
 
+    // TODO: Prüfen, ob datei bisher leer
     public void fillWithExampleData() {
         List<Marke> data = new ArrayList<>();
         Marke schöller = new Marke("Schöller");
         schöller.addEis(new Eis("Kaktus", 1.50f));
         schöller.addEis(new Eis("Pirulo", 2.00f));
         schöller.addEis(new Eis("Frutti", 1.40f));
+        schöller.addEis(new Eis("Nutti", 1.40f));
+        schöller.addEis(new Eis("Pluutti", 1.40f));
 
         Marke magnum = new Marke("Magnum");
         magnum.addEis(new Eis("Classic", 2.00f));
@@ -103,5 +135,17 @@ public class MarkenManager {
         data.add(magnum);
 
         saveBrandsToFile(data);
+    }
+
+    public Eis getEisByName(String name){
+        for(Marke m : Instance.marken){
+            for (Eis e : m.sorten){
+                if(e.name == name){
+                    return e;
+                }
+            }
+        }
+
+        return null;
     }
 }
