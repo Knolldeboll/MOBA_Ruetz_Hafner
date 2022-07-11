@@ -23,8 +23,8 @@
 
     <FrameLayout
         android:id="@+id/framemenu"
-        android:layout_width="420dp"
-        android:layout_height="130dp"
+        android:layout_width="409dp"
+        android:layout_height="129dp"
         android:nestedScrollingEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

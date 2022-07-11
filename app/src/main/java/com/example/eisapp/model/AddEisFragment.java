@@ -47,7 +47,7 @@ public class AddEisFragment extends Fragment {
                         // Wenn Marke schon da, füge eis hinzu
                         // TODO: Eleganter per Auswahl der Marke aus Liste + (neue Marke)
                         // TODO: Das funktioniert nämlich nicht mit texteingabe!
-                        
+
                         if(m.name.equals(marketext.getText())){
                             m.addEis(new Eis(sortetext.getText().toString(),Float.valueOf(preistext.getText().toString()).floatValue()));
                             System.out.println("Eis zu Marke hinzugefügt");
