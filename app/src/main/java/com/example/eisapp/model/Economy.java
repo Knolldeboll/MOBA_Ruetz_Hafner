@@ -17,8 +17,10 @@ public class Economy {
 
    public static Economy getInstance(){
       if(Instance == null){
-
-         Instance = new Economy( );
+         Eis eins = new Eis("eins", 1.5f);
+         Eis zwei = new Eis("zwei",1.5f);
+         Eis drei = new Eis("dreoi",1.5f);
+         Instance = new Economy(new Eis[]{eins, zwei, drei} );
 
       }
       return Instance;
@@ -28,14 +30,23 @@ public class Economy {
    //Optional: Einkommen/Verkaufte eis pro Film
 
    //TODO: Konstruktor so abändern, dass der sich direkt die verfügbaren eise ausm markenmanager zieht
-   public Economy(){
-      MarkenManager mm = MarkenManager.getInstance(null);
+   public Economy(Eis[] eise){
+
 
       paymentHandler = new PaymentHandler();
       //LinkedHashmap hat den vorteil der stabilen reihenfolge
       // (Last added last)
       dailySoldIce = new LinkedHashMap<Eis,Integer>();
       currentSoldIce = new LinkedHashMap<Eis, Integer>();
+
+
+     // Sicher, dass alle mit 0 initilaisiert werden sollen ? Das macht das resetten komplexer
+      // bei der dailyliste egal!
+      for(Eis eis : eise){
+       dailySoldIce.put(eis,0);
+
+    }
+
    }
 
    // Bei Tagesende wird getsum von dailysales berechnet. Differenz zum gesamtertrag gibt tip
@@ -84,16 +95,10 @@ public class Economy {
    // Wert addition kommt vom paymentmanager
    public void finishCurrentSale() {
 
-      currentSoldIce.forEach((key,value) ->{
-               if(dailySoldIce.containsKey(key)){
-                  dailySoldIce.put(key,dailySoldIce.get(key)+value);
-               }else{
-                  dailySoldIce.put(key,value);
-               }
+      currentSoldIce.forEach((key,value) ->
 
-              }
-              // TODO: auch eine isnull abfrage machen, dafür die 0-init rauskicken
-              // Da alle mit 0 initialisiert: kein problem! Einfach die verkauften werte adde
+              // Da alle mit 0 initialisiert: kein problem! Einfach die verkauften werte adden
+              dailySoldIce.put(key,dailySoldIce.get(key)+value)
       );
 
       // Wie geht bezahlen ?

@@ -11,11 +11,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.example.eisapp.model.AddEisFragment;
 import com.example.eisapp.model.FinishFragment;
+
+import android.widget.ImageButton;
+import android.widget.TextView;
+
+import com.example.eisapp.model.BottomFragment;
+import com.example.eisapp.model.Marke;
+
 import com.example.eisapp.model.MarkenManager;
 import com.example.eisapp.model.Economy;
 import com.example.eisapp.model.Eis;
@@ -41,6 +49,13 @@ public class MainActivity extends AppCompatActivity {
     GridLayoutManager layoutManager;
     TextView teis;
     MarkenManager markenManager;
+
+    ImageButton payButton;
+    TextView totalText;
+    BottomFragment bottomFragment;
+    FragmentTransaction transaction;
+
+    boolean payViewOpen = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +129,42 @@ public class MainActivity extends AppCompatActivity {
 
         eco.printDay();
 
+
+
+        //TODO: PayButton farbe zu weiß ändern
+        payButton = (ImageButton) findViewById(R.id.payButton);
+        totalText = (TextView) findViewById(R.id.totalText);
+        totalText.setText("Gesamt: " + Float.toString(eco.getCurrentValue()) + "€");
+        payButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(payViewOpen) {
+                    bottomFragment.checkout();
+                    Fragment tmpFrag = getSupportFragmentManager().findFragmentByTag("bottomFragment");
+                    if (tmpFrag != null) {
+                        transaction = getSupportFragmentManager().beginTransaction();
+                    }
+                    displayPayImage();
+                    payViewOpen = false;
+                } else {
+                    System.out.println("Starting bottom fragment");
+                    bottomFragment = new BottomFragment();
+                    transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.add(R.id.framemain, bottomFragment, "bottomFragment");
+                    transaction.commit();
+                    displayCheckImage();
+                    payViewOpen = true;
+                }
+            }
+        });
+    }
+
+    public void displayCheckImage() {
+        payButton.setImageResource(R.mipmap.check);
+    }
+
+    public void displayPayImage() {
+        payButton.setImageResource(R.mipmap.pay);
 
     }
 
