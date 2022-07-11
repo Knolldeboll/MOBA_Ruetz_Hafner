@@ -118,7 +118,8 @@ public class BottomFragment extends Fragment {
     }
 
     public void checkout() {
-        paymentHandler.currentSum = Float.parseFloat(totalInput.getText().toString());
-        paymentHandler.pay();
+        //paymentHandler.currentSum = Economy.Instance.getCurrentValue();
+       // paymentHandler.pay();
+        Economy.getInstance().finishCurrentSale();
     }
 }

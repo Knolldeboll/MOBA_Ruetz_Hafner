@@ -17,7 +17,7 @@ public class PaymentHandler {
     //Bei tip: onEnter des Summenfelds setzt die Currensum anders!
     public void pay(){
         Economy.getInstance().dailyIncome += currentSum;
-        Economy.Instance.finishCurrentSale();
+        Economy.getInstance().finishCurrentSale();
 
     }
 
