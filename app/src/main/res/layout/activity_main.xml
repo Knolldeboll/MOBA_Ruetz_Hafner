@@ -6,57 +6,80 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recv"
-        android:layout_width="389dp"
-        android:layout_height="549dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:id="@+id/framemain"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/neues_eis"
+        app:layout_constraintBottom_toTopOf="@+id/framemenu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.258">
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="408dp"
-        android:layout_height="86dp"
-        android:background="#FF5722"
-        android:orientation="horizontal"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recv"
+            android:layout_width="389dp"
+            android:layout_height="549dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/neues_eis"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/framemenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="286dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="Gesamt: 7,35 €"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="34sp" />
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="408dp"
+            android:layout_height="87dp"
+            android:background="#FF5722"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <ImageButton
-            android:id="@+id/payButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#00FFFFFF"
-            android:contentDescription="pay"
-            android:scaleType="centerInside"
-            android:scaleX="0.7"
-            android:scaleY="0.7"
-            app:srcCompat="@mipmap/pay" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/totalText"
+                android:layout_width="286dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Gesamt: 7,35 €"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="34sp" />
+
+            <ImageButton
+                android:id="@+id/payButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#00FFFFFF"
+                android:contentDescription="pay"
+                android:scaleType="centerInside"
+                android:scaleX="0.7"
+                android:scaleY="0.7"
+                app:srcCompat="@mipmap/pay" />
+        </LinearLayout>
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

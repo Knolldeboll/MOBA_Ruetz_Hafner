@@ -4,6 +4,9 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +22,12 @@ public class BottomFragment extends Fragment {
     public static EditText wTipInput;
     public static TextView changeResult;
 
-    private float total = 0.00f;
     private float totalWTip = 0.00f;
     private float given  = 0.00f;
     private float change = 0.00f;
+
+    private Economy economy = Economy.getInstance();
+    private PaymentHandler paymentHandler = new PaymentHandler();
 
     public BottomFragment() {
 
@@ -50,9 +55,70 @@ public class BottomFragment extends Fragment {
         wTipInput = (EditText) view.findViewById(R.id.WTipInput);
         changeResult = (TextView) view.findViewById(R.id.changeResult);
 
-        totalInput.setText(Float.toString(total));
+        totalInput.setText(Float.toString(economy.getCurrentValue()));
+        wTipInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(charSequence.length() > 0) {
+                    totalWTip = Float.parseFloat(charSequence.toString());
+                    if(totalWTip > 0 && given > 0 && economy.getCurrentValue() > 0) {
+                        change = given - totalWTip;
+                        changeResult.setText(String.format("%.2f", change));
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        wTipInput.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_ENTER) {
+                    givenInput.requestFocus();
+                    //TODO: Tastatur automatisch öffnen
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        givenInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(charSequence.length() > 0) {
+                    given = Float.parseFloat(charSequence.toString());
+                    if(totalWTip > 0 && given > 0 && economy.getCurrentValue() > 0) {
+                        change = given - totalWTip;
+                        changeResult.setText(String.format("%.2f", change));
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         // Inflate the layout for this fragment
         return view;
+    }
+
+    public void checkout() {
+        paymentHandler.currentSum = Float.parseFloat(totalInput.getText().toString());
+        paymentHandler.pay();
     }
 }

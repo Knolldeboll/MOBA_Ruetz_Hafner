@@ -35,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
     MarkenManager markenManager;
 
     ImageButton payButton;
+    TextView totalText;
+    BottomFragment bottomFragment;
+    FragmentTransaction transaction;
+
+    boolean payViewOpen = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,17 +158,35 @@ public class MainActivity extends AppCompatActivity {
 
         eco.printDay();
 
+
+        //TODO: PayButton farbe zu weiß ändern
         payButton = (ImageButton) findViewById(R.id.payButton);
+        totalText = (TextView) findViewById(R.id.totalText);
+        totalText.setText("Gesamt: " + Float.toString(eco.getCurrentValue()) + "€");
         payButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BottomFragment bottomFragment = new BottomFragment();
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.add(R.id.framemain, bottomFragment, "bottomFragment");
-                transaction.commit();
+                if(payViewOpen) {
+                    bottomFragment.checkout();
+                    //TODO: Remove fragment
+                } else {
+                    System.out.println("Starting bottom fragment");
+                    bottomFragment = new BottomFragment();
+                    transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.add(R.id.framemain, bottomFragment, "bottomFragment");
+                    transaction.commit();
+                    displayCheckImage();
+                }
             }
         });
+    }
 
+    public void displayCheckImage() {
+        payButton.setImageResource(R.mipmap.check);
+    }
+
+    public void displayPayImage() {
+        payButton.setImageResource(R.mipmap.pay);
     }
 
     public void onClickEis(View view){
