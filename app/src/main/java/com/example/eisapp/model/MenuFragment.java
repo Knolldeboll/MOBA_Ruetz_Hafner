@@ -39,8 +39,6 @@ public class MenuFragment extends Fragment {
 
             // TODO: Die wird von Jojos menü erledigt!
 
-            Economy.getInstance().finishCurrentSale();
-
             FinishFragment ff = new FinishFragment();
             FragmentTransaction fragmentTransaction1 = getParentFragmentManager().beginTransaction();
             fragmentTransaction1.replace(R.id.framemain,ff,"finishfrag");

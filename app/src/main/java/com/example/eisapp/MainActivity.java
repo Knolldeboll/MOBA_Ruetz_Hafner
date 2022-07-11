@@ -206,7 +206,10 @@ public class MainActivity extends AppCompatActivity {
     public void onClickEis(View view){
         TextView t = (TextView) view;
         System.out.println(t.getText());
-       eco.addSoldIce( markenManager.getEisByName((String) t.getText()));
+        eco.addSoldIce( markenManager.getEisByName((String) t.getText()));
+
+        totalText.setText(String.valueOf(eco.getCurrentValue()));
+       // TextView total
 
 
         eco.printCurr();
