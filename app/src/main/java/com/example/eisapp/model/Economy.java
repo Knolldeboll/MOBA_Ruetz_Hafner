@@ -43,7 +43,8 @@ public class Economy {
 
       float val = 0;
 
-      // Hat ja auch gar nicht lange gedauert die scheiße
+      // Hat ja auch gar nicht lange gedauert die
+      // scheiße
       for(Map.Entry<Eis,Integer> ent : list.entrySet()){
          val += ent.getKey().preis * ent.getValue();
 
