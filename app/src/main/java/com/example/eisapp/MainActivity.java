@@ -1,6 +1,7 @@
 package com.example.eisapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -168,7 +169,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(payViewOpen) {
                     bottomFragment.checkout();
-                    //TODO: Remove fragment
+                    Fragment tmpFrag = getSupportFragmentManager().findFragmentByTag("bottomFragment");
+                    if (tmpFrag != null) {
+                        transaction = getSupportFragmentManager().beginTransaction();
+                    }
+                    displayPayImage();
+                    payViewOpen = false;
                 } else {
                     System.out.println("Starting bottom fragment");
                     bottomFragment = new BottomFragment();
@@ -176,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
                     transaction.add(R.id.framemain, bottomFragment, "bottomFragment");
                     transaction.commit();
                     displayCheckImage();
+                    payViewOpen = true;
                 }
             }
         });

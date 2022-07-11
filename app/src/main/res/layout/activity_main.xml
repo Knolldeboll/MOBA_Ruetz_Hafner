@@ -10,7 +10,7 @@
         android:id="@+id/framemain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/framemenu"
+        app:layout_constraintBottom_toTopOf="@+id/framenav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,7 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/framemenu"
+        android:id="@+id/framenav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:nestedScrollingEnabled="false"
