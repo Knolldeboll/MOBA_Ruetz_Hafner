@@ -12,7 +12,7 @@ import com.example.eisapp.R;
 
 import java.util.List;
 
-public class EisAdapter extends RecyclerView.Adapter<EisAdapter.ChildViewHolder> {
+public class SaleEisAdapter extends RecyclerView.Adapter<SaleEisAdapter.ChildViewHolder> {
 
     private List<Eis> datalist;
 
@@ -36,10 +36,10 @@ public class EisAdapter extends RecyclerView.Adapter<EisAdapter.ChildViewHolder>
 
     }
 
-    public EisAdapter(List<Eis> eisList){datalist = eisList; }
+    public SaleEisAdapter(List<Eis> eisList){datalist = eisList; }
 
     @Override
-    public EisAdapter.ChildViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SaleEisAdapter.ChildViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 

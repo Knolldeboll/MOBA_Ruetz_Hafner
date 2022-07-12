@@ -12,9 +12,9 @@
         android:id="@+id/textVieweis"
         android:layout_width="65dp"
         android:layout_height="66dp"
+        android:onClick="onClickEis"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:onClick="onClickEis"
         android:text="@string/eis" />
 
 </FrameLayout>

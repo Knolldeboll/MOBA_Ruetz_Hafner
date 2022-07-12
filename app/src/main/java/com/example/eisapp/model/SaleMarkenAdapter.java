@@ -6,8 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +14,7 @@ import com.example.eisapp.R;
 import java.util.List;
 
 
-public class MarkenAdapter extends RecyclerView.Adapter<MarkenAdapter.ViewHolder> {
+public class SaleMarkenAdapter extends RecyclerView.Adapter<SaleMarkenAdapter.ViewHolder> {
     private List<Marke> datalist;
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
 
@@ -44,11 +42,11 @@ public class MarkenAdapter extends RecyclerView.Adapter<MarkenAdapter.ViewHolder
     // Hier werden die anzuzeigenden eise gespiechert
 
     // Beim erstellen des Objekts die eisliste hier befüllen mit werten von aussen, z.b. aus dem model
-    public MarkenAdapter(List<Marke> markenList){datalist = markenList; }
+    public SaleMarkenAdapter(List<Marke> markenList){datalist = markenList; }
 
     // hier wird beim initialisieren das tatsächliche layout (view) in den viewholder gespeichert!
     @Override
-    public MarkenAdapter.ViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
+    public SaleMarkenAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -77,7 +75,7 @@ public class MarkenAdapter extends RecyclerView.Adapter<MarkenAdapter.ViewHolder
         gm.setOrientation(RecyclerView.HORIZONTAL);
 
         // Hier den Adapter für den child-rv erstellen und die daten übergeben
-        EisAdapter eisAdapter = new EisAdapter(marke.sorten);
+        SaleEisAdapter eisAdapter = new SaleEisAdapter(marke.sorten);
 
         // Die erstellten sachen setzen, auch den viewpool
         holder.recv.setLayoutManager(gm);

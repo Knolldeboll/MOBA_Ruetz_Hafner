@@ -27,7 +27,7 @@ public class Economy {
 
    //Optional: Einkommen/Verkaufte eis pro Film
 
-   //TODO: Konstruktor so abändern, dass der sich direkt die verfügbaren eise ausm markenmanager zieht
+
    public Economy(){
       MarkenManager mm = MarkenManager.getInstance(null);
 
@@ -58,8 +58,11 @@ public class Economy {
    public void removeSoldIce(Eis eis){
       if(currentSoldIce.containsKey(eis)) {
          currentSoldIce.put(eis, currentSoldIce.get(eis) - 1);
+         if(currentSoldIce.get(eis) == 0){
+            System.out.println("0 Stück übrig! Entferne");
+            currentSoldIce.remove(eis);
+         }
 
-         // TODO: wenn auf anzahl null gesetzt wird, entferne aus hashmap
       }
       return;
    }
@@ -95,11 +98,10 @@ public class Economy {
                  }
 
               }
-              // TODO: auch eine isnull abfrage machen, dafür die 0-init rauskicken
-              // Da alle mit 0 initialisiert: kein problem! Einfach die verkauften werte adde
+
       );
 
-      // Wie geht bezahlen ?
+
 
       currentSoldIce.clear();
    }

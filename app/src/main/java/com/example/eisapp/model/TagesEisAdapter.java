@@ -64,7 +64,6 @@ public class TagesEisAdapter extends RecyclerView.Adapter<TagesEisAdapter.DayVie
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        // TODO: Layout für eisliste anlegen.
         View dayView = inflater.inflate(R.layout.finishitemlayout,parent,false);
         DayViewHolder dayViewHolder = new DayViewHolder(dayView);
 

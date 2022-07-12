@@ -4,30 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
-import android.widget.FrameLayout;
 import android.widget.TextView;
-
-import com.example.eisapp.model.AddEisFragment;
-import com.example.eisapp.model.FinishFragment;
 
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.example.eisapp.model.BottomFragment;
-import com.example.eisapp.model.Marke;
 
 import com.example.eisapp.model.MarkenManager;
 import com.example.eisapp.model.Economy;
 import com.example.eisapp.model.Eis;
-import com.example.eisapp.model.MarkenAdapter;
+import com.example.eisapp.model.SaleMarkenAdapter;
 import com.example.eisapp.model.MenuFragment;
 import com.example.eisapp.model.PaymentHandler;
 import com.example.eisapp.model.SaleFragment;
@@ -40,9 +32,7 @@ public class MainActivity extends AppCompatActivity {
     Economy eco;
     PaymentHandler pay;
     List<Eis> eises;
-    MarkenAdapter ma;
-       // TODO: Fragment in mainactivity +xml einbauen, recyclerview ins fragment
-    // TODO: NavigationDrawer einbauen! (Evtl neues Projekt und kopieren ?)
+    SaleMarkenAdapter ma;
 
 
     // Für die den Child-rv

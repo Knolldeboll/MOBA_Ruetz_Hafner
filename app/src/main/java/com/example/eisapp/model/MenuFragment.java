@@ -25,7 +25,7 @@ public class MenuFragment extends Fragment {
 @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-    // TODO: Problem! Durchklickbar! Evtl das Salefragment solange disabeln o.ä.
+
 
     View view = inflater.inflate(R.layout.menufragmentlayout, container, false);
 
@@ -37,11 +37,12 @@ public class MenuFragment extends Fragment {
         @Override
         public void onClick(View view) {
 
-            // TODO: Die wird von Jojos menü erledigt!
+
 
             FinishFragment ff = new FinishFragment();
             FragmentTransaction fragmentTransaction1 = getParentFragmentManager().beginTransaction();
             fragmentTransaction1.replace(R.id.framemain,ff,"finishfrag");
+            //fragmentTransaction1.remove(R.id.)
             fragmentTransaction1.commit();
 
 

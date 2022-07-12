@@ -7,11 +7,25 @@
     tools:context=".MainActivity">
 
 
+    <ToggleButton
+        android:id="@+id/markeToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Neue Marke"
+        android:textAlignment="center"
+        android:textOff="Bestehende Marke"
+        android:textOn="Neue Marke"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="164dp"
+        android:layout_marginBottom="60dp"
         android:text="Hinzufügen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,7 +34,7 @@
 
     <EditText
         android:id="@+id/editTextNumberPreis"
-        android:layout_width="wrap_content"
+        android:layout_width="225dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
         android:ems="10"
@@ -34,21 +48,20 @@
 
     <EditText
         android:id="@+id/editTextMarke"
-        android:layout_width="wrap_content"
+        android:layout_width="225dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
+        android:layout_marginTop="100dp"
         android:ems="10"
         android:hint="Marke"
         android:inputType="textPersonName"
         android:minHeight="55dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextSorte"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/markeToggle" />
 
     <EditText
         android:id="@+id/editTextSorte"
-        android:layout_width="wrap_content"
+        android:layout_width="225dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
         android:ems="10"
@@ -59,4 +72,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/markespinner"
+        android:layout_width="225dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="100dp"
+        android:contentDescription="Marke"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/markeToggle" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

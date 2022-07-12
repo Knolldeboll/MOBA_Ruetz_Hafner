@@ -15,7 +15,7 @@ import com.example.eisapp.R;
 public class SaleFragment extends Fragment {
 
     public static RecyclerView recyclerView;
-    public static MarkenAdapter markenAdapter;
+    public static SaleMarkenAdapter markenAdapter;
     public static GridLayoutManager childLayout;
 
     public SaleFragment(){
@@ -24,14 +24,16 @@ public class SaleFragment extends Fragment {
 
     @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+
+        // TODO: Anzahl geklickte eis anzeigen (Nummer)
 View view = inflater.inflate(R.layout.salefragmentlayout, container, false);
 // init stuff
         // Auf view zugreifen!
         // Muss das überhaupt hier sein ? reicht doch eig dass das in der xml drin ist oder ?
         recyclerView = (RecyclerView) view.findViewById(R.id.recv);
-        markenAdapter = new MarkenAdapter(MarkenManager.Instance.marken);
-        recyclerView.setAdapter(markenAdapter);
+        markenAdapter = new SaleMarkenAdapter(MarkenManager.Instance.marken);
 
+        recyclerView.setAdapter(markenAdapter);
         recyclerView.setHasFixedSize(true);
 
         //Layoutmanager setzen parent

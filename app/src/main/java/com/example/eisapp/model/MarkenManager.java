@@ -28,10 +28,9 @@ public class MarkenManager {
 
     public List<Marke> marken;
 
-
     private final String filename = "marken.txt";
 
-    //TODO: Marken im Konstruktor(evtl) aus einer Datei ziehen
+
     public MarkenManager(Context context) {
         this.context = context;
         //this.fillWithExampleData();
@@ -85,7 +84,7 @@ public class MarkenManager {
             marken = new ArrayList<>();
         }
         marken.add(m);
-        //TODO: Speichern in der Datei
+
         saveBrandsToFile(marken);
     }
 
