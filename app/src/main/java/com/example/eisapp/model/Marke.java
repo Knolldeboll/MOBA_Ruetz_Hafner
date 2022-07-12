@@ -24,4 +24,17 @@ import java.util.List;
             sorten.add(eis);
         }
 
+        public void removeEis(Eis eis){
+
+            // TODO: Notify listeners oder was im fragment!
+            if(sorten.contains(eis)){
+                sorten.remove(eis);
+
+            }else {
+                return;
+            }
+
+
+        }
+
     }

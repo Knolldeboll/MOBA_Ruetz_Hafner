@@ -8,13 +8,18 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.eisapp.MainActivity;
 import com.example.eisapp.R;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
 public class SaleEisAdapter extends RecyclerView.Adapter<SaleEisAdapter.ChildViewHolder> {
 
     private List<Eis> datalist;
+    public TextView accessTextView;
+    public View.OnClickListener childocl;
 
 
     public class ChildViewHolder extends RecyclerView.ViewHolder{
@@ -30,13 +35,19 @@ public class SaleEisAdapter extends RecyclerView.Adapter<SaleEisAdapter.ChildVie
 
             // Die textviews aus der xml holen
             et1 = (TextView) itemView.findViewById(R.id.textVieweis);
+            accessTextView = et1;
 
 
         }
 
     }
 
-    public SaleEisAdapter(List<Eis> eisList){datalist = eisList; }
+    // TODO: Hier den onClickListener setzen!
+    public SaleEisAdapter(List<Eis> eisList, View.OnClickListener onClickListener){
+        datalist = eisList;
+        childocl = onClickListener;
+        System.out.println("Im SaleMarkenAdapter: "+ childocl);
+    }
 
     @Override
     public SaleEisAdapter.ChildViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -45,6 +56,8 @@ public class SaleEisAdapter extends RecyclerView.Adapter<SaleEisAdapter.ChildVie
 
         // Inflate the custom layout - dh das xml-layout hier initial anwenden, noch aber leer
         View eisView = inflater.inflate(R.layout.childitemlayout, parent, false);
+
+        // Hier evtl die OnClick Setzen!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         // Return a new holder instance - hat dann das xmllayout gespeichert und inflated
        ChildViewHolder viewHolder = new ChildViewHolder(eisView);
@@ -61,6 +74,11 @@ public class SaleEisAdapter extends RecyclerView.Adapter<SaleEisAdapter.ChildVie
 
         TextView eist1 = holder.et1;
         eist1.setText(eis.name);
+        eist1.setOnClickListener(childocl);
+
+        // Eventuell der Selbe shit wie im Editor xml ausgewählt ==?
+
+
 
     }
 

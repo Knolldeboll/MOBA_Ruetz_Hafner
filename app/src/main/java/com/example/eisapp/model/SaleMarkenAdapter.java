@@ -17,13 +17,15 @@ import java.util.List;
 public class SaleMarkenAdapter extends RecyclerView.Adapter<SaleMarkenAdapter.ViewHolder> {
     private List<Marke> datalist;
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
+    public RecyclerView accessChildRecv; // Für zugriff später von aussen!?
+    public View.OnClickListener passOcl;
 
 
     // Der viewholder stellt struktur zur späteren speicherung der view, wie sie in der xml definiert ist
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView t1;
-        public RecyclerView recv;
+        public RecyclerView childrecv;
 
         public ViewHolder(View itemView){
 
@@ -32,7 +34,8 @@ public class SaleMarkenAdapter extends RecyclerView.Adapter<SaleMarkenAdapter.Vi
 
             // Die textviews aus der xml holen
             t1 = (TextView) itemView.findViewById(R.id.textView1);
-            recv = (RecyclerView) itemView.findViewById(R.id.eisrv);
+            childrecv = (RecyclerView) itemView.findViewById(R.id.eisrv);
+            accessChildRecv = childrecv;
            // t2 = (TextView) itemView.findViewById(R.id.textView2);
            // t3 = (TextView) itemView.findViewById(R.id.textView3);
         }
@@ -42,7 +45,15 @@ public class SaleMarkenAdapter extends RecyclerView.Adapter<SaleMarkenAdapter.Vi
     // Hier werden die anzuzeigenden eise gespiechert
 
     // Beim erstellen des Objekts die eisliste hier befüllen mit werten von aussen, z.b. aus dem model
-    public SaleMarkenAdapter(List<Marke> markenList){datalist = markenList; }
+    public SaleMarkenAdapter(List<Marke> markenList, View.OnClickListener onClickListener){
+        datalist = markenList;
+        passOcl = onClickListener;
+
+        System.out.println("Im SaleMarkenAdapter: "+ passOcl);
+        System.out.println("Datalist Im SaleMarkenAdapter: "+ datalist);
+
+
+    }
 
     // hier wird beim initialisieren das tatsächliche layout (view) in den viewholder gespeichert!
     @Override
@@ -71,16 +82,16 @@ public class SaleMarkenAdapter extends RecyclerView.Adapter<SaleMarkenAdapter.Vi
         t1.setText(marke.name);
 
         // Hier den layoutmanager für den child-rv erstellen
-        LinearLayoutManager gm = new LinearLayoutManager(holder.recv.getContext());
+        LinearLayoutManager gm = new LinearLayoutManager(holder.childrecv.getContext());
         gm.setOrientation(RecyclerView.HORIZONTAL);
 
         // Hier den Adapter für den child-rv erstellen und die daten übergeben
-        SaleEisAdapter eisAdapter = new SaleEisAdapter(marke.sorten);
+        SaleEisAdapter eisAdapter = new SaleEisAdapter(marke.sorten, passOcl);
 
         // Die erstellten sachen setzen, auch den viewpool
-        holder.recv.setLayoutManager(gm);
-        holder.recv.setAdapter(eisAdapter);
-        holder.recv.setRecycledViewPool(viewPool);
+        holder.childrecv.setLayoutManager(gm);
+        holder.childrecv.setAdapter(eisAdapter);
+        holder.childrecv.setRecycledViewPool(viewPool);
 
     }
 

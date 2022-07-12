@@ -15,9 +15,10 @@ import com.example.eisapp.R;
 
 public class MenuFragment extends Fragment {
 
-    public static Button b1;
-    public static Button b2;
-    public static Button b3;
+    public Button b1;
+    public Button b2;
+    public Button b3;
+    public Button b4;
 
     public MenuFragment(){
 
@@ -32,6 +33,7 @@ public class MenuFragment extends Fragment {
     b1 = (Button) view.findViewById(R.id.abschlussbutton);
     b2 = (Button) view.findViewById(R.id.neueisbutton);
     b3 = (Button) view.findViewById(R.id.homebutton);
+    b4 = (Button) view.findViewById(R.id.deletebutton);
 
     b1.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -68,6 +70,16 @@ public class MenuFragment extends Fragment {
             SaleFragment saleFragment = new SaleFragment();
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.framemain, saleFragment, "salefrag");
+            fragmentTransaction.commit();
+        }
+    });
+
+    b4.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            RemoveEisFragment removeEisFragment = new RemoveEisFragment();
+            FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.framemain,removeEisFragment,"removeeisfragment");
             fragmentTransaction.commit();
         }
     });
