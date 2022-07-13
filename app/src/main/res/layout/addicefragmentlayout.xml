@@ -38,7 +38,7 @@
         android:layout_marginBottom="60dp"
         android:ems="10"
         android:hint="Preis (€)"
-        android:inputType="numberSigned"
+        android:inputType="numberDecimal"
         android:minHeight="55dp"
         app:layout_constraintBottom_toTopOf="@+id/addButton"
         app:layout_constraintEnd_toEndOf="parent"

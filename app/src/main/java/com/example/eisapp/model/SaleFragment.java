@@ -1,5 +1,6 @@
 package com.example.eisapp.model;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,7 +56,7 @@ View view = inflater.inflate(R.layout.salefragmentlayout, container, false);
 
                 Economy.getInstance().printCurr();
             }
-        });
+        }, Color.parseColor("#F3CCCC"));
 
         recyclerView.setAdapter(markenAdapter);
         recyclerView.setHasFixedSize(true);
