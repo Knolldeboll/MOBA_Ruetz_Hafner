@@ -41,11 +41,13 @@ public class MainActivity extends AppCompatActivity {
     MarkenManager markenManager;
 
     ImageButton payButton;
+    ImageButton undoButton;
     TextView totalText;
     BottomFragment bottomFragment;
     FragmentTransaction transaction;
 
     boolean payViewOpen = false;
+    Eis lastEis = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,26 +126,44 @@ public class MainActivity extends AppCompatActivity {
         //TODO: PayButton farbe zu weiß ändern
         payButton = (ImageButton) findViewById(R.id.payButton);
         totalText = (TextView) findViewById(R.id.totalText);
+        undoButton = (ImageButton) findViewById(R.id.undoButton);
         totalText.setText("Gesamt: " + Float.toString(eco.getCurrentValue()) + "€");
         payButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(payViewOpen) {
                     bottomFragment.checkout();
+                    totalText.setText("Gesamt: 0€");
                     Fragment tmpFrag = getSupportFragmentManager().findFragmentByTag("bottomFragment");
                     if (tmpFrag != null) {
                         transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.setCustomAnimations(R.anim.slide_up, R.anim.slide_down, 0, 0);
+                        transaction.remove(tmpFrag);
+                        transaction.commit();
                     }
                     displayPayImage();
+                    undoButton.setVisibility(View.VISIBLE);
                     payViewOpen = false;
                 } else {
                     System.out.println("Starting bottom fragment");
                     bottomFragment = new BottomFragment();
                     transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.slide_up, R.anim.slide_down, 0, 0);
                     transaction.add(R.id.framemain, bottomFragment, "bottomFragment");
                     transaction.commit();
                     displayCheckImage();
+                    undoButton.setVisibility(View.INVISIBLE);
                     payViewOpen = true;
+                }
+            }
+        });
+        undoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!payViewOpen && lastEis != null) {
+                    eco.removeSoldIce(lastEis);
+                    totalText.setText("Gesamt: " + String.valueOf(eco.getCurrentValue()) + "€");
+                    lastEis = null;
                 }
             }
         });
@@ -197,8 +217,8 @@ public class MainActivity extends AppCompatActivity {
         TextView t = (TextView) view;
         System.out.println(t.getText());
         eco.addSoldIce( markenManager.getEisByName((String) t.getText()));
-
-        totalText.setText(String.valueOf(eco.getCurrentValue()));
+        lastEis = markenManager.getEisByName((String) t.getText());
+        totalText.setText("Gesamt: " + String.valueOf(eco.getCurrentValue()) + "€");
        // TextView total
 
 

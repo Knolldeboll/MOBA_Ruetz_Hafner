@@ -1,5 +1,6 @@
 package com.example.eisapp.model;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -20,7 +22,7 @@ public class BottomFragment extends Fragment {
     public static EditText totalInput;
     public static EditText givenInput;
     public static EditText wTipInput;
-    public static TextView changeResult;
+    public static EditText changeResult;
 
     private float totalWTip = 0.00f;
     private float given  = 0.00f;
@@ -53,9 +55,9 @@ public class BottomFragment extends Fragment {
         totalInput = (EditText) view.findViewById(R.id.TotalInput1);
         givenInput = (EditText) view.findViewById(R.id.givenInput);
         wTipInput = (EditText) view.findViewById(R.id.WTipInput);
-        changeResult = (TextView) view.findViewById(R.id.changeResult);
+        changeResult = (EditText) view.findViewById(R.id.changeResult);
 
-        totalInput.setText(Float.toString(economy.getCurrentValue()));
+        totalInput.setText(Float.toString(economy.getCurrentValue()) + "€");
         wTipInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -68,7 +70,7 @@ public class BottomFragment extends Fragment {
                     totalWTip = Float.parseFloat(charSequence.toString());
                     if(totalWTip > 0 && given > 0 && economy.getCurrentValue() > 0) {
                         change = given - totalWTip;
-                        changeResult.setText(String.format("%.2f", change));
+                        changeResult.setText(String.format("%.2f", change) + "€");
                     }
                 }
             }
@@ -83,12 +85,15 @@ public class BottomFragment extends Fragment {
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if (keyEvent.getAction() == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_ENTER) {
                     givenInput.requestFocus();
-                    //TODO: Tastatur automatisch öffnen
+
                     return true;
                 }
                 return false;
             }
         });
+
+        wTipInput.requestFocus();
+        toggleKeyboard();
 
         givenInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -102,7 +107,7 @@ public class BottomFragment extends Fragment {
                     given = Float.parseFloat(charSequence.toString());
                     if(totalWTip > 0 && given > 0 && economy.getCurrentValue() > 0) {
                         change = given - totalWTip;
-                        changeResult.setText(String.format("%.2f", change));
+                        changeResult.setText(String.format("%.2f", change) + "€");
                     }
                 }
             }
@@ -120,6 +125,12 @@ public class BottomFragment extends Fragment {
     public void checkout() {
         //paymentHandler.currentSum = Economy.Instance.getCurrentValue();
        // paymentHandler.pay();
+        toggleKeyboard();
         Economy.getInstance().finishCurrentSale();
+    }
+
+    private void toggleKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(0, 0);
     }
 }

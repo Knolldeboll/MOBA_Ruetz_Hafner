@@ -9,4 +9,10 @@
     <string name="home">Home</string>
     <string name="eissorten">Eissorten</string>
 
+    <string name="pay">Bezahlen</string>
+    <string name="gesamt">Gesamt</string>
+    <string name="gegeben">Gegeben</string>
+    <string name="gesamt_trinkgeld">Gesamt + Trinkgeld</string>
+    <string name="r_ckgeld">Rückgeld</string>
+
 </resources>

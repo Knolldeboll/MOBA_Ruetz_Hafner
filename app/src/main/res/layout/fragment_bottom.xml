@@ -33,7 +33,7 @@
                 android:id="@+id/totalLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gesamt"
+                android:text="@string/gesamt"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
@@ -45,6 +45,7 @@
                 android:ems="10"
                 android:foregroundTint="#FFFFFF"
                 android:inputType="numberDecimal"
+                android:minHeight="48dp"
                 android:textColor="#FFFFFF" />
 
             <Space
@@ -55,7 +56,7 @@
                 android:id="@+id/givenLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gegeben"
+                android:text="@string/gegeben"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
@@ -78,7 +79,7 @@
                 android:id="@+id/TotalWTipLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gesamt + Trinkgeld"
+                android:text="@string/gesamt_trinkgeld"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
@@ -89,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="numberDecimal"
+                android:minHeight="48dp"
                 android:textColor="#FFFFFF" />
 
             <Space
@@ -99,17 +101,17 @@
                 android:id="@+id/changeLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Rückgeld"
+                android:text="@string/r_ckgeld"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/changeResult"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:text="0,00 €"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp" />
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
     </LinearLayout>
 
