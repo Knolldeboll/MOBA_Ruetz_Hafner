@@ -213,18 +213,4 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
-// Das vielleicht dann nicht ins fragment ?!?
-    public void onClickEis(View view){
-        TextView t = (TextView) view;
-        System.out.println(t.getText());
-        eco.addSoldIce( markenManager.getEisByName((String) t.getText()));
-        lastEis = markenManager.getEisByName((String) t.getText());
-        totalText.setText("Gesamt: " + String.valueOf(eco.getCurrentValue()) + "€");
-       // TextView total
-
-
-        eco.printCurr();
-    }
-
 }

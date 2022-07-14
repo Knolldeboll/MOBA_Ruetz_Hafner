@@ -16,6 +16,8 @@ public class PaymentHandler {
 
     //Bei tip: onEnter des Summenfelds setzt die Currensum anders!
     public void pay(){
+
+        // TODO: Passt gegebenes geld ?
         Economy.getInstance().dailyIncome += currentSum;
         Economy.getInstance().finishCurrentSale();
 

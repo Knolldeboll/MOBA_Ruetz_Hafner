@@ -49,9 +49,10 @@ View view = inflater.inflate(R.layout.salefragmentlayout, container, false);
                 Economy.getInstance().addSoldIce( MarkenManager.getInstance(view.getContext()).getEisByName((String)temptv.getText()));
 
                 //TODO: Fix TextView total, evtl als singleton
-                TextView totaltext = (TextView)view.findViewById(R.id.totalText);
+
+                TextView totaltext =  getActivity().findViewById(R.id.totalText);
                 if(totaltext!= null){
-                    totaltext.setText(String.valueOf(Economy.getInstance().getCurrentValue()));
+                    totaltext.setText(String.valueOf(Economy.getInstance().getCurrentValue()) + "€");
                 }
 
                 Economy.getInstance().printCurr();
