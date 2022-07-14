@@ -40,7 +40,7 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.addicefragmentlayout, container, false);
 
-        // TODO: Ersetzen durch auswahl aus liste
+
         marketext = (EditText) view.findViewById(R.id.editTextMarke);
         sortetext = (EditText) view.findViewById(R.id.editTextSorte);
         preistext = (EditText) view.findViewById(R.id.editTextNumberPreis);
@@ -80,9 +80,9 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
                 System.out.println("Entered  " + neuemarke);
             }
         });
-        // TODO: Weitermachen
-        // TODO: Wenn eingegeben, neue marke hinzufügen
-        // Wenn ausgewählt, add to marke
+
+        //TODO: Toast wenn eingegeben!
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,12 +98,16 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
 
                 }else{
 
+                    //TODO: Toasts
+
                     if(toggleButton.isChecked()){
                         // Neue Marke
                         if(!marketext.getText().toString().equals("")){
                             Marke marke1 = new Marke(marketext.getText().toString());
                             marke1.addEis(new Eis(sortetext.getText().toString(),Float.valueOf(preistext.getText().toString()).floatValue()));
                             MarkenManager.getInstance(view.getContext()).addBrand(marke1);
+
+                            MarkenManager.Instance.save();
                             System.out.println("Eis und Marke hinzugefügt");
 
                         }
@@ -114,6 +118,9 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
                             System.out.println(markenspinner.getSelectedItem().toString());
                             Marke m = MarkenManager.getInstance(view.getContext()).getMarkeByName(markenspinner.getSelectedItem().toString());
                             m.addEis(new Eis(sortetext.getText().toString(),Float.valueOf(preistext.getText().toString()).floatValue()));
+
+                            // TODO: Notify?
+                            MarkenManager.Instance.save();
                             System.out.println("Eis zu Marke hinzugefügt");
                         }
 

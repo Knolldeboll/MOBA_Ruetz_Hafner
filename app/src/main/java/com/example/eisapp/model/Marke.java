@@ -26,7 +26,9 @@ import java.util.List;
 
         public void removeEis(Eis eis){
 
-            // TODO: Notify listeners oder was im fragment!
+            // TODO: Notify listeners oder was im fragment! - Passt vielleicht schon ?
+
+
             if(sorten.contains(eis)){
                 sorten.remove(eis);
 

@@ -27,7 +27,7 @@ public class SaleFragment extends Fragment {
     @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
-
+        // TODO: Anzahl verkaufte
         // IDEE: Beim childrecycler: GridLayout wie gewollt, aber beim parent: Wrap content!?? Sodass bei zb drei spalten bei mehreren
         // Kein umbruch entsteht und nicht gescrollt werden muss ?
 
