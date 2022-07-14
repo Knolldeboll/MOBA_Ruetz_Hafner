@@ -1,6 +1,8 @@
 package com.example.eisapp.model;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,12 +23,14 @@ import java.util.List;
 
 public class AddEisFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
-    public static EditText marketext;
-    public static EditText sortetext;
-    public static EditText preistext;
-    public static Spinner markenspinner;
-    public static Button button;
-    public static ToggleButton toggleButton;
+    private  EditText marketext;
+    private  EditText sortetext;
+    private  EditText preistext;
+    private  Spinner markenspinner;
+    private  Button button;
+    private  ToggleButton toggleButton;
+    private static String listenmarke;
+    private static String neuemarke;
 
     public AddEisFragment(){
 
@@ -36,10 +40,8 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.addicefragmentlayout, container, false);
 
-        // TODO: Ersetzen durch auswahl aus liste
+
         marketext = (EditText) view.findViewById(R.id.editTextMarke);
-
-
         sortetext = (EditText) view.findViewById(R.id.editTextSorte);
         preistext = (EditText) view.findViewById(R.id.editTextNumberPreis);
         button = (Button) view.findViewById(R.id.addButton);
@@ -50,9 +52,7 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
         for(Marke m : MarkenManager.getInstance(view.getContext()).marken){
             markennamen.add(m.name);
         };
-        if(!markennamen.contains("Neue Marke")){
-            markennamen.add("Neue Marke");
-        }
+
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, markennamen);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -62,40 +62,78 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
         //markenspinner.setEnabled(false);
         //markenspinner.setVisibility(View.GONE);
 
-        // TODO: Weitermachen
+
+        marketext.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                neuemarke =  editable.toString();
+                System.out.println("Entered  " + neuemarke);
+            }
+        });
+
+        //TODO: Toast wenn eingegeben!
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(marketext.getText().toString() == null || sortetext.getText().toString()  == null || preistext.getText().toString()  == null){
+                // Wenn neue marke; prüfe ob checked und ob eingabe leer,
+                // Wenn alte marke, prüfe auf unchecked und auf marke == null
+
+                // Fehlende eingabe allgemein:
+                if(sortetext.getText().toString().equals("") || preistext.getText().toString().equals("")){
                     System.out.println("Was vergessen!");
                     return;
-                }else{
-                    MarkenManager mm = MarkenManager.getInstance(view.getContext());
-                    for (Marke m: mm.marken
-                         ) {
-                        // Wenn Marke schon da, füge eis hinzu
-                        // TODO: Eleganter per Auswahl der Marke aus Liste + (neue Marke)
-                        // TODO: Das funktioniert nämlich nicht mit texteingabe!
 
-                        if(m.name.equals(marketext.getText())){
-                            m.addEis(new Eis(sortetext.getText().toString(),Float.valueOf(preistext.getText().toString()).floatValue()));
-                            System.out.println("Eis zu Marke hinzugefügt");
-                            return;
+                }else{
+
+                    //TODO: Toasts
+
+                    if(toggleButton.isChecked()){
+                        // Neue Marke
+                        if(!marketext.getText().toString().equals("")){
+                            Marke marke1 = new Marke(marketext.getText().toString());
+                            marke1.addEis(new Eis(sortetext.getText().toString(),Float.valueOf(preistext.getText().toString()).floatValue()));
+                            MarkenManager.getInstance(view.getContext()).addBrand(marke1);
+
+                            MarkenManager.Instance.save();
+                            System.out.println("Eis und Marke hinzugefügt");
+
                         }
+
+                    }else{
+                        if(markenspinner.getSelectedItem() != null){
+                            // Alte marke : nimm lsitenauswahl und füge eis hinzu
+                            System.out.println(markenspinner.getSelectedItem().toString());
+                            Marke m = MarkenManager.getInstance(view.getContext()).getMarkeByName(markenspinner.getSelectedItem().toString());
+                            m.addEis(new Eis(sortetext.getText().toString(),Float.valueOf(preistext.getText().toString()).floatValue()));
+
+                            // TODO: Notify?
+                            MarkenManager.Instance.save();
+                            System.out.println("Eis zu Marke hinzugefügt");
+                        }
+
+
                     }
 
-                    Marke marke = new Marke(marketext.getText().toString());
-                    marke.addEis(new Eis(sortetext.getText().toString(),Float.valueOf(preistext.getText().toString()).floatValue()));
 
-                    mm.addBrand(marke);
-                    System.out.println("Eis und Marke hinzugefügt");
                 }
 
             }
         });
 
+        marketext.setVisibility(View.GONE);
         toggleButton.setChecked(false);
         toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
 
@@ -114,16 +152,23 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
                 }
             }
         });
-        // 2 Textfelder, 1 button, überprüfen etc.
+
+
 
         return view;
     }
 
 
+    // Liste Selected
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        String input = (String)adapterView.getItemAtPosition(i);
-        System.out.println(input + "Selected!");
+
+       // String input = (String)adapterView.getItemAtPosition(i);
+       // System.out.println(input + "Selected!");
+
+        // Marke m = getMarkeByName!
+       // listenmarke = input;
+
         // Wenn neue: input öffnen
 
         // Wenn alte: Text in markentext

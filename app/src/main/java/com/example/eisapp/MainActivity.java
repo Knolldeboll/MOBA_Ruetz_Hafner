@@ -32,11 +32,11 @@ public class MainActivity extends AppCompatActivity {
     Economy eco;
     PaymentHandler pay;
     List<Eis> eises;
-    SaleMarkenAdapter ma;
 
 
-    // Für die den Child-rv
-    GridLayoutManager layoutManager;
+
+
+
     TextView teis;
     MarkenManager markenManager;
 
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         markenManager.removeBrand(markenManager.marken.get(4));
         markenManager.removeBrand(markenManager.marken.get(5));
 */
-
+        //MarkenManager.Instance.fillWithExampleData();
 
         pay.currentSum = eco.getCurrentValue();
 
@@ -148,8 +148,10 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("Starting bottom fragment");
                     bottomFragment = new BottomFragment();
                     transaction = getSupportFragmentManager().beginTransaction();
+
                     transaction.setCustomAnimations(R.anim.slide_up, R.anim.slide_down, 0, 0);
                     transaction.add(R.id.framemain, bottomFragment, "bottomFragment");
+
                     transaction.commit();
                     displayCheckImage();
                     undoButton.setVisibility(View.INVISIBLE);

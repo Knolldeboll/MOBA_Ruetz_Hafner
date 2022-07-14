@@ -8,14 +8,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recv"
-        android:layout_width="389dp"
-        android:layout_height="549dp"
+        android:layout_width="370dp"
+        android:layout_height="648dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.727"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.49" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

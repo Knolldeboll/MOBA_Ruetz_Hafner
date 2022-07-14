@@ -37,6 +37,9 @@ public class MarkenManager {
         this.marken = getBrandsFromFile();
     }
 
+    public void save(){
+        saveBrandsToFile(marken);
+    }
     private void saveBrandsToFile(List<Marke> data) {
         try {
             FileOutputStream fos = context.openFileOutput(this.filename, Context.MODE_PRIVATE);
@@ -115,7 +118,7 @@ public class MarkenManager {
         }
     }
 
-    // TODO: Prüfen, ob datei bisher leer
+    // TODO: Prüfen, ob datei bisher leer - vielleicht ok?
     public void fillWithExampleData() {
         List<Marke> data = new ArrayList<>();
         Marke schöller = new Marke("Schöller");
@@ -145,6 +148,24 @@ public class MarkenManager {
             }
         }
 
+        return null;
+    }
+
+    public Marke getMarkeByName(String name){
+        for(Marke m : Instance.marken){
+            if(m.name == name){
+                return m;
+            }
+        }
+        return null;
+    }
+
+    public Marke getMarkeByEis(Eis eis){
+        for(Marke m : Instance.marken){
+            if(m.sorten.contains(eis)){
+                return m;
+            }
+        }
         return null;
     }
 }
