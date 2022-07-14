@@ -59,10 +59,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+        // TODO: Wenn keine daten aus datei geholt, mach fillwithexampledata
 
         markenManager = MarkenManager.getInstance(this);
-       // markenManager.fillWithExampleData();
+        //markenManager.fillWithExampleData();
         markenManager.printList();
 
         eco = Economy.getInstance();
