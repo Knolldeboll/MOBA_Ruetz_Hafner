@@ -19,6 +19,7 @@ import com.example.eisapp.model.BottomFragment;
 import com.example.eisapp.model.MarkenManager;
 import com.example.eisapp.model.Economy;
 import com.example.eisapp.model.Eis;
+import com.example.eisapp.model.OverviewFragment;
 import com.example.eisapp.model.SaleMarkenAdapter;
 import com.example.eisapp.model.MenuFragment;
 import com.example.eisapp.model.PaymentHandler;
@@ -33,10 +34,6 @@ public class MainActivity extends AppCompatActivity {
     PaymentHandler pay;
     List<Eis> eises;
 
-
-
-
-
     TextView teis;
     MarkenManager markenManager;
 
@@ -44,9 +41,11 @@ public class MainActivity extends AppCompatActivity {
     ImageButton undoButton;
     TextView totalText;
     BottomFragment bottomFragment;
+    OverviewFragment overviewFragment;
     FragmentTransaction transaction;
 
     boolean payViewOpen = false;
+    boolean overviewOpen = false;
     Eis lastEis = null;
 
     @Override
@@ -57,8 +56,6 @@ public class MainActivity extends AppCompatActivity {
         teis = findViewById(R.id.textVieweis);
         System.out.println(teis);
 
-
-
         // TODO: Wenn keine daten aus datei geholt, mach fillwithexampledata
 
         markenManager = MarkenManager.getInstance(this);
@@ -67,8 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
         eco = Economy.getInstance();
         pay = new PaymentHandler();
-
-
 
         SaleFragment saleFragment = new SaleFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -121,9 +116,6 @@ public class MainActivity extends AppCompatActivity {
 
         eco.printDay();
 
-
-
-        //TODO: PayButton farbe zu weiß ändern
         payButton = (ImageButton) findViewById(R.id.payButton);
         totalText = (TextView) findViewById(R.id.totalText);
         undoButton = (ImageButton) findViewById(R.id.undoButton);
@@ -145,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
                     undoButton.setVisibility(View.VISIBLE);
                     payViewOpen = false;
                 } else {
-                    System.out.println("Starting bottom fragment");
                     bottomFragment = new BottomFragment();
                     transaction = getSupportFragmentManager().beginTransaction();
 
@@ -169,6 +160,31 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        totalText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!overviewOpen) {
+                    overviewFragment = new OverviewFragment();
+                    transaction = getSupportFragmentManager().beginTransaction();
+
+                    transaction.setCustomAnimations(R.anim.slide_up, R.anim.slide_down, 0, 0);
+                    transaction.add(R.id.framemain, overviewFragment, "overviewFragment");
+
+                    transaction.commit();
+                    overviewOpen = true;
+                } else {
+                    Fragment tmpFrag = getSupportFragmentManager().findFragmentByTag("overviewFragment");
+                    if (tmpFrag != null) {
+                        transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.setCustomAnimations(R.anim.slide_up, R.anim.slide_down, 0, 0);
+                        transaction.remove(tmpFrag);
+                        transaction.commit();
+                        overviewOpen = false;
+                    }
+                }
+            }
+        });
     }
 
     public void displayCheckImage() {
@@ -177,7 +193,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void displayPayImage() {
         payButton.setImageResource(R.mipmap.pay);
-
     }
 
     @Override
@@ -190,8 +205,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
       // Nur ein Menuitem, deshalb keine Fallunterscheidung
 
-
-
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 Fragment tempfrag = getSupportFragmentManager().findFragmentByTag("menufrag");
                 if(tempfrag != null){
@@ -202,13 +215,9 @@ public class MainActivity extends AppCompatActivity {
                     // Öffnen
                     MenuFragment menuFragment = new MenuFragment();
                     fragmentTransaction.add(R.id.framemenu,menuFragment,"menufrag");
-
-
                 }
 
-
                 fragmentTransaction.commit();
-
 
         return true;
     }
