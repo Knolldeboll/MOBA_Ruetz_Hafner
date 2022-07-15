@@ -1,5 +1,7 @@
 package com.example.eisapp.model;
 
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,15 +14,23 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.example.eisapp.R;
+import com.skydoves.colorpickerview.ColorEnvelope;
+import com.skydoves.colorpickerview.ColorPickerDialog;
+import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
+// Fremdcode: ColorPickerView von skydoves: https://github.com/skydoves/ColorPickerView
 
 public class AddEisFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
@@ -28,11 +38,13 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
     private EditText sortetext;
     private EditText preistext;
     private Spinner markenspinner;
-    private Button button;
+    private Button addbutton;
+    private TextView colortext;
     private ToggleButton toggleButton;
     private ArrayAdapter<String> arrayAdapter;
     //private static String listenmarke;
     private static String neuemarke;
+    private int color;
 
     public AddEisFragment() {
 
@@ -46,9 +58,11 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
         marketext = (EditText) view.findViewById(R.id.editTextMarke);
         sortetext = (EditText) view.findViewById(R.id.editTextSorte);
         preistext = (EditText) view.findViewById(R.id.editTextNumberPreis);
-        button = (Button) view.findViewById(R.id.addButton);
+        addbutton = (Button) view.findViewById(R.id.addButton);
         toggleButton = (ToggleButton) view.findViewById(R.id.markeToggle);
         markenspinner = (Spinner) view.findViewById(R.id.markespinner);
+        colortext = (TextView) view.findViewById(R.id.colorText);
+        color = 0;
 
 
         // Problem: Markennamen wird beim hinzufügen nciht aktualisiert!
@@ -56,7 +70,6 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
         for (Marke m : MarkenManager.getInstance(view.getContext()).marken) {
             markennamen.add(m.name);
         }
-        ;
 
 
         arrayAdapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, markennamen);
@@ -65,9 +78,6 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
 
         markenspinner.setAdapter(arrayAdapter);
         markenspinner.setOnItemSelectedListener(this);
-
-        //markenspinner.setEnabled(false);
-        //markenspinner.setVisibility(View.GONE);
 
 
         marketext.addTextChangedListener(new TextWatcher() {
@@ -89,12 +99,57 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
         });
 
 
-        button.setOnClickListener(new View.OnClickListener() {
+        colortext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new ColorPickerDialog.Builder(view.getContext())
+                        .setTitle("ColorPicker Dialog")
+                        .setPreferenceName("MyColorPickerDialog")
+                        .setPositiveButton("OK",
+                                new ColorEnvelopeListener() {
+                                    @Override
+                                    public void onColorSelected(ColorEnvelope envelope, boolean fromUser) {
+                                        // Set Selected Color!
+
+                                        color = envelope.getColor();
+
+                                        // Textfarbe S/W, je nach RGB-Wert
+
+                                        if (color > -8388607) {
+                                            colortext.setTextColor(Color.BLACK);
+                                        } else {
+                                            colortext.setTextColor(Color.WHITE);
+                                        }
+
+                                        colortext.setBackgroundColor(color);
+
+                                        // Komplementärfarbe - auch gut, aber zu bunt mmn
+                                        //colortext.setTextColor(color ^ 0x00ffffff);
+
+                                    }
+                                })
+                        .setNegativeButton("Abbrechen",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.dismiss();
+                                    }
+                                })
+
+                        .attachBrightnessSlideBar(true)  // the default value is true.
+                        .setBottomSpace(12) // set a bottom space between the last slidebar and buttons.
+                        .show();
+
+            }
+        });
+
+
+        addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
-                if (sortetext.getText().toString().equals("") || preistext.getText().toString().equals("")) {
+                if (sortetext.getText().toString().equals("") || preistext.getText().toString().equals("") || color == 0) {
                     System.out.println("Was vergessen!");
                     return;
 
@@ -105,7 +160,7 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
                         // Neue Marke
                         if (!marketext.getText().toString().equals("")) {
                             Marke marke1 = new Marke(marketext.getText().toString());
-                            marke1.addEis(new Eis(sortetext.getText().toString(), Float.valueOf(preistext.getText().toString()).floatValue()));
+                            marke1.addEis(new Eis(sortetext.getText().toString(), Float.valueOf(preistext.getText().toString()).floatValue(), color));
                             MarkenManager.getInstance(view.getContext()).addBrand(marke1);
 
                             MarkenManager.Instance.save();
@@ -122,7 +177,7 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
 
                             System.out.println(markenspinner.getSelectedItem().toString());
                             Marke m = MarkenManager.getInstance(view.getContext()).getMarkeByName(markenspinner.getSelectedItem().toString());
-                            m.addEis(new Eis(sortetext.getText().toString(), Float.valueOf(preistext.getText().toString()).floatValue()));
+                            m.addEis(new Eis(sortetext.getText().toString(), Float.valueOf(preistext.getText().toString()).floatValue(), color));
 
 
                             MarkenManager.Instance.save();
@@ -187,4 +242,6 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
         System.out.println("Nothing Selected!");
 
     }
+
+
 }

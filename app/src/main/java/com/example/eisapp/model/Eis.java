@@ -8,12 +8,21 @@ public class Eis implements Serializable {
 
     String name;
     float preis;
-    Color backGroundColor;
+    int backGroundColor;
+    int textColor;
     // TODO: Image irgendwie speichern, als pfad oder so
 
-    public Eis(String name, float preis) {
+    public Eis(String name, float preis, int bgcolor) {
         this.name = name;
         this.preis = preis;
+        this.backGroundColor = bgcolor;
+
+        if(bgcolor > - 8388607){
+            this.textColor = Color.BLACK;
+        }else{
+            this.textColor = Color.WHITE;
+        }
+         // -1   8.388.607
     }
 
     public String getName() {
@@ -32,11 +41,11 @@ public class Eis implements Serializable {
         this.preis = preis;
     }
 
-    public Color getBackGroundColor() {
+    public int getBackGroundColor() {
         return backGroundColor;
     }
 
-    public void setBackGroundColor(Color backGroundColor) {
+    public void setBackGroundColor(int backGroundColor) {
         this.backGroundColor = backGroundColor;
     }
 }

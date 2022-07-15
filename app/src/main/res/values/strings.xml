@@ -14,5 +14,6 @@
     <string name="gegeben">Gegeben</string>
     <string name="gesamt_trinkgeld">Gesamt + Trinkgeld</string>
     <string name="r_ckgeld">Rückgeld</string>
+    <string name="cancel">Abbrechen</string>
 
 </resources>

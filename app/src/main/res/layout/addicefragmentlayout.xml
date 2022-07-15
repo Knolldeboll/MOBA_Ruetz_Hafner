@@ -11,20 +11,20 @@
         android:id="@+id/markeToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
+        android:layout_marginBottom="44dp"
         android:textAlignment="center"
         android:textOff="Neue Marke"
         android:textOn="Bestehende Marke"
+        app:layout_constraintBottom_toTopOf="@+id/markespinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.373"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"
+        android:layout_marginBottom="48dp"
         android:text="Hinzufügen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,14 +35,13 @@
         android:id="@+id/editTextNumberPreis"
         android:layout_width="225dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="48dp"
         android:ems="10"
         android:hint="Preis (€)"
         android:inputType="numberDecimal"
         android:minHeight="55dp"
-        app:layout_constraintBottom_toTopOf="@+id/addButton"
+        app:layout_constraintBottom_toTopOf="@+id/colorText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -80,6 +79,17 @@
         android:contentDescription="Marke"
         android:spinnerMode="dialog"
         app:layout_constraintBottom_toTopOf="@+id/editTextSorte"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/colorText"
+        android:layout_width="97dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="24dp"
+        android:text="Farbe"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/addButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
