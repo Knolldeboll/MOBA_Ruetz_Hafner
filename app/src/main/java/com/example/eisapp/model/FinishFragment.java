@@ -15,13 +15,14 @@ public class FinishFragment extends Fragment {
 
     public static RecyclerView recyclerView;
     public static TagesEisAdapter tagesEisAdapter;
-    public static LinearLayoutManager  linearLayoutManager;
+    public static LinearLayoutManager linearLayoutManager;
 
-    public FinishFragment(){
+    public FinishFragment() {
 
     }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.finishfragmentlayout, container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.finishrecv);
@@ -33,10 +34,6 @@ public class FinishFragment extends Fragment {
         recyclerView.setAdapter(tagesEisAdapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
-
-
-
-
 
 
         return view;

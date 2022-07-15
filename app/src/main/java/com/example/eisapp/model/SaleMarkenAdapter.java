@@ -25,13 +25,13 @@ public class SaleMarkenAdapter extends RecyclerView.Adapter<SaleMarkenAdapter.Vi
     public int color;
 
     // Der viewholder stellt struktur zur späteren speicherung der view, wie sie in der xml definiert ist
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView t1;
         public RecyclerView childrecv;
         public ConstraintLayout constL;
 
-        public ViewHolder(View itemView){
+        public ViewHolder(View itemView) {
 
 
             super(itemView);
@@ -42,8 +42,8 @@ public class SaleMarkenAdapter extends RecyclerView.Adapter<SaleMarkenAdapter.Vi
             constL = (ConstraintLayout) itemView.findViewById(R.id.constLayout);
             accessChildRecv = childrecv;
 
-           // t2 = (TextView) itemView.findViewById(R.id.textView2);
-           // t3 = (TextView) itemView.findViewById(R.id.textView3);
+            // t2 = (TextView) itemView.findViewById(R.id.textView2);
+            // t3 = (TextView) itemView.findViewById(R.id.textView3);
         }
 
     }
@@ -51,13 +51,13 @@ public class SaleMarkenAdapter extends RecyclerView.Adapter<SaleMarkenAdapter.Vi
     // Hier werden die anzuzeigenden eise gespiechert
 
     // Beim erstellen des Objekts die eisliste hier befüllen mit werten von aussen, z.b. aus dem model
-    public SaleMarkenAdapter(List<Marke> markenList, View.OnClickListener onClickListener, int c){
+    public SaleMarkenAdapter(List<Marke> markenList, View.OnClickListener onClickListener, int c) {
         datalist = markenList;
         passOcl = onClickListener;
         color = c;
 
-        System.out.println("Im SaleMarkenAdapter: "+ passOcl);
-        System.out.println("Datalist Im SaleMarkenAdapter: "+ datalist);
+        System.out.println("Im SaleMarkenAdapter: " + passOcl);
+        System.out.println("Datalist Im SaleMarkenAdapter: " + datalist);
 
 
     }
@@ -79,7 +79,7 @@ public class SaleMarkenAdapter extends RecyclerView.Adapter<SaleMarkenAdapter.Vi
     // Nun daten in den viewholder - wie werden die daten in die view gesetzt ?
     // wird per position gemacht! bzw für alle
     @Override
-    public void onBindViewHolder( ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
 
         // die anzuzeigenden daten wählen
         Marke marke = datalist.get(position);

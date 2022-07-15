@@ -8,35 +8,35 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-    public class Marke implements Serializable {
+public class Marke implements Serializable {
 
-        String name;
-        public List<Eis> sorten;
+    String name;
+    public List<Eis> sorten;
 
-        public Marke(String name) {
-            this.name = name;
+    public Marke(String name) {
+        this.name = name;
+    }
+
+    public void addEis(Eis eis) {
+        if (sorten == null) {
+            sorten = new ArrayList<>();
         }
+        sorten.add(eis);
+    }
 
-        public void addEis(Eis eis) {
-            if(sorten == null) {
-                sorten = new ArrayList<>();
-            }
-            sorten.add(eis);
-        }
+    public void removeEis(Eis eis) {
 
-        public void removeEis(Eis eis){
-
-            // TODO: Notify listeners oder was im fragment! - Passt vielleicht schon ?
-
-
-            if(sorten.contains(eis)){
-                sorten.remove(eis);
-
-            }else {
-                return;
+        if (sorten.contains(eis)) {
+            sorten.remove(eis);
+            if (sorten.size() == 0) {
+                MarkenManager.Instance.removeBrand(this);
             }
 
-
+        } else {
+            return;
         }
+
 
     }
+
+}

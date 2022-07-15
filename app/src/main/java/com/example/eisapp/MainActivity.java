@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     List<Eis> eises;
 
 
-
+//  TODO: Einheitliches design!
 
 
     TextView teis;
@@ -58,9 +58,6 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(teis);
 
 
-
-        // TODO: Wenn keine daten aus datei geholt, mach fillwithexampledata
-
         markenManager = MarkenManager.getInstance(this);
         //markenManager.fillWithExampleData();
         markenManager.printList();
@@ -69,13 +66,10 @@ public class MainActivity extends AppCompatActivity {
         pay = new PaymentHandler();
 
 
-
         SaleFragment saleFragment = new SaleFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.framemain, saleFragment, "salefrag");
         fragmentTransaction.commit();
-
-
 
 
         //Dann : press auf zahlen!
@@ -122,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
         eco.printDay();
 
 
-
         //TODO: PayButton farbe zu weiß ändern
         payButton = (ImageButton) findViewById(R.id.payButton);
         totalText = (TextView) findViewById(R.id.totalText);
@@ -131,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         payButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(payViewOpen) {
+                if (payViewOpen) {
                     bottomFragment.checkout();
                     totalText.setText("Gesamt: 0€");
                     Fragment tmpFrag = getSupportFragmentManager().findFragmentByTag("bottomFragment");
@@ -162,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
         undoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!payViewOpen && lastEis != null) {
+                if (!payViewOpen && lastEis != null) {
                     eco.removeSoldIce(lastEis);
                     totalText.setText("Gesamt: " + String.valueOf(eco.getCurrentValue()) + "€");
                     lastEis = null;
@@ -181,33 +174,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu,menu);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-      // Nur ein Menuitem, deshalb keine Fallunterscheidung
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Nur ein Menuitem, deshalb keine Fallunterscheidung
 
 
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        Fragment tempfrag = getSupportFragmentManager().findFragmentByTag("menufrag");
+        if (tempfrag != null) {
+            // Schließen
+            fragmentTransaction.remove(tempfrag);
 
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                Fragment tempfrag = getSupportFragmentManager().findFragmentByTag("menufrag");
-                if(tempfrag != null){
-                    // Schließen
-                    fragmentTransaction.remove(tempfrag);
-
-                }else{
-                    // Öffnen
-                    MenuFragment menuFragment = new MenuFragment();
-                    fragmentTransaction.add(R.id.framemenu,menuFragment,"menufrag");
-
-
-                }
+        } else {
+            // Öffnen
+            MenuFragment menuFragment = new MenuFragment();
+            fragmentTransaction.add(R.id.framemenu, menuFragment, "menufrag");
 
 
-                fragmentTransaction.commit();
+        }
+
+
+        fragmentTransaction.commit();
 
 
         return true;

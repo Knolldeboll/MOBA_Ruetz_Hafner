@@ -22,12 +22,12 @@ public class SaleEisAdapter extends RecyclerView.Adapter<SaleEisAdapter.ChildVie
     public View.OnClickListener childocl;
 
 
-    public class ChildViewHolder extends RecyclerView.ViewHolder{
+    public class ChildViewHolder extends RecyclerView.ViewHolder {
 
         public TextView et1;
 
 
-        public ChildViewHolder(View itemView){
+        public ChildViewHolder(View itemView) {
 
             // Wie mit variablen anzahlen ?
             // Evtl ein
@@ -42,11 +42,10 @@ public class SaleEisAdapter extends RecyclerView.Adapter<SaleEisAdapter.ChildVie
 
     }
 
-    // TODO: Hier den onClickListener setzen!
-    public SaleEisAdapter(List<Eis> eisList, View.OnClickListener onClickListener){
+    public SaleEisAdapter(List<Eis> eisList, View.OnClickListener onClickListener) {
         datalist = eisList;
         childocl = onClickListener;
-        System.out.println("Im SaleMarkenAdapter: "+ childocl);
+        System.out.println("Im SaleMarkenAdapter: " + childocl);
     }
 
     @Override
@@ -60,7 +59,7 @@ public class SaleEisAdapter extends RecyclerView.Adapter<SaleEisAdapter.ChildVie
         // Hier evtl die OnClick Setzen!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         // Return a new holder instance - hat dann das xmllayout gespeichert und inflated
-       ChildViewHolder viewHolder = new ChildViewHolder(eisView);
+        ChildViewHolder viewHolder = new ChildViewHolder(eisView);
         return viewHolder;
     }
 
@@ -68,7 +67,7 @@ public class SaleEisAdapter extends RecyclerView.Adapter<SaleEisAdapter.ChildVie
     public void onBindViewHolder(ChildViewHolder holder, int position) {
 
         // die anzuzeigenden daten wählen
-       Eis eis = datalist.get(position);
+        Eis eis = datalist.get(position);
 
         //hier dann die im viewholder gespeicherten elemente aus dem layout holen und bestücken
 
@@ -77,7 +76,6 @@ public class SaleEisAdapter extends RecyclerView.Adapter<SaleEisAdapter.ChildVie
         eist1.setOnClickListener(childocl);
 
         // Eventuell der Selbe shit wie im Editor xml ausgewählt ==?
-
 
 
     }

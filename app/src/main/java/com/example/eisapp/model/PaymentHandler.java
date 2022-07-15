@@ -15,7 +15,7 @@ public class PaymentHandler {
     // Rückgeld eingeben
 
     //Bei tip: onEnter des Summenfelds setzt die Currensum anders!
-    public void pay(){
+    public void pay() {
 
         // TODO: Passt gegebenes geld ?
         Economy.getInstance().dailyIncome += currentSum;
@@ -27,9 +27,9 @@ public class PaymentHandler {
 
 
     //Gibt rückgeld, egal ob
-    public float getChange(float paidCash){
+    public float getChange(float paidCash) {
 
-        return paidCash-currentSum;
+        return paidCash - currentSum;
     }
 
 }

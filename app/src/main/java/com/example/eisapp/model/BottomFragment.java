@@ -25,7 +25,7 @@ public class BottomFragment extends Fragment {
     public static EditText changeResult;
 
     private float totalWTip = 0.00f;
-    private float given  = 0.00f;
+    private float given = 0.00f;
     private float change = 0.00f;
 
     private Economy economy = Economy.getInstance();
@@ -50,7 +50,7 @@ public class BottomFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view  = inflater.inflate(R.layout.fragment_bottom, container, false);
+        View view = inflater.inflate(R.layout.fragment_bottom, container, false);
 
         totalInput = (EditText) view.findViewById(R.id.TotalInput1);
         givenInput = (EditText) view.findViewById(R.id.givenInput);
@@ -66,9 +66,9 @@ public class BottomFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(charSequence.length() > 0) {
+                if (charSequence.length() > 0) {
                     totalWTip = Float.parseFloat(charSequence.toString());
-                    if(totalWTip > 0 && given > 0 && economy.getCurrentValue() > 0) {
+                    if (totalWTip > 0 && given > 0 && economy.getCurrentValue() > 0) {
                         change = given - totalWTip;
                         changeResult.setText(String.format("%.2f", change) + "€");
                     }
@@ -103,9 +103,9 @@ public class BottomFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(charSequence.length() > 0) {
+                if (charSequence.length() > 0) {
                     given = Float.parseFloat(charSequence.toString());
-                    if(totalWTip > 0 && given > 0 && economy.getCurrentValue() > 0) {
+                    if (totalWTip > 0 && given > 0 && economy.getCurrentValue() > 0) {
                         change = given - totalWTip;
                         changeResult.setText(String.format("%.2f", change) + "€");
                     }
@@ -124,7 +124,7 @@ public class BottomFragment extends Fragment {
 
     public void checkout() {
         //paymentHandler.currentSum = Economy.Instance.getCurrentValue();
-       // paymentHandler.pay();
+        // paymentHandler.pay();
         toggleKeyboard();
         Economy.getInstance().finishCurrentSale();
     }

@@ -21,11 +21,11 @@ import java.util.List;
 
 public class TagesEisAdapter extends RecyclerView.Adapter<TagesEisAdapter.DayViewHolder> {
 
-    private LinkedHashMap<Eis,Integer> datalist;
+    private LinkedHashMap<Eis, Integer> datalist;
     private List<Eis> eislist;
     private List<Integer> anzlist;
 
-    public class DayViewHolder extends RecyclerView.ViewHolder{
+    public class DayViewHolder extends RecyclerView.ViewHolder {
 
         public TextView eisNameText;
         public TextView eisAnzahlText;
@@ -33,7 +33,7 @@ public class TagesEisAdapter extends RecyclerView.Adapter<TagesEisAdapter.DayVie
         //public RecyclerView dayRecv;
         //public Button dayButton;
 
-        public DayViewHolder(View dayView){
+        public DayViewHolder(View dayView) {
 
             super(dayView);
             //daySumText = (TextView) dayView.findViewById(R.id.finishText);
@@ -44,13 +44,12 @@ public class TagesEisAdapter extends RecyclerView.Adapter<TagesEisAdapter.DayVie
             eisSummeText = (TextView) dayView.findViewById(R.id.finishPriceText);
 
 
-
         }
 
     }  // ViewHolder ok
 
 
-    public TagesEisAdapter(LinkedHashMap<Eis,Integer> eisList){
+    public TagesEisAdapter(LinkedHashMap<Eis, Integer> eisList) {
         datalist = eisList;
         // Geht das so ?
         this.eislist = new ArrayList<Eis>(eisList.keySet());
@@ -64,7 +63,7 @@ public class TagesEisAdapter extends RecyclerView.Adapter<TagesEisAdapter.DayVie
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View dayView = inflater.inflate(R.layout.finishitemlayout,parent,false);
+        View dayView = inflater.inflate(R.layout.finishitemlayout, parent, false);
         DayViewHolder dayViewHolder = new DayViewHolder(dayView);
 
         return dayViewHolder;
@@ -80,7 +79,7 @@ public class TagesEisAdapter extends RecyclerView.Adapter<TagesEisAdapter.DayVie
         t1.setText(eissorte.getName());
 
         TextView t2 = holder.eisAnzahlText;
-        t2.setText("x "+ anzahl);
+        t2.setText("x " + anzahl);
 
         TextView t3 = holder.eisSummeText;
         t3.setText("= " + summe);
@@ -91,7 +90,6 @@ public class TagesEisAdapter extends RecyclerView.Adapter<TagesEisAdapter.DayVie
     public int getItemCount() {
         return datalist.size();
     }
-
 
 
 }

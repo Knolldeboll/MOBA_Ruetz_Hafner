@@ -18,28 +18,30 @@ public class MarkenManager {
 
     public static MarkenManager Instance;
 
-    public static MarkenManager getInstance(Context callingContext){
-        if(Instance == null){
+    public static MarkenManager getInstance(Context callingContext) {
+        if (Instance == null) {
             Instance = new MarkenManager(callingContext);
         }
-            return Instance;
+        return Instance;
     }
+
     Context context;
 
     public List<Marke> marken;
+
 
     private final String filename = "marken.txt";
 
 
     public MarkenManager(Context context) {
         this.context = context;
-        //this.fillWithExampleData();
         this.marken = getBrandsFromFile();
     }
 
-    public void save(){
+    public void save() {
         saveBrandsToFile(marken);
     }
+
     private void saveBrandsToFile(List<Marke> data) {
         try {
             FileOutputStream fos = context.openFileOutput(this.filename, Context.MODE_PRIVATE);
@@ -71,17 +73,23 @@ public class MarkenManager {
             System.out.println("read brands from file!");
             return returnList;
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+
+            // finnWithExympleData, try again
+            fillWithExampleData();
+            return getBrandsFromFile();
+
         } catch (IOException e) {
+
             e.printStackTrace();
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println("returning null...");
+        // Never Reached
         return null;
     }
 
-    public void addBrand(Marke m){
+    public void addBrand(Marke m) {
         //this.marken = getBrandsFromFile();
         if (marken == null) {
             marken = new ArrayList<>();
@@ -91,10 +99,10 @@ public class MarkenManager {
         saveBrandsToFile(marken);
     }
 
-    public void removeBrand(Marke m){
-        System.out.println("remove  " + marken.size()+ "  "+ m.name);
+    public void removeBrand(Marke m) {
+        System.out.println("remove  " + marken.size() + "  " + m.name);
         //this.marken = getBrandsFromFile();
-        if(marken == null || !marken.contains(m)) {
+        if (marken == null || !marken.contains(m)) {
             return;
         }
 
@@ -104,8 +112,9 @@ public class MarkenManager {
         printList();
 
     }
+
     public void printList() {
-        if(marken == null) {
+        if (marken == null) {
             System.out.println("List is empty!!");
             return;
         }
@@ -118,7 +127,7 @@ public class MarkenManager {
         }
     }
 
-    // TODO: Prüfen, ob datei bisher leer - vielleicht ok?
+
     public void fillWithExampleData() {
         List<Marke> data = new ArrayList<>();
         Marke schöller = new Marke("Schöller");
@@ -139,10 +148,10 @@ public class MarkenManager {
         saveBrandsToFile(data);
     }
 
-    public Eis getEisByName(String name){
-        for(Marke m : Instance.marken){
-            for (Eis e : m.sorten){
-                if(e.name == name){
+    public Eis getEisByName(String name) {
+        for (Marke m : Instance.marken) {
+            for (Eis e : m.sorten) {
+                if (e.name == name) {
                     return e;
                 }
             }
@@ -151,18 +160,18 @@ public class MarkenManager {
         return null;
     }
 
-    public Marke getMarkeByName(String name){
-        for(Marke m : Instance.marken){
-            if(m.name == name){
+    public Marke getMarkeByName(String name) {
+        for (Marke m : Instance.marken) {
+            if (m.name == name) {
                 return m;
             }
         }
         return null;
     }
 
-    public Marke getMarkeByEis(Eis eis){
-        for(Marke m : Instance.marken){
-            if(m.sorten.contains(eis)){
+    public Marke getMarkeByEis(Eis eis) {
+        for (Marke m : Instance.marken) {
+            if (m.sorten.contains(eis)) {
                 return m;
             }
         }

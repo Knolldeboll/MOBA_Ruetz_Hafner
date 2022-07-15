@@ -20,38 +20,34 @@ public class SaleFragment extends Fragment {
     public static SaleMarkenAdapter markenAdapter;
     public static GridLayoutManager childLayout;
 
-    public SaleFragment(){
+    public SaleFragment() {
 
     }
 
     @Override
-public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        // TODO: Anzahl verkaufte
-        // IDEE: Beim childrecycler: GridLayout wie gewollt, aber beim parent: Wrap content!?? Sodass bei zb drei spalten bei mehreren
-        // Kein umbruch entsteht und nicht gescrollt werden muss ?
 
         // TODO: Anzahl geklickte eis anzeigen (Nummer)
-View view = inflater.inflate(R.layout.salefragmentlayout, container, false);
+
+        View view = inflater.inflate(R.layout.salefragmentlayout, container, false);
 
 // init stuff
         // Auf view zugreifen!
         // Muss das überhaupt hier sein ? reicht doch eig dass das in der xml drin ist oder ?
         recyclerView = (RecyclerView) view.findViewById(R.id.recv);
 
-        // TODO: OCL fürs sale mitegeben!
-        markenAdapter = new SaleMarkenAdapter(MarkenManager.Instance.marken,new View.OnClickListener() {
+
+        markenAdapter = new SaleMarkenAdapter(MarkenManager.Instance.marken, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //formerly onClickEis() in main ;
-                TextView temptv = (TextView)view;
+                TextView temptv = (TextView) view;
                 System.out.println(temptv.getText());
-                Economy.getInstance().addSoldIce( MarkenManager.getInstance(view.getContext()).getEisByName((String)temptv.getText()));
+                Economy.getInstance().addSoldIce(MarkenManager.getInstance(view.getContext()).getEisByName((String) temptv.getText()));
 
-                //TODO: Fix TextView total, evtl als singleton
-
-                TextView totaltext =  getActivity().findViewById(R.id.totalText);
-                if(totaltext!= null){
+                TextView totaltext = getActivity().findViewById(R.id.totalText);
+                if (totaltext != null) {
                     totaltext.setText(String.valueOf(Economy.getInstance().getCurrentValue()) + "€");
                 }
 
@@ -65,13 +61,10 @@ View view = inflater.inflate(R.layout.salefragmentlayout, container, false);
         //Layoutmanager setzen parent
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        childLayout= new GridLayoutManager(view.getContext(),3);
+        childLayout = new GridLayoutManager(view.getContext(), 3);
 
 
-
-
-
-return view;
+        return view;
     }
 
 }

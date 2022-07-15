@@ -29,19 +29,15 @@ public class RemoveEisFragment extends Fragment {
     public ConstraintLayout cl;
     public TextView tv;
 
-    public RemoveEisFragment(){
+    public RemoveEisFragment() {
 
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View fragmentview = inflater.inflate(R.layout.salefragmentlayout, container, false);
         //recyclerView = (RecyclerView) view.findViewById(R.id.recv);
-
-
-
-
 
 
         // Hier kommt im endeffekt der ocl her!
@@ -55,24 +51,19 @@ public class RemoveEisFragment extends Fragment {
         markenAdapter = new SaleMarkenAdapter(MarkenManager.Instance.marken, new View.OnClickListener() {
 
 
-
             @Override
             public void onClick(View view) {
 
                 // TODO: Bisschen weniger umständlich bitte
 
-                // TODO: Wenn alle eis weg, auch marke löschen?!?
-                // IF has no entries, marke löschen
-
-
-                Eis removeeis = MarkenManager.getInstance(view.getContext()).getEisByName((String) ((TextView)view).getText());
+                Eis removeeis = MarkenManager.getInstance(view.getContext()).getEisByName((String) ((TextView) view).getText());
                 System.out.print("Remove following: " + removeeis.name);
 
                 Marke mark = MarkenManager.getInstance(view.getContext()).getMarkeByEis(removeeis);
                 System.out.println(" Of brand: " + mark.name);
 
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(view.getContext());  // Evtl mit getActivity() ?
-                alertDialogBuilder.setMessage("Sicher \"" +mark.name + ": "+removeeis.name+"\" entfernen ?");
+                alertDialogBuilder.setMessage("Sicher \"" + mark.name + ": " + removeeis.name + "\" entfernen ?");
 
                 alertDialogBuilder.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
                     @Override
@@ -82,7 +73,7 @@ public class RemoveEisFragment extends Fragment {
 
                         // IF mark.isEmpty -> delete mark
 
-                        Toast.makeText(fragmentview.getContext(), "Entfernt!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(fragmentview.getContext(), mark.name + ": " + removeeis.getName() + " entfernt!", Toast.LENGTH_LONG).show();
                         MarkenManager.Instance.save();
 
 
@@ -93,48 +84,40 @@ public class RemoveEisFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) { // Evtl mit getActivity.getContext??
 
-                        //TODO: Fix Toast, oder löschen
+
                         Toast.makeText(view.getContext(), "Nicht entfernt!", Toast.LENGTH_LONG).show();
 
                     }
                 });
 
-                AlertDialog alertDialog  = alertDialogBuilder.create();
+                AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
 
 
-
-
-
             }
-        },Color.parseColor("#CCE6FF"));
+        }, Color.parseColor("#CCE6FF"));
 
         recyclerView.setAdapter(markenAdapter);
         recyclerView.setHasFixedSize(true);
 
 
-
         //recyclerView.getChildViewHolder(ll);
-
 
 
         // findViewHolderForItemID ?
         // GetChildViewHolder!?
-       // recyclerView.getChildViewHolder();
+        // recyclerView.getChildViewHolder();
 
-       //SaleMarkenAdapter mat = (SaleMarkenAdapter) recyclerView.getAdapter();
+        //SaleMarkenAdapter mat = (SaleMarkenAdapter) recyclerView.getAdapter();
 
 
-       // setOnBinfV eiwHodler: dann neue mehtode?!?
+        // setOnBinfV eiwHodler: dann neue mehtode?!?
 
         //Layoutmanager setzen parent
         recyclerView.setLayoutManager(new LinearLayoutManager(fragmentview.getContext()));
 
         return fragmentview;
     }
-
-
-
 
 
 }

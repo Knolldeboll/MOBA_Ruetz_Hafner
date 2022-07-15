@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.fragment.app.Fragment;
@@ -23,21 +24,22 @@ import java.util.List;
 
 public class AddEisFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
-    private  EditText marketext;
-    private  EditText sortetext;
-    private  EditText preistext;
-    private  Spinner markenspinner;
-    private  Button button;
-    private  ToggleButton toggleButton;
-    private static String listenmarke;
+    private EditText marketext;
+    private EditText sortetext;
+    private EditText preistext;
+    private Spinner markenspinner;
+    private Button button;
+    private ToggleButton toggleButton;
+    private ArrayAdapter<String> arrayAdapter;
+    //private static String listenmarke;
     private static String neuemarke;
 
-    public AddEisFragment(){
+    public AddEisFragment() {
 
     }
 
     @Override
-   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.addicefragmentlayout, container, false);
 
 
@@ -48,14 +50,19 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
         toggleButton = (ToggleButton) view.findViewById(R.id.markeToggle);
         markenspinner = (Spinner) view.findViewById(R.id.markespinner);
 
-        List<String> markennamen = new ArrayList<String>() ;
-        for(Marke m : MarkenManager.getInstance(view.getContext()).marken){
+
+        // Problem: Markennamen wird beim hinzufügen nciht aktualisiert!
+        List<String> markennamen = new ArrayList<String>();
+        for (Marke m : MarkenManager.getInstance(view.getContext()).marken) {
             markennamen.add(m.name);
-        };
+        }
+        ;
 
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, markennamen);
+        arrayAdapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, markennamen);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
         markenspinner.setAdapter(arrayAdapter);
         markenspinner.setOnItemSelectedListener(this);
 
@@ -76,52 +83,53 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
 
             @Override
             public void afterTextChanged(Editable editable) {
-                neuemarke =  editable.toString();
+                neuemarke = editable.toString();
                 System.out.println("Entered  " + neuemarke);
             }
         });
-
-        //TODO: Toast wenn eingegeben!
 
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                // Wenn neue marke; prüfe ob checked und ob eingabe leer,
-                // Wenn alte marke, prüfe auf unchecked und auf marke == null
 
-                // Fehlende eingabe allgemein:
-                if(sortetext.getText().toString().equals("") || preistext.getText().toString().equals("")){
+                if (sortetext.getText().toString().equals("") || preistext.getText().toString().equals("")) {
                     System.out.println("Was vergessen!");
                     return;
 
-                }else{
+                } else {
 
-                    //TODO: Toasts
 
-                    if(toggleButton.isChecked()){
+                    if (toggleButton.isChecked()) {
                         // Neue Marke
-                        if(!marketext.getText().toString().equals("")){
+                        if (!marketext.getText().toString().equals("")) {
                             Marke marke1 = new Marke(marketext.getText().toString());
-                            marke1.addEis(new Eis(sortetext.getText().toString(),Float.valueOf(preistext.getText().toString()).floatValue()));
+                            marke1.addEis(new Eis(sortetext.getText().toString(), Float.valueOf(preistext.getText().toString()).floatValue()));
                             MarkenManager.getInstance(view.getContext()).addBrand(marke1);
 
                             MarkenManager.Instance.save();
                             System.out.println("Eis und Marke hinzugefügt");
 
+                            Toast.makeText(view.getContext(), marke1.name + ": " + sortetext.getText().toString() + " hinzugefügt!", Toast.LENGTH_LONG).show();
+                            markennamen.add(marke1.name);
+                            arrayAdapter.notifyDataSetChanged();
+                            // markenspinner.setAdapter(arrayAdapter);
                         }
 
-                    }else{
-                        if(markenspinner.getSelectedItem() != null){
-                            // Alte marke : nimm lsitenauswahl und füge eis hinzu
+                    } else {
+                        if (markenspinner.getSelectedItem() != null) {
+
                             System.out.println(markenspinner.getSelectedItem().toString());
                             Marke m = MarkenManager.getInstance(view.getContext()).getMarkeByName(markenspinner.getSelectedItem().toString());
-                            m.addEis(new Eis(sortetext.getText().toString(),Float.valueOf(preistext.getText().toString()).floatValue()));
+                            m.addEis(new Eis(sortetext.getText().toString(), Float.valueOf(preistext.getText().toString()).floatValue()));
 
-                            // TODO: Notify?
+
                             MarkenManager.Instance.save();
                             System.out.println("Eis zu Marke hinzugefügt");
+                            Toast.makeText(view.getContext(), m.name + " und " + sortetext.getText().toString() + " hinzugefügt!", Toast.LENGTH_LONG).show();
+
+
                         }
 
 
@@ -135,24 +143,23 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
 
         marketext.setVisibility(View.GONE);
         toggleButton.setChecked(false);
-        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
-                if(b){
+                if (b) {
                     // An, neue marke
                     marketext.setVisibility(View.VISIBLE);
                     markenspinner.setVisibility(View.GONE);
 
-                }else{
+                } else {
                     // Aus
                     marketext.setVisibility(View.GONE);
                     markenspinner.setVisibility(View.VISIBLE);
                 }
             }
         });
-
 
 
         return view;
@@ -163,11 +170,11 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-       // String input = (String)adapterView.getItemAtPosition(i);
-       // System.out.println(input + "Selected!");
+        // String input = (String)adapterView.getItemAtPosition(i);
+        // System.out.println(input + "Selected!");
 
         // Marke m = getMarkeByName!
-       // listenmarke = input;
+        // listenmarke = input;
 
         // Wenn neue: input öffnen
 
@@ -177,7 +184,7 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-        System.out.println( "Nothing Selected!");
+        System.out.println("Nothing Selected!");
 
     }
 }
