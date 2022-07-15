@@ -122,11 +122,15 @@ public class BottomFragment extends Fragment {
         return view;
     }
 
+    // TODO: Hier die Economy einbinden bzw richtig auf die summen addieren
     public void checkout() {
-        //paymentHandler.currentSum = Economy.Instance.getCurrentValue();
+        // paymentHandler.currentSum = Economy.Instance.getCurrentValue();
         // paymentHandler.pay();
         toggleKeyboard();
+
+
         Economy.getInstance().finishCurrentSale();
+
     }
 
     private void toggleKeyboard() {

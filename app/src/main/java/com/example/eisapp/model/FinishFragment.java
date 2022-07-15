@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ public class FinishFragment extends Fragment {
     public static RecyclerView recyclerView;
     public static TagesEisAdapter tagesEisAdapter;
     public static LinearLayoutManager linearLayoutManager;
+    public static TextView sumText;
 
     public FinishFragment() {
 
@@ -26,6 +28,8 @@ public class FinishFragment extends Fragment {
         View view = inflater.inflate(R.layout.finishfragmentlayout, container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.finishrecv);
+        sumText = (TextView) view.findViewById(R.id.finishText);
+
         tagesEisAdapter = new TagesEisAdapter(Economy.getInstance().dailySoldIce);
         linearLayoutManager = new LinearLayoutManager(view.getContext());
 
@@ -34,6 +38,10 @@ public class FinishFragment extends Fragment {
         recyclerView.setAdapter(tagesEisAdapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
+
+        sumText.setText("= " + String.valueOf( Economy.Instance.dailyIncome) + "€");
+
+
 
 
         return view;

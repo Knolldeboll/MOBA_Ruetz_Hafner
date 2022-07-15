@@ -34,7 +34,6 @@
         android:id="@+id/finishText"
         android:layout_width="93dp"
         android:layout_height="45dp"
-        android:text="day-sum"
         app:layout_constraintBottom_toTopOf="@+id/finishbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

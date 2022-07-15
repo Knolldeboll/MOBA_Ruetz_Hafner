@@ -11,8 +11,14 @@ public class Economy {
     PaymentHandler paymentHandler;
     public static Economy Instance;
 
+    // Soll Summe aller verkauften Eis sein
+    public double dailySum;
 
-    double dailyIncome;
+    // Soll Summe aller Einahmen sein (mit Trinkgeld)
+    public double dailyIncome;
+
+    //Tagestrinkgeld
+    public double dailyTip;
 
 
     public static Economy getInstance() {
