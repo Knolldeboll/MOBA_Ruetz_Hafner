@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 //  TODO: Einheitliches design!
+// TODO: Verkaufsabschluss wieder schließen
+// TODO: Top menu leiste schöner machen
 
     TextView teis;
     MarkenManager markenManager;
