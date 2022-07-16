@@ -150,7 +150,9 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
 
 
                 if (sortetext.getText().toString().equals("") || preistext.getText().toString().equals("") || color == 0) {
-                    System.out.println("Was vergessen!");
+
+                    Toast.makeText(view.getContext(),"Eingabe fehlt!", Toast.LENGTH_LONG).show();
+
                     return;
 
                 } else {

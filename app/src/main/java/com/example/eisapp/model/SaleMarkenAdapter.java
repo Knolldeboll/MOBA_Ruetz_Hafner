@@ -1,7 +1,7 @@
 package com.example.eisapp.model;
 
 import android.content.Context;
-import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +22,7 @@ public class SaleMarkenAdapter extends RecyclerView.Adapter<SaleMarkenAdapter.Vi
     public RecyclerView accessChildRecv; // Für zugriff später von aussen!?
 
     public View.OnClickListener passOcl;
-    public int color;
+    public int backgroundID;
 
     // Der viewholder stellt struktur zur späteren speicherung der view, wie sie in der xml definiert ist
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -51,10 +51,12 @@ public class SaleMarkenAdapter extends RecyclerView.Adapter<SaleMarkenAdapter.Vi
     // Hier werden die anzuzeigenden eise gespiechert
 
     // Beim erstellen des Objekts die eisliste hier befüllen mit werten von aussen, z.b. aus dem model
-    public SaleMarkenAdapter(List<Marke> markenList, View.OnClickListener onClickListener, int c) {
+    public SaleMarkenAdapter(List<Marke> markenList, View.OnClickListener onClickListener, int drawId) {
         datalist = markenList;
         passOcl = onClickListener;
-        color = c;
+
+        // TODO: Color ersetzen durch drawable
+        backgroundID = drawId;
 
         System.out.println("Im SaleMarkenAdapter: " + passOcl);
         System.out.println("Datalist Im SaleMarkenAdapter: " + datalist);
@@ -69,7 +71,7 @@ public class SaleMarkenAdapter extends RecyclerView.Adapter<SaleMarkenAdapter.Vi
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout - dh das xml-layout hier initial anwenden, noch aber leer
-        View markenView = inflater.inflate(R.layout.itemlayout, parent, false);
+        View markenView = inflater.inflate(R.layout.markeitemlayout, parent, false);
 
         // Return a new holder instance - hat dann das xmllayout gespeichert und inflated
         ViewHolder viewHolder = new ViewHolder(markenView);
@@ -101,7 +103,8 @@ public class SaleMarkenAdapter extends RecyclerView.Adapter<SaleMarkenAdapter.Vi
         holder.childrecv.setRecycledViewPool(viewPool);
 
 
-        holder.constL.setBackgroundColor(color);
+        //holder.constL.setBackgroundColor(color);
+        holder.constL.setBackgroundResource(backgroundID);
 
     }
 

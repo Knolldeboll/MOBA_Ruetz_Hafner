@@ -1,6 +1,7 @@
 package com.example.eisapp.model;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,7 +54,7 @@ public class SaleFragment extends Fragment {
 
                 Economy.getInstance().printCurr();
             }
-        }, Color.parseColor("#F3CCCC"));
+        }, R.drawable.markeitem_background);
 
         recyclerView.setAdapter(markenAdapter);
         recyclerView.setHasFixedSize(true);

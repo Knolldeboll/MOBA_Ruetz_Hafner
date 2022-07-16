@@ -1,7 +1,6 @@
 package com.example.eisapp.model;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +9,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.eisapp.MainActivity;
 import com.example.eisapp.R;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -56,7 +52,7 @@ public class SaleEisAdapter extends RecyclerView.Adapter<SaleEisAdapter.ChildVie
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout - dh das xml-layout hier initial anwenden, noch aber leer
-        View eisView = inflater.inflate(R.layout.childitemlayout, parent, false);
+        View eisView = inflater.inflate(R.layout.eisitemlayout, parent, false);
 
         // Hier evtl die OnClick Setzen!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 

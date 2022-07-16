@@ -11,11 +11,11 @@
         android:id="@+id/markeToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="180dp"
         android:textAlignment="center"
         android:textOff="Neue Marke"
         android:textOn="Bestehende Marke"
-        app:layout_constraintBottom_toTopOf="@+id/markespinner"
+        app:layout_constraintBottom_toTopOf="@+id/editTextSorte"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
@@ -24,7 +24,7 @@
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="60dp"
         android:text="Hinzufügen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,7 @@
         android:id="@+id/editTextNumberPreis"
         android:layout_width="225dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="60dp"
         android:ems="10"
         android:hint="Preis (€)"
         android:inputType="numberDecimal"
@@ -68,7 +68,6 @@
         android:minHeight="55dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextNumberPreis"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
@@ -86,7 +85,7 @@
         android:id="@+id/colorText"
         android:layout_width="97dp"
         android:layout_height="38dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="60dp"
         android:text="Farbe"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/addButton"

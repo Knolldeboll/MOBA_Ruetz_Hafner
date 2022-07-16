@@ -1,61 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#9903A9F4"
-    android:clickable="true"
-    tools:context=".MainActivity">
+    android:layout_height="wrap_content"
+    android:background="#585C42"
+    android:showDividers="beginning|end|none"
+    app:layout_marginBaseline="@dimen/cardview_compat_inset_shadow">
 
     <Button
         android:id="@+id/abschlussbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:backgroundTint="#3F51B5"
+        android:layout_width="190dp"
+        android:layout_height="70dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:backgroundTint="@color/menubutton"
         android:text="@string/abschluss"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"
         tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/neueisbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#3F51B5"
-        android:text="@string/eissorten"
+        android:layout_width="190dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="10dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:backgroundTint="@color/menubutton"
+        android:text="Sorte hinzufügen"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/homebutton"
-        app:layout_constraintStart_toEndOf="@+id/abschlussbutton"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deletebutton"
         tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/homebutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:backgroundTint="#3F51B5"
+        android:layout_width="190dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+
+        android:layout_marginBottom="5dp"
+        android:backgroundTint="@color/menubutton"
         android:text="@string/home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/abschlussbutton"
         tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/deletebutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#3F51B5"
-        android:text="delete"
+        android:layout_width="190dp"
+        android:layout_height="68dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/menubutton"
+        android:text="Sorte Löschen"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.557"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/neueisbutton" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+

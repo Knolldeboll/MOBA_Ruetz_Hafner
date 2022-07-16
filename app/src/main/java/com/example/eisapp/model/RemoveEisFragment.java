@@ -95,7 +95,7 @@ public class RemoveEisFragment extends Fragment {
 
 
             }
-        }, Color.parseColor("#CCE6FF"));
+        }, R.drawable.markeitem_background_delete);
 
         recyclerView.setAdapter(markenAdapter);
         recyclerView.setHasFixedSize(true);
