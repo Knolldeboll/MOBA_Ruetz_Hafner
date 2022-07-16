@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 //  TODO: Einheitliches design!
-// TODO: Verkaufsabschluss wieder schließen
 // TODO: Top menu leiste schöner machen
 
     TextView teis;
@@ -128,8 +127,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (payViewOpen) {
-                    bottomFragment.checkout();
-                    totalText.setText("Gesamt: 0€");
                     Fragment tmpFrag = getSupportFragmentManager().findFragmentByTag("bottomFragment");
                     if (tmpFrag != null) {
                         transaction = getSupportFragmentManager().beginTransaction();
@@ -137,10 +134,19 @@ public class MainActivity extends AppCompatActivity {
                         transaction.remove(tmpFrag);
                         transaction.commit();
                     }
-                    displayPayImage();
-                    undoButton.setVisibility(View.VISIBLE);
+                    displayUndoImage();
                     payViewOpen = false;
                 } else {
+                    if (overviewOpen) {
+                        Fragment tmpFrag = getSupportFragmentManager().findFragmentByTag("overviewFragment");
+                        if (tmpFrag != null) {
+                            transaction = getSupportFragmentManager().beginTransaction();
+                            transaction.setCustomAnimations(R.anim.slide_up, R.anim.slide_down, 0, 0);
+                            transaction.remove(tmpFrag);
+                            transaction.commit();
+                            overviewOpen = false;
+                        }
+                    }
                     bottomFragment = new BottomFragment();
                     transaction = getSupportFragmentManager().beginTransaction();
 
@@ -149,7 +155,6 @@ public class MainActivity extends AppCompatActivity {
 
                     transaction.commit();
                     displayCheckImage();
-                    undoButton.setVisibility(View.INVISIBLE);
                     payViewOpen = true;
                 }
             }
@@ -159,8 +164,21 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!payViewOpen && lastEis != null) {
                     eco.removeSoldIce(lastEis);
-                    totalText.setText("Gesamt: " + String.valueOf(eco.getCurrentValue()) + "€");
+                    totalText.setText("Gesamt: " + eco.getCurrentValue() + "€");
                     lastEis = null;
+                }
+                if (payViewOpen) {
+                    bottomFragment.checkout();
+                    totalText.setText("Gesamt: 0€");
+                    Fragment tmpFrag = getSupportFragmentManager().findFragmentByTag("bottomFragment");
+                    if (tmpFrag != null) {
+                        transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.setCustomAnimations(R.anim.slide_up, R.anim.slide_down, 0, 0);
+                        transaction.remove(tmpFrag);
+                        transaction.commit();
+                    }
+                    displayUndoImage();
+                    payViewOpen = false;
                 }
             }
         });
@@ -192,11 +210,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void displayCheckImage() {
-        payButton.setImageResource(R.mipmap.check);
+        undoButton.setImageResource(R.mipmap.check);
     }
 
-    public void displayPayImage() {
-        payButton.setImageResource(R.mipmap.pay);
+    public void displayUndoImage() {
+        undoButton.setImageResource(R.mipmap.undo);
     }
 
     @Override

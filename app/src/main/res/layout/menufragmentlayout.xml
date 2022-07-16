@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#9903A9F4"
+    android:layout_height="wrap_content"
+    android:background="@color/main_color"
     android:clickable="true"
     tools:context=".MainActivity">
 
@@ -12,50 +12,50 @@
         android:id="@+id/abschlussbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:backgroundTint="#3F51B5"
+        android:backgroundTint="@color/main_color"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:text="@string/abschluss"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"
+        android:textColor="@color/main_text_color"
+        android:textSize="12sp"
+        app:cornerRadius="0dp"
         tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/neueisbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#3F51B5"
+        android:backgroundTint="@color/main_color"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:text="@string/eissorten"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/homebutton"
-        app:layout_constraintStart_toEndOf="@+id/abschlussbutton"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"
+        android:textColor="@color/main_text_color"
+        android:textSize="12sp"
+        app:cornerRadius="0dp"
         tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/homebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:backgroundTint="#3F51B5"
+        android:backgroundTint="@color/main_color"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:text="@string/home"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"
+        android:textColor="@color/main_text_color"
+        android:textSize="12sp"
+        app:cornerRadius="0dp"
         tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/deletebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#3F51B5"
+        android:backgroundTint="@color/main_color"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:text="delete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.557"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/neueisbutton" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textColor="@color/main_text_color"
+        android:textSize="12sp"
+        app:cornerRadius="0dp" />
+</LinearLayout>

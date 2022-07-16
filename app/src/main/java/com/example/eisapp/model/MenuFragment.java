@@ -158,8 +158,8 @@ public class MenuFragment extends Fragment {
         for (Button button : buttons) {
             if (button != b) {
                 button.setEnabled(true);
-                button.setBackgroundColor(Color.parseColor("#3F51B5"));
-
+                //button.setBackgroundColor(Color.parseColor("#3F51B5"));
+                button.setBackgroundColor(getResources().getColor(R.color.main_color, null));
             }
         }
 
