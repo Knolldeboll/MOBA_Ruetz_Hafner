@@ -46,6 +46,7 @@ public class SaleFragment extends Fragment {
                 TextView temptv = (TextView) view;
                 System.out.println(temptv.getText());
                 Economy.getInstance().addSoldIce(MarkenManager.getInstance(view.getContext()).getEisByName((String) temptv.getText()));
+                // TODO:
 
                 TextView totaltext = getActivity().findViewById(R.id.totalText);
                 if (totaltext != null) {

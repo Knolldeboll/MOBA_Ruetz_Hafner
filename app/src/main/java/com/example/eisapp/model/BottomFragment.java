@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.eisapp.R;
 
@@ -29,7 +30,7 @@ public class BottomFragment extends Fragment {
     private float change = 0.00f;
 
     private Economy economy = Economy.getInstance();
-    private PaymentHandler paymentHandler = new PaymentHandler();
+    //private PaymentHandler paymentHandler = new PaymentHandler();
 
     public BottomFragment() {
 
@@ -67,9 +68,16 @@ public class BottomFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence.length() > 0) {
+
+                    // Summe mit Trinkgeld
                     totalWTip = Float.parseFloat(charSequence.toString());
                     if (totalWTip > 0 && given > 0 && economy.getCurrentValue() > 0) {
+
+
+                        // TODO: ersetze mit paymenthandler
                         change = given - totalWTip;
+
+
                         changeResult.setText(String.format("%.2f", change) + "€");
                     }
                 }
@@ -104,8 +112,12 @@ public class BottomFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence.length() > 0) {
+
+                    // Gegeben - Hier überprüfen!!
                     given = Float.parseFloat(charSequence.toString());
                     if (totalWTip > 0 && given > 0 && economy.getCurrentValue() > 0) {
+                        // given >= totalWtip
+
                         change = given - totalWTip;
                         changeResult.setText(String.format("%.2f", change) + "€");
                     }
@@ -123,13 +135,27 @@ public class BottomFragment extends Fragment {
     }
 
     // TODO: Hier die Economy einbinden bzw richtig auf die summen addieren
-    public void checkout() {
+    // TODO: Die kacke hier in den paymenthandler verschieben
+
+    public boolean checkout() {
+
+
         // paymentHandler.currentSum = Economy.Instance.getCurrentValue();
-        // paymentHandler.pay();
-        toggleKeyboard();
+
+        if(given >= totalWTip){
 
 
-        Economy.getInstance().finishCurrentSale();
+            Economy.getInstance().dailyIncome += given;
+            Economy.getInstance().finishCurrentSale();
+            toggleKeyboard();
+            return true;
+
+        }else{
+
+            Toast.makeText(this.getContext(),"Zu wenig gegeben!", Toast.LENGTH_LONG).show();
+            return false;
+
+        }
 
     }
 
