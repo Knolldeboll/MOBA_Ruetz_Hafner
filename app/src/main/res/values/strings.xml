@@ -14,6 +14,11 @@
     <string name="gegeben">Gegeben</string>
     <string name="gesamt_trinkgeld">Gesamt + Trinkgeld</string>
     <string name="r_ckgeld">Rückgeld</string>
+
     <string name="cancel">Abbrechen</string>
+
+    <string name="xicon">x icon</string>
+    <string name="remove">remove</string>
+
 
 </resources>

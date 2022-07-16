@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#00FFFFFF"
+    android:backgroundTint="#00FFFFFF"
+    android:foregroundTint="#FFFFFF"
+    android:orientation="horizontal"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/NameText"
+        android:layout_width="218dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical" />
+
+    <TextView
+        android:id="@+id/AmountText"
+        android:layout_width="91dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical" />
+
+    <TextView
+        android:id="@+id/PriceText"
+        android:layout_width="128dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical" />
+
+    <Button
+        android:id="@+id/removeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/remove"
+        android:foregroundTint="#FFFFFF"
+        android:gravity="center_vertical"
+        android:text="X"
+        android:textAlignment="gravity"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>
