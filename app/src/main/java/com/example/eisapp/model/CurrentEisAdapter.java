@@ -24,6 +24,7 @@ public class CurrentEisAdapter extends RecyclerView.Adapter<com.example.eisapp.m
     private List<Eis> eislist;
     private List<Integer> anzlist;
 
+
     public class CurrentViewHolder extends RecyclerView.ViewHolder{
 
         public TextView eisNameText;
@@ -39,11 +40,13 @@ public class CurrentEisAdapter extends RecyclerView.Adapter<com.example.eisapp.m
         }
     }
 
-    public CurrentEisAdapter(LinkedHashMap<Eis,Integer> eisList){
-        datalist = eisList;
+    public CurrentEisAdapter(LinkedHashMap<Eis,Integer> eisList ) {
 
+        datalist = eisList;
+        // Noch separieren
         this.eislist = new ArrayList<Eis>(eisList.keySet());
         this.anzlist = new ArrayList<Integer>(eisList.values());
+
     }
 
     @NonNull
@@ -61,8 +64,16 @@ public class CurrentEisAdapter extends RecyclerView.Adapter<com.example.eisapp.m
                 Economy economy = Economy.getInstance();
                 for (Eis eis : eislist) {
                     if (eis.getName().equals(currentViewHolder.eisNameText.getText())) {
+
+                        // Problem: wird zwar aus economy entfernt, aber nicht hier aus der liste!
                         economy.removeSoldIce(eis);
-                        //TODO: Update views
+
+                        // Funkt nicht so richtig!
+                        //OverviewFragment.currentEisAdapter.notifyDataSetChanged();
+                        //TODO: Update views - listen oben notifyen
+                        // TODO: Irgednwoie das totalTextField aus der mainActivity holen... per parameter evtl ?
+
+
                         break;
                     }
                 }

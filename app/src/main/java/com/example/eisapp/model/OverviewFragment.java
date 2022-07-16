@@ -15,11 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eisapp.R;
 
+import java.util.ArrayList;
+
 public class OverviewFragment extends Fragment {
 
     public static RecyclerView recyclerView;
     public static CurrentEisAdapter currentEisAdapter;
     public static LinearLayoutManager linearLayoutManager;
+
 
     public OverviewFragment() {
     }
@@ -30,7 +33,13 @@ public class OverviewFragment extends Fragment {
 
 
         recyclerView = (RecyclerView) view.findViewById(R.id.currentrecv);
+
+        // Als ob das geht...
         currentEisAdapter = new CurrentEisAdapter(Economy.getInstance().currentSoldIce);
+
+        //currentEisAdapter.notifyDataSetChanged();
+
+
         linearLayoutManager = new LinearLayoutManager(view.getContext());
 
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);

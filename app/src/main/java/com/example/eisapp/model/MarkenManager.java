@@ -1,12 +1,14 @@
 package com.example.eisapp.model;
 
 import android.content.Context;
+import android.graphics.Color;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -73,17 +75,23 @@ public class MarkenManager {
             System.out.println("read brands from file!");
             return returnList;
         } catch (FileNotFoundException e) {
-
+            System.out.println(" == Fail to load file! 1");
             // finnWithExympleData, try again
-            fillWithExampleData();
-            return getBrandsFromFile();
+
 
         } catch (IOException e) {
 
             e.printStackTrace();
+            System.out.println(" == Fail to load file! 2");
+            fillWithExampleData();
+            return getBrandsFromFile();
 
         } catch (ClassNotFoundException e) {
+            System.out.println(" == Fail to load file! 3");
+
             e.printStackTrace();
+
+
         }
         // Never Reached
         return null;
@@ -131,16 +139,16 @@ public class MarkenManager {
     public void fillWithExampleData() {
         List<Marke> data = new ArrayList<>();
         Marke schöller = new Marke("Schöller");
-        schöller.addEis(new Eis("Kaktus", 1.50f));
-        schöller.addEis(new Eis("Pirulo", 2.00f));
-        schöller.addEis(new Eis("Frutti", 1.40f));
-        schöller.addEis(new Eis("Nutti", 1.40f));
-        schöller.addEis(new Eis("Pluutti", 1.40f));
+        schöller.addEis(new Eis("Kaktus", 1.50f, Color.GREEN));
+        schöller.addEis(new Eis("Pirulo", 2.00f,Color.YELLOW));
+        schöller.addEis(new Eis("Frutti", 1.40f,Color.BLUE));
+        schöller.addEis(new Eis("Nutti", 1.40f,Color.BLACK));
+        schöller.addEis(new Eis("Pluutti", 1.40f, Color.RED));
 
         Marke magnum = new Marke("Magnum");
-        magnum.addEis(new Eis("Classic", 2.00f));
-        magnum.addEis(new Eis("Black Almond", 2.20f));
-        magnum.addEis(new Eis("White Almond", 2.20f));
+        magnum.addEis(new Eis("Classic", 2.00f, Color.WHITE));
+        magnum.addEis(new Eis("Black Almond", 2.20f, Color.BLACK));
+        magnum.addEis(new Eis("White Almond", 2.20f, Color.DKGRAY));
 
         data.add(schöller);
         data.add(magnum);

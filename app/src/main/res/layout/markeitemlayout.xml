@@ -7,14 +7,15 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="4dp"
     android:layout_marginBottom="4dp"
+    android:background="@drawable/markeitem_background"
     android:showDividers="beginning|end|none"
     app:layout_marginBaseline="@dimen/cardview_compat_inset_shadow">
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/eisrv"
-        android:layout_width="325dp"
-        android:layout_height="123dp"
+        android:layout_width="368dp"
+        android:layout_height="120dp"
         android:scrollIndicators="left|right"
         android:scrollbarAlwaysDrawHorizontalTrack="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,6 +28,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="24dp"
+        android:shadowColor="#FFFFFF"
+        android:textColor="#000000"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/eisrv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

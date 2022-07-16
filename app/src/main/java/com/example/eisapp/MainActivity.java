@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 //  TODO: Einheitliches design!
-// TODO: Top menu leiste schöner machen
 
     TextView teis;
     MarkenManager markenManager;
@@ -127,6 +126,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (payViewOpen) {
+                    if(!bottomFragment.checkout()){
+                        return;
+                    }
+
+                    totalText.setText("Gesamt: 0€");
                     Fragment tmpFrag = getSupportFragmentManager().findFragmentByTag("bottomFragment");
                     if (tmpFrag != null) {
                         transaction = getSupportFragmentManager().beginTransaction();

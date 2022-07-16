@@ -11,11 +11,12 @@ public class Economy {
     PaymentHandler paymentHandler;
     public static Economy Instance;
 
-    // Soll Summe aller verkauften Eis sein
+    // Soll Summe aller verkauften Eis sein - wird nach finishcurrent aktualisiert
     public double dailySum;
 
-    // Soll Summe aller Einahmen sein (mit Trinkgeld)
+    // Soll Summe aller Einahmen sein (mit Trinkgeld) addieren nur bei abschluss!
     public double dailyIncome;
+    // public double currentIncome;
 
     //Tagestrinkgeld
     public double dailyTip;
@@ -107,7 +108,7 @@ public class Economy {
 
         );
 
-
+        dailySum += getSum(currentSoldIce);
         currentSoldIce.clear();
     }
 
