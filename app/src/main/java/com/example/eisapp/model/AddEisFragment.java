@@ -167,7 +167,7 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
 
                             MarkenManager.Instance.save();
                             System.out.println("Eis und Marke hinzugefügt");
-                            Toast.makeText(view.getContext(), m.name + " und " + sortetext.getText().toString() + " hinzugefügt!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(view.getContext(), marke1.name + " und " + sortetext.getText().toString() + " hinzugefügt!", Toast.LENGTH_LONG).show();
 
                             markennamen.add(marke1.name);
                             arrayAdapter.notifyDataSetChanged();
@@ -185,7 +185,7 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
                             MarkenManager.Instance.save();
                             System.out.println("Eis zu Marke hinzugefügt");
 
-                            Toast.makeText(view.getContext(), marke1.name + ": " + sortetext.getText().toString() + " hinzugefügt!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(view.getContext(), m.name + ": " + sortetext.getText().toString() + " hinzugefügt!", Toast.LENGTH_LONG).show();
 
                         }
 
