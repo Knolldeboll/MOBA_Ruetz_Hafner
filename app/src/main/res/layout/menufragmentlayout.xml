@@ -10,7 +10,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
-    android:background="#585C42"
+    android:background="@color/main_color"
     android:showDividers="beginning|end|none"
     app:layout_marginBaseline="@dimen/cardview_compat_inset_shadow">
 
@@ -21,13 +21,12 @@
 
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
-        android:backgroundTint="@color/menubutton"
+        android:backgroundTint="@color/background_main"
         android:text="@string/abschluss"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
 
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TextContrastCheck" />
 
     <Button
@@ -38,15 +37,12 @@
         android:layout_marginLeft="10dp"
 
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:backgroundTint="@color/menubutton"
+        android:backgroundTint="@color/background_main"
         android:text="Sorte hinzufügen"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deletebutton"
 
+        app:layout_constraintTop_toBottomOf="@+id/deletebutton"
         tools:ignore="TextContrastCheck" />
 
     <Button
@@ -57,29 +53,25 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
 
-        android:layout_marginBottom="5dp"
-        android:backgroundTint="@color/menubutton"
+        android:backgroundTint="#808080"
         android:text="@string/home"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/abschlussbutton"
 
+        app:layout_constraintTop_toBottomOf="@+id/abschlussbutton"
         tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/deletebutton"
 
         android:layout_width="190dp"
-        android:layout_height="68dp"
+        android:layout_height="70dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:layout_weight="1"
-        android:backgroundTint="@color/menubutton"
+        android:backgroundTint="@color/background_main"
         android:text="Sorte Löschen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

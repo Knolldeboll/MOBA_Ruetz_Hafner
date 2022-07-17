@@ -15,4 +15,8 @@
     <color name="main_text_color">#FFFFFF</color>
     <color name="secondary_color">#FF7E55</color>
 
+
+    <color name="background_main"> #3A4673</color>
+
+
 </resources>
