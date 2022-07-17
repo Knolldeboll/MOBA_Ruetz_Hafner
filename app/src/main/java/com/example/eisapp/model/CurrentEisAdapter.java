@@ -23,6 +23,7 @@ public class CurrentEisAdapter extends RecyclerView.Adapter<com.example.eisapp.m
     private LinkedHashMap<Eis,Integer> datalist;
     private List<Eis> eislist;
     private List<Integer> anzlist;
+    private OverviewFragment overviewFragment;
 
 
     public class CurrentViewHolder extends RecyclerView.ViewHolder{
@@ -40,8 +41,8 @@ public class CurrentEisAdapter extends RecyclerView.Adapter<com.example.eisapp.m
         }
     }
 
-    public CurrentEisAdapter(LinkedHashMap<Eis,Integer> eisList ) {
-
+    public CurrentEisAdapter(LinkedHashMap<Eis,Integer> eisList, OverviewFragment overviewFragment) {
+        this.overviewFragment = overviewFragment;
         datalist = eisList;
         // Noch separieren
         this.eislist = new ArrayList<Eis>(eisList.keySet());
@@ -67,13 +68,12 @@ public class CurrentEisAdapter extends RecyclerView.Adapter<com.example.eisapp.m
 
                         // Problem: wird zwar aus economy entfernt, aber nicht hier aus der liste!
                         economy.removeSoldIce(eis);
-
-                        // Funkt nicht so richtig!
-                        //OverviewFragment.currentEisAdapter.notifyDataSetChanged();
-                        //TODO: Update views - listen oben notifyen
-                        // TODO: Irgednwoie das totalTextField aus der mainActivity holen... per parameter evtl ?
-
-
+                        datalist = economy.currentSoldIce;
+                        eislist = new ArrayList<Eis>(datalist.keySet());
+                        anzlist = new ArrayList<Integer>(datalist.values());
+                        OverviewFragment.currentEisAdapter.notifyDataSetChanged();
+                        TextView totalText = (TextView) overviewFragment.getActivity().findViewById(R.id.totalText);
+                        totalText.setText(String.format("%.2f", economy.getCurrentValue()) + "€");
                         break;
                     }
                 }
@@ -96,7 +96,7 @@ public class CurrentEisAdapter extends RecyclerView.Adapter<com.example.eisapp.m
         t2.setText("x "+ anzahl);
 
         TextView t3 = holder.eisSummeText;
-        t3.setText("= " + summe);
+        t3.setText("= " + String.format("%.2f", summe) + "€");
 
     }
 

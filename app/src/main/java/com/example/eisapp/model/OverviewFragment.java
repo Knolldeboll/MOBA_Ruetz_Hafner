@@ -35,7 +35,7 @@ public class OverviewFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.currentrecv);
 
         // Als ob das geht...
-        currentEisAdapter = new CurrentEisAdapter(Economy.getInstance().currentSoldIce);
+        currentEisAdapter = new CurrentEisAdapter(Economy.getInstance().currentSoldIce, this);
 
         //currentEisAdapter.notifyDataSetChanged();
 
@@ -49,5 +49,10 @@ public class OverviewFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         return view;
+    }
+
+    public void refreshFragment() {
+        Fragment overviewFrag = getActivity().getSupportFragmentManager().findFragmentByTag("overviewFragment");
+        getActivity().getSupportFragmentManager().beginTransaction().detach(overviewFrag).attach(overviewFrag).commit();
     }
 }

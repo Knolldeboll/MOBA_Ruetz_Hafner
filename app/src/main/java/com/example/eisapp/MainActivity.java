@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import android.widget.ImageButton;
@@ -127,15 +129,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (payViewOpen) {
-
-
-                    if(!bottomFragment.checkout()){
-                        return;
-                    }
-
-
-                    totalText.setText("Gesamt: 0€");
-
                     Fragment tmpFrag = getSupportFragmentManager().findFragmentByTag("bottomFragment");
                     if (tmpFrag != null) {
                         transaction = getSupportFragmentManager().beginTransaction();
@@ -144,6 +137,8 @@ public class MainActivity extends AppCompatActivity {
                         transaction.commit();
                     }
                     displayUndoImage();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.toggleSoftInput(0, 0);
                     payViewOpen = false;
                 } else {
                     if (overviewOpen) {
@@ -177,7 +172,9 @@ public class MainActivity extends AppCompatActivity {
                     lastEis = null;
                 }
                 if (payViewOpen) {
-                    bottomFragment.checkout();
+                    if(!bottomFragment.checkout()){
+                        return;
+                    }
                     totalText.setText("Gesamt: 0€");
                     Fragment tmpFrag = getSupportFragmentManager().findFragmentByTag("bottomFragment");
                     if (tmpFrag != null) {
