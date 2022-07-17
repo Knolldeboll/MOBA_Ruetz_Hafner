@@ -43,7 +43,7 @@ public class SaleEisAdapter extends RecyclerView.Adapter<SaleEisAdapter.ChildVie
     public SaleEisAdapter(List<Eis> eisList, View.OnClickListener onClickListener) {
         datalist = eisList;
         childocl = onClickListener;
-        System.out.println("Im SaleMarkenAdapter: " + childocl);
+
     }
 
     @Override
@@ -72,11 +72,12 @@ public class SaleEisAdapter extends RecyclerView.Adapter<SaleEisAdapter.ChildVie
         TextView eist1 = holder.et1;
         // TODO: Text Farbe anpassen
         holder.frameLayout.setBackgroundColor(eis.getBackGroundColor());
+        eist1.setOnClickListener(childocl);
         eist1.setText(eis.name);
         eist1.setTextColor(eis.textColor);
 
 
-        eist1.setOnClickListener(childocl);
+       // eist1.setOnClickListener(childocl);
 
         // Eventuell der Selbe shit wie im Editor xml ausgewählt ==?
 

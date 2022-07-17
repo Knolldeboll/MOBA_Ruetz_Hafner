@@ -118,7 +118,7 @@ public class BottomFragment extends Fragment {
                     if (totalWTip > 0 && given > 0 && economy.getCurrentValue() > 0) {
                         // given >= totalWtip
 
-                        change = given - totalWTip;
+                        change = Math.round( (given - totalWTip) *100f)/100f;
                         changeResult.setText(String.format("%.2f", change) + "€");
                     }
                 }
@@ -142,9 +142,10 @@ public class BottomFragment extends Fragment {
 
         // paymentHandler.currentSum = Economy.Instance.getCurrentValue();
 
-        if(given >= totalWTip){
+        if(given != 0.00f && given >= totalWTip && totalWTip >= Economy.Instance.getCurrentValue()){
 
-
+            // TODO: Runden auf zwei nachkommastellen
+            given = Math.round(given*100f)/100f;
             Economy.getInstance().dailyIncome += given;
             Economy.getInstance().finishCurrentSale();
             toggleKeyboard();

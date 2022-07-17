@@ -42,12 +42,13 @@ public class SaleFragment extends Fragment {
         markenAdapter = new SaleMarkenAdapter(MarkenManager.Instance.marken, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //formerly onClickEis() in main ;
-                TextView temptv = (TextView) view;
+
+
+                TextView temptv = (TextView) view.findViewById(R.id.textVieweis);
                 System.out.println(temptv.getText());
                 Economy.getInstance().addSoldIce(MarkenManager.getInstance(view.getContext()).getEisByName((String) temptv.getText()));
-                // TODO:
 
+                // Totaltext
                 TextView totaltext = getActivity().findViewById(R.id.totalText);
                 if (totaltext != null) {
                     totaltext.setText(String.valueOf(Economy.getInstance().getCurrentValue()) + "€");
