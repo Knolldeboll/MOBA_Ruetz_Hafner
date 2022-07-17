@@ -18,6 +18,8 @@ public class FinishFragment extends Fragment {
     public static TagesEisAdapter tagesEisAdapter;
     public static LinearLayoutManager linearLayoutManager;
     public static TextView sumText;
+    public static TextView incomeText;
+    public static TextView tipText;
 
     public FinishFragment() {
 
@@ -28,7 +30,11 @@ public class FinishFragment extends Fragment {
         View view = inflater.inflate(R.layout.finishfragmentlayout, container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.finishrecv);
-        sumText = (TextView) view.findViewById(R.id.finishText);
+
+        incomeText = (TextView) view.findViewById(R.id.finishIncome);
+        sumText = (TextView) view.findViewById(R.id.finishSum);
+        tipText = (TextView) view.findViewById(R.id.finishTip);
+
 
         tagesEisAdapter = new TagesEisAdapter(Economy.getInstance().dailySoldIce);
         linearLayoutManager = new LinearLayoutManager(view.getContext());
@@ -39,8 +45,9 @@ public class FinishFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        sumText.setText("= " + String.valueOf( Economy.Instance.dailyIncome) + "€");
-
+        incomeText.setText("= " + String.valueOf( Economy.Instance.dailyIncome) + "€");
+        sumText.setText("= " + String.valueOf( Economy.Instance.dailySum) + "€");
+        tipText.setText("= " + String.valueOf( Economy.Instance.dailyTip) + "€");
 
 
 

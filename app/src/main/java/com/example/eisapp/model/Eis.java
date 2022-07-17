@@ -22,7 +22,7 @@ public class Eis implements Serializable {
         }else{
             this.textColor = Color.WHITE;
         }
-         // -1   8.388.607
+
     }
 
     public String getName() {

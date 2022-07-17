@@ -47,6 +47,9 @@ public class MenuFragment extends Fragment {
         b3 = (Button) savedView.findViewById(R.id.homebutton);
         b4 = (Button) savedView.findViewById(R.id.deletebutton);
 
+       // Fehlerhaft: disableButton(b3);
+
+
         buttons = new Button[]{b1, b2, b3, b4};
 
         //Abschluss
@@ -158,8 +161,13 @@ public class MenuFragment extends Fragment {
         for (Button button : buttons) {
             if (button != b) {
                 button.setEnabled(true);
+
+                //button.setBackgroundColor(getResources().getColor(R.color.menubuttongrey, null));
+
+
                 //button.setBackgroundColor(Color.parseColor("#3F51B5"));
-                button.setBackgroundColor(getResources().getColor(R.color.main_color, null));
+                button.setBackgroundColor(getResources().getColor(R.color.background_main, null));
+
             }
         }
 

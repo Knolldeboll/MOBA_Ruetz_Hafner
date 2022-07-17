@@ -49,15 +49,13 @@ public class Economy {
     private float getSum(LinkedHashMap<Eis, Integer> list) {
 
         float val = 0;
-
-        // Hat ja auch gar nicht lange gedauert die
-        // scheiße
         for (Map.Entry<Eis, Integer> ent : list.entrySet()) {
             val += ent.getKey().preis * ent.getValue();
 
         }
 
-        return val;
+        return Math.round( (val) *100f)/100f;
+
     }
 
     // Remove aus current liste
@@ -109,6 +107,7 @@ public class Economy {
         );
 
         dailySum += getSum(currentSoldIce);
+        dailyTip = dailyIncome -dailySum;
         currentSoldIce.clear();
     }
 

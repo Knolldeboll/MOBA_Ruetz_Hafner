@@ -1,61 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+
     android:background="@color/main_color"
-    android:clickable="true"
-    tools:context=".MainActivity">
+    android:showDividers="beginning|end|none"
+    app:layout_marginBaseline="@dimen/cardview_compat_inset_shadow">
 
     <Button
         android:id="@+id/abschlussbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/main_color"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
+        android:layout_width="190dp"
+        android:layout_height="70dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:backgroundTint="@color/background_main"
         android:text="@string/abschluss"
-        android:textColor="@color/main_text_color"
-        android:textSize="12sp"
-        app:cornerRadius="0dp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/neueisbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/main_color"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:text="@string/eissorten"
-        android:textColor="@color/main_text_color"
-        android:textSize="12sp"
-        app:cornerRadius="0dp"
+
+        android:layout_width="190dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="10dp"
+
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/background_main"
+        android:text="Sorte hinzufügen"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/deletebutton"
         tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/homebutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/main_color"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
+
+        android:layout_width="190dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+
+        android:backgroundTint="#808080"
         android:text="@string/home"
-        android:textColor="@color/main_text_color"
-        android:textSize="12sp"
-        app:cornerRadius="0dp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/abschlussbutton"
         tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/deletebutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/main_color"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:text="delete"
-        android:textColor="@color/main_text_color"
-        android:textSize="12sp"
-        app:cornerRadius="0dp" />
-</LinearLayout>
+
+        android:layout_width="190dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/background_main"
+        android:text="Sorte Löschen"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
