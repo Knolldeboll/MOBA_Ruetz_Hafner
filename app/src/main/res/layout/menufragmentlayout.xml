@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+
     android:background="#585C42"
     android:showDividers="beginning|end|none"
     app:layout_marginBaseline="@dimen/cardview_compat_inset_shadow">
@@ -23,10 +27,12 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+
         tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/neueisbutton"
+
         android:layout_width="190dp"
         android:layout_height="70dp"
         android:layout_marginLeft="10dp"
@@ -40,10 +46,12 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/deletebutton"
+
         tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/homebutton"
+
         android:layout_width="190dp"
         android:layout_height="70dp"
         android:layout_marginTop="5dp"
@@ -57,10 +65,12 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/abschlussbutton"
+
         tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/deletebutton"
+
         android:layout_width="190dp"
         android:layout_height="68dp"
         android:layout_marginLeft="10dp"

@@ -161,7 +161,12 @@ public class MenuFragment extends Fragment {
         for (Button button : buttons) {
             if (button != b) {
                 button.setEnabled(true);
-                button.setBackgroundColor(getResources().getColor(R.color.menubuttongrey, null));
+
+                //button.setBackgroundColor(getResources().getColor(R.color.menubuttongrey, null));
+
+
+                //button.setBackgroundColor(Color.parseColor("#3F51B5"));
+                button.setBackgroundColor(getResources().getColor(R.color.main_color, null));
 
             }
         }

@@ -7,6 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
     <color name="menubutton">#E67F7F</color>
     <color name="menubuttongrey">#595959</color>
+
+    <color name="main_color">#FF5722</color>
+    <color name="main_text_color">#FFFFFF</color>
+    <color name="secondary_color">#FF7E55</color>
+
 </resources>
