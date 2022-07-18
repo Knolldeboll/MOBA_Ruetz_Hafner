@@ -37,10 +37,6 @@ public class MainActivity extends AppCompatActivity {
     List<Eis> eises;
 
 
-
-//  TODO: Einheitliches design!
-// TODO: Top menu leiste schöner machen
-
     TextView teis;
     MarkenManager markenManager;
 
@@ -53,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     boolean payViewOpen = false;
     boolean overviewOpen = false;
-    Eis lastEis = null;
+    public static Eis lastEis = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         payButton = (ImageButton) findViewById(R.id.payButton);
         totalText = (TextView) findViewById(R.id.totalText);
         undoButton = (ImageButton) findViewById(R.id.undoButton);
-        totalText.setText("Gesamt: " + Float.toString(eco.getCurrentValue()) + "€");
+        totalText.setText(String.format("%.2f", eco.getCurrentValue()) + "€");
         payButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -168,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!payViewOpen && lastEis != null) {
                     eco.removeSoldIce(lastEis);
-                    totalText.setText("Gesamt: " + eco.getCurrentValue() + "€");
+                    totalText.setText(String.format("%.2f", eco.getCurrentValue()) + "€");
                     lastEis = null;
                 }
                 if (payViewOpen) {

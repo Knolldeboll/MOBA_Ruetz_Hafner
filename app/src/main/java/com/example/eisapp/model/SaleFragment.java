@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.eisapp.MainActivity;
 import com.example.eisapp.R;
 
 public class SaleFragment extends Fragment {
@@ -47,6 +48,7 @@ public class SaleFragment extends Fragment {
                 TextView temptv = (TextView) view.findViewById(R.id.textVieweis);
                 System.out.println(temptv.getText());
                 Economy.getInstance().addSoldIce(MarkenManager.getInstance(view.getContext()).getEisByName((String) temptv.getText()));
+                MainActivity.lastEis = MarkenManager.getInstance(view.getContext()).getEisByName((String) temptv.getText());
 
                 // Totaltext
                 TextView totaltext = getActivity().findViewById(R.id.totalText);

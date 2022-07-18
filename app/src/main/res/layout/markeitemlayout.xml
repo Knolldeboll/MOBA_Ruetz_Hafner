@@ -12,6 +12,14 @@
     app:layout_marginBaseline="@dimen/cardview_compat_inset_shadow">
 
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/marke_label_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/eisrv"
         android:layout_width="368dp"

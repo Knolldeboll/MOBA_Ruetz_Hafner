@@ -50,9 +50,4 @@ public class OverviewFragment extends Fragment {
 
         return view;
     }
-
-    public void refreshFragment() {
-        Fragment overviewFrag = getActivity().getSupportFragmentManager().findFragmentByTag("overviewFragment");
-        getActivity().getSupportFragmentManager().beginTransaction().detach(overviewFrag).attach(overviewFrag).commit();
-    }
 }
