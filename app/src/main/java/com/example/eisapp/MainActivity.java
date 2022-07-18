@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
     OverviewFragment overviewFragment;
     FragmentTransaction transaction;
 
-    boolean payViewOpen = false;
-    boolean overviewOpen = false;
+    public static boolean payViewOpen = false;
+    public static boolean overviewOpen = false;
     public static Eis lastEis = null;
 
     @Override
@@ -65,9 +65,14 @@ public class MainActivity extends AppCompatActivity {
             FileInputStream fis = this.openFileInput("economy.txt");
             ObjectInputStream ois = new ObjectInputStream(fis);
 
+
             Economy e = (Economy) ois.readObject();
+
+            System.out.println(e);
+
             if (e != null) {
 
+                System.out.println("Loaded Economy from file!");
                 Economy.Instance = e;
 
             }
@@ -196,6 +201,26 @@ public class MainActivity extends AppCompatActivity {
 
                     transaction.commit();
                     overviewOpen = true;
+
+                    if(payViewOpen){
+                        // Close payview
+                        Fragment tmpFrag = getSupportFragmentManager().findFragmentByTag("bottomFragment");
+                        if (tmpFrag != null) {
+                            transaction = getSupportFragmentManager().beginTransaction();
+                            transaction.setCustomAnimations(R.anim.slide_up, R.anim.slide_down, 0, 0);
+                            transaction.remove(tmpFrag);
+                            transaction.commit();
+                        }
+                        displayUndoImage();
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.toggleSoftInput(0, 0);
+                        payViewOpen = false;
+
+                    }
+
+
+
+
                 } else {
 
                     Fragment tmpFrag = getSupportFragmentManager().findFragmentByTag("overviewFragment");
@@ -220,18 +245,29 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             FileOutputStream fos = this.openFileOutput("economy.txt", Context.MODE_PRIVATE);
+
             ObjectOutputStream oos = new ObjectOutputStream(fos);
 
             if (save) {
                 oos.writeObject(Economy.getInstance());
+
+                System.out.println("Saved economy to file!");
+                oos.close();
+                fos.close();
             } else {
 
                 oos.writeObject(null);
+
+                System.out.println("Wrote null to file");
+
+                oos.close();
+                fos.close();
+
+                System.exit(0);
             }
 
-            oos.close();
-            fos.close();
-            System.out.println("Saved economy to file!");
+
+
 
 
         } catch (FileNotFoundException e) {
@@ -286,5 +322,4 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
-
 }

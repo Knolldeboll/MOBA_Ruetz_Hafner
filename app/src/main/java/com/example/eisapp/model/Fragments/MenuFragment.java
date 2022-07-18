@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.eisapp.MainActivity;
 import com.example.eisapp.R;
 import com.example.eisapp.model.Economy;
 
@@ -52,6 +53,9 @@ public class MenuFragment extends Fragment {
 
 
                     System.out.println("CLick b1");
+                    MainActivity.overviewOpen = false;
+                    MainActivity.payViewOpen = false;
+
                     disableButton(b1);
                     enableButtonsExcept(b1);
 
@@ -77,6 +81,9 @@ public class MenuFragment extends Fragment {
 
 
                     System.out.println("CLick b2");
+                    MainActivity.overviewOpen = false;
+                    MainActivity.payViewOpen = false;
+
                     disableButton(b2);
                     enableButtonsExcept(b2);
 
@@ -99,6 +106,9 @@ public class MenuFragment extends Fragment {
             public void onClick(View view) {
 
                 System.out.println("CLick b3");
+                MainActivity.overviewOpen = false;
+                MainActivity.payViewOpen = false;
+
                 disableButton(b3);
                 enableButtonsExcept(b3);
 
@@ -118,6 +128,9 @@ public class MenuFragment extends Fragment {
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MainActivity.overviewOpen = false;
+                MainActivity.payViewOpen = false;
+
                 System.out.println("CLick b4");
 
                 if (!checkOpenSale()) {

@@ -72,6 +72,7 @@ public class FinishFragment extends Fragment {
 
 
                         MainActivity.save = false;
+                        System.out.println("save: " + MainActivity.save);
                         getActivity().finish();
                     }
                 });
