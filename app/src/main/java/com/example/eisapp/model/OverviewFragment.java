@@ -34,16 +34,9 @@ public class OverviewFragment extends Fragment {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.currentrecv);
 
-        // Als ob das geht...
         currentEisAdapter = new CurrentEisAdapter(Economy.getInstance().currentSoldIce, this);
-
-        //currentEisAdapter.notifyDataSetChanged();
-
-
         linearLayoutManager = new LinearLayoutManager(view.getContext());
-
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
-
         recyclerView.setAdapter(currentEisAdapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);

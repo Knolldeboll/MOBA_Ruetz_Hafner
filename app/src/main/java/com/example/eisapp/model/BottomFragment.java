@@ -130,7 +130,7 @@ public class BottomFragment extends Fragment {
 
     public boolean checkout() {
 
-        if (given != 0.00f && given >= totalWTip && totalWTip >= Economy.Instance.getCurrentValue()) {
+        if (given != 0.00f && given >= totalWTip && totalWTip >= Economy.getInstance().getCurrentValue()) {
 
             given = Math.round(given * 100f) / 100f;
             Economy.getInstance().dailyIncome += Math.round((totalWTip) * 100f) / 100f;
@@ -140,7 +140,7 @@ public class BottomFragment extends Fragment {
 
         } else {
 
-            if (Economy.Instance.getCurrentValue() != 0) {
+            if (Economy.getInstance().getCurrentValue() != 0) {
                 Toast.makeText(this.getContext(), "Zu wenig gegeben!", Toast.LENGTH_SHORT).show();
             }
 

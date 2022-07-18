@@ -24,7 +24,6 @@
         android:id="@+id/eisrv"
         android:layout_width="368dp"
         android:layout_height="120dp"
-        android:scrollIndicators="left|right"
         android:scrollbarAlwaysDrawHorizontalTrack="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

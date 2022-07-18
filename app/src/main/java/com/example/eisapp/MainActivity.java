@@ -4,7 +4,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
@@ -17,6 +16,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.eisapp.model.BottomFragment;
 
@@ -25,7 +25,6 @@ import com.example.eisapp.model.Economy;
 import com.example.eisapp.model.Eis;
 import com.example.eisapp.model.OverviewFragment;
 import com.example.eisapp.model.MenuFragment;
-import com.example.eisapp.model.PaymentHandler;
 import com.example.eisapp.model.SaleFragment;
 
 import java.io.FileInputStream;
@@ -34,13 +33,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
 
     Economy eco;
-    PaymentHandler pay;
     TextView teis;
     MarkenManager markenManager;
     public static boolean save = true;
@@ -73,14 +70,12 @@ public class MainActivity extends AppCompatActivity {
 
                 Economy.Instance = e;
 
-                // Ansonsten passiert nix und es wird eine neue Economy erzeugt!
             }
 
 
         } catch (FileNotFoundException e) {
 
-            // Noch keine Datei da! Ist bei erstem Start aber ok!
-
+            // Noch keine Datei da! Ist bei erstem Start aber normal und ok!
             e.printStackTrace();
         } catch (IOException e) {
 
@@ -98,14 +93,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         teis = findViewById(R.id.textVieweis);
-        System.out.println(teis);
+
 
         markenManager = MarkenManager.getInstance(this);
-        markenManager.printList();
+
 
         eco = Economy.getInstance();
-        pay = new PaymentHandler();
-
 
         SaleFragment saleFragment = new SaleFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -123,6 +116,12 @@ public class MainActivity extends AppCompatActivity {
         payButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (Economy.getInstance().getCurrentValue() == 0) {
+
+                    Toast.makeText(view.getContext(), "Noch nichts zum Verkauf hinzugefügt!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (payViewOpen) {
                     Fragment tmpFrag = getSupportFragmentManager().findFragmentByTag("bottomFragment");
                     if (tmpFrag != null) {
@@ -188,6 +187,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!overviewOpen) {
+
                     overviewFragment = new OverviewFragment();
                     transaction = getSupportFragmentManager().beginTransaction();
 
@@ -197,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
                     transaction.commit();
                     overviewOpen = true;
                 } else {
+
                     Fragment tmpFrag = getSupportFragmentManager().findFragmentByTag("overviewFragment");
                     if (tmpFrag != null) {
                         transaction = getSupportFragmentManager().beginTransaction();
@@ -208,8 +209,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
 
@@ -226,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
             if (save) {
                 oos.writeObject(Economy.getInstance());
             } else {
-                // Nix reinschreiben
+
                 oos.writeObject(null);
             }
 
@@ -237,11 +236,9 @@ public class MainActivity extends AppCompatActivity {
 
         } catch (FileNotFoundException e) {
 
-
             e.printStackTrace();
-
-
         } catch (IOException e) {
+
             e.printStackTrace();
         }
 
@@ -267,14 +264,15 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Nur ein Menuitem, deshalb keine Fallunterscheidung
 
-
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         Fragment tempfrag = getSupportFragmentManager().findFragmentByTag("menufrag");
         if (tempfrag != null) {
+
             // Schließen
             fragmentTransaction.remove(tempfrag);
 
         } else {
+
             // Öffnen
             MenuFragment menuFragment = new MenuFragment();
             fragmentTransaction.add(R.id.framemenu, menuFragment, "menufrag");

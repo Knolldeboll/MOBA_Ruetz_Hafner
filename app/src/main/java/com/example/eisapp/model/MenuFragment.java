@@ -32,23 +32,15 @@ public class MenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        //View als Singleton speichern, um die States der Buttons zu restoren
+        //View als Singleton speichern, um die States der Buttons wiederherzustellen
         if (savedView == null) {
             savedView = inflater.inflate(R.layout.menufragmentlayout, container, false);
         }
-
-
-        // Wenn der eine noch nicht initialisiert wurde sind die anderen auch nicht da. Ansonsten behalte die Buttons.
-        //b1 = (Button) view.findViewById(R.id.abschlussbutton);
-
 
         b1 = (Button) savedView.findViewById(R.id.abschlussbutton);
         b2 = (Button) savedView.findViewById(R.id.neueisbutton);
         b3 = (Button) savedView.findViewById(R.id.homebutton);
         b4 = (Button) savedView.findViewById(R.id.deletebutton);
-
-        // Fehlerhaft: disableButton(b3);
-
 
         buttons = new Button[]{b1, b2, b3, b4};
 
@@ -65,25 +57,20 @@ public class MenuFragment extends Fragment {
                     enableButtonsExcept(b1);
 
                     getActivity().onOptionsItemSelected(null);
-
                     getActivity().findViewById(R.id.framenav).setVisibility(View.INVISIBLE);
 
                     FinishFragment ff = new FinishFragment();
                     FragmentTransaction fragmentTransaction1 = getParentFragmentManager().beginTransaction();
                     fragmentTransaction1.replace(R.id.framemain, ff, "finishfrag");
-                    //fragmentTransaction1.remove(R.id.)
                     fragmentTransaction1.commit();
 
-
-                /*   markenManager.removeBrand(markenManager.marken.get(markenManager.marken.size()-1));
-                ma.notifyItemRemoved(ma.getItemCount());
-            */
 
                 }
 
             }
         });
-        // Neueis
+
+        // Neues Eis
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,6 +83,7 @@ public class MenuFragment extends Fragment {
 
                     getActivity().findViewById(R.id.framenav).setVisibility(View.INVISIBLE);
                     getActivity().onOptionsItemSelected(null);
+
                     AddEisFragment aef = new AddEisFragment();
                     FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.framemain, aef, "addeisfrag");
@@ -117,6 +105,7 @@ public class MenuFragment extends Fragment {
 
                 getActivity().findViewById(R.id.framenav).setVisibility(View.VISIBLE);
                 getActivity().onOptionsItemSelected(null);
+
                 SaleFragment saleFragment = new SaleFragment();
                 FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.framemain, saleFragment, "salefrag");
@@ -139,6 +128,7 @@ public class MenuFragment extends Fragment {
 
                     getActivity().findViewById(R.id.framenav).setVisibility(View.INVISIBLE);
                     getActivity().onOptionsItemSelected(null);
+
                     RemoveEisFragment removeEisFragment = new RemoveEisFragment();
                     FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.framemain, removeEisFragment, "removeeisfragment");
@@ -147,11 +137,6 @@ public class MenuFragment extends Fragment {
 
             }
         });
-
-
-        System.out.println("MEnu onCreateView Buttons: " + b1.hasOnClickListeners() + b2.hasOnClickListeners() + b3.hasOnClickListeners() + b4.hasOnClickListeners());
-        System.out.println("MEnu onCreateView Buttons enabled: " + b1.isEnabled() + b2.isEnabled() + b3.isEnabled() + b4.isEnabled());
-
 
         return savedView;
     }
@@ -166,11 +151,6 @@ public class MenuFragment extends Fragment {
         for (Button button : buttons) {
             if (button != b) {
                 button.setEnabled(true);
-
-                //button.setBackgroundColor(getResources().getColor(R.color.menubuttongrey, null));
-
-
-                //button.setBackgroundColor(Color.parseColor("#3F51B5"));
                 button.setBackgroundColor(getResources().getColor(R.color.background_main, null));
 
             }
@@ -179,12 +159,10 @@ public class MenuFragment extends Fragment {
     }
 
     private boolean checkOpenSale() {
-        if (Economy.Instance.getCurrentValue() != 0) {
+        if (Economy.getInstance().getCurrentValue() != 0) {
             Toast.makeText(this.getContext(), "Offener Verkauf! Erst beenden!", Toast.LENGTH_LONG).show();
             return true;
         }
         return false;
     }
-
-
 }

@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-
+// Zuständig für den RecyclerView im Tagesabschluss-Fragment
 public class TagesEisAdapter extends RecyclerView.Adapter<TagesEisAdapter.DayViewHolder> {
 
     private LinkedHashMap<Eis, Integer> datalist;
@@ -30,15 +30,10 @@ public class TagesEisAdapter extends RecyclerView.Adapter<TagesEisAdapter.DayVie
         public TextView eisNameText;
         public TextView eisAnzahlText;
         public TextView eisSummeText;
-        //public RecyclerView dayRecv;
-        //public Button dayButton;
 
         public DayViewHolder(View dayView) {
 
             super(dayView);
-            //daySumText = (TextView) dayView.findViewById(R.id.finishText);
-            //dayRecv = (RecyclerView) dayView.findViewById(R.id.finishrecv);
-            //dayButton =(Button) dayView.findViewById(R.id.finishbutton);
             eisNameText = (TextView) dayView.findViewById(R.id.finishNameText);
             eisAnzahlText = (TextView) dayView.findViewById(R.id.finishAmountText);
             eisSummeText = (TextView) dayView.findViewById(R.id.finishPriceText);
@@ -46,16 +41,14 @@ public class TagesEisAdapter extends RecyclerView.Adapter<TagesEisAdapter.DayVie
 
         }
 
-    }  // ViewHolder ok
-
+    }
 
     public TagesEisAdapter(LinkedHashMap<Eis, Integer> eisList) {
         datalist = eisList;
-        // Geht das so ?
         this.eislist = new ArrayList<Eis>(eisList.keySet());
         this.anzlist = new ArrayList<Integer>(eisList.values());
     }
-    // Konstruktor ok
+
 
     @NonNull
     @Override
@@ -67,10 +60,11 @@ public class TagesEisAdapter extends RecyclerView.Adapter<TagesEisAdapter.DayVie
         DayViewHolder dayViewHolder = new DayViewHolder(dayView);
 
         return dayViewHolder;
-    }// onCreateViewHolder ok
+    }
 
     @Override
     public void onBindViewHolder(@NonNull DayViewHolder holder, int position) {
+
         Eis eissorte = this.eislist.get(position);
         int anzahl = this.anzlist.get(position);
         float summe = Math.round((eissorte.getPreis() * anzahl) * 100f) / 100f;
@@ -84,12 +78,11 @@ public class TagesEisAdapter extends RecyclerView.Adapter<TagesEisAdapter.DayVie
         TextView t3 = holder.eisSummeText;
         t3.setText("= " + summe + "€");
 
-    } // onBindViewHolder ok
+    }
 
     @Override
     public int getItemCount() {
         return datalist.size();
     }
-
 
 }

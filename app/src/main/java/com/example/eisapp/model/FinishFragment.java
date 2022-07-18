@@ -52,9 +52,9 @@ public class FinishFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
 
 
-        incomeText.setText("= " + Math.round((Economy.Instance.dailyIncome) * 100f) / 100f + "€");
-        sumText.setText("= " + Math.round((Economy.Instance.dailySum) * 100f) / 100f + "€");
-        tipText.setText("= " + Math.round((Economy.Instance.dailyTip) * 100f) / 100f + "€");
+        incomeText.setText("= " + Math.round((Economy.getInstance().dailyIncome) * 100f) / 100f + "€");
+        sumText.setText("= " + Math.round((Economy.getInstance().dailySum) * 100f) / 100f + "€");
+        tipText.setText("= " + Math.round((Economy.getInstance().dailyTip) * 100f) / 100f + "€");
 
 
         finishButton.setOnClickListener(new View.OnClickListener() {
@@ -71,16 +71,13 @@ public class FinishFragment extends Fragment {
 
 
                         MainActivity.save = false;
-
-                        // Wird Stop ausgeführt ?
-                        // nein -> hier nochmal null in die datei schreiben
                         getActivity().finish();
                     }
                 });
 
                 alertDialogBuilder.setNegativeButton("Nein", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) { // Evtl mit getActivity.getContext??
+                    public void onClick(DialogInterface dialogInterface, int i) {
 
 
                     }
@@ -92,8 +89,6 @@ public class FinishFragment extends Fragment {
 
             }
         });
-
-        // TODO:Tagesabschlussbutton: In File null schreiben! Bzw EconomyFile löschen, app schließen.
 
         return view;
     }

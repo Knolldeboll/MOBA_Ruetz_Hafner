@@ -143,7 +143,7 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
 
                 if (sortetext.getText().toString().equals("") || preistext.getText().toString().equals("") || color == 0) {
 
-                    Toast.makeText(view.getContext(), "Eingabe fehlt!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(view.getContext(), "Eingabe fehlt!", Toast.LENGTH_SHORT).show();
 
                     return;
 
@@ -157,8 +157,8 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
                             marke1.addEis(new Eis(sortetext.getText().toString(), Float.valueOf(preistext.getText().toString()).floatValue(), color));
                             MarkenManager.getInstance(view.getContext()).addBrand(marke1);
 
-                            MarkenManager.Instance.save();
-                            Toast.makeText(view.getContext(), marke1.name + " und " + sortetext.getText().toString() + " hinzugefügt!", Toast.LENGTH_LONG).show();
+                            MarkenManager.getInstance(view.getContext()).save();
+                            Toast.makeText(view.getContext(), marke1.name + " und " + sortetext.getText().toString() + " hinzugefügt!", Toast.LENGTH_SHORT).show();
 
                             markennamen.add(marke1.name);
                             arrayAdapter.notifyDataSetChanged();
@@ -171,8 +171,8 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
                             Marke m = MarkenManager.getInstance(view.getContext()).getMarkeByName(markenspinner.getSelectedItem().toString());
                             m.addEis(new Eis(sortetext.getText().toString(), Float.valueOf(preistext.getText().toString()).floatValue(), color));
 
-                            MarkenManager.Instance.save();
-                            Toast.makeText(view.getContext(), m.name + ": " + sortetext.getText().toString() + " hinzugefügt!", Toast.LENGTH_LONG).show();
+                            MarkenManager.getInstance(view.getContext()).save();
+                            Toast.makeText(view.getContext(), m.name + ": " + sortetext.getText().toString() + " hinzugefügt!", Toast.LENGTH_SHORT).show();
 
                         }
 

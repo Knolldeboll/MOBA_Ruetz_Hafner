@@ -21,7 +21,6 @@ public class Economy implements Serializable {
     //Tagestrinkgeld
     public double dailyTip;
 
-    // TODO: Alles auf das umstellen
     public static Economy getInstance() {
         if (Instance == null) {
 

@@ -3,6 +3,7 @@ package com.example.eisapp.model;
 import android.content.Context;
 import android.graphics.Color;
 
+import com.example.eisapp.MainActivity;
 import com.example.eisapp.R;
 
 import java.io.File;
@@ -66,41 +67,35 @@ public class MarkenManager {
         try {
 
             FileInputStream fis = context.openFileInput(this.filename);
-
-            System.out.println("AAAAAAA");
             ObjectInputStream ois = new ObjectInputStream(fis);
-            System.out.println("BBBBBB");
             List<Marke> returnList = (List<Marke>) ois.readObject();
-            System.out.println("CCCCCC");
             ois.close();
             fis.close();
+
             System.out.println("read brands from file!");
             return returnList;
         } catch (FileNotFoundException e) {
-            System.out.println(" == Fail to load file! 1");
-            // finnWithExympleData, try again
 
+            e.printStackTrace();
 
         } catch (IOException e) {
 
             e.printStackTrace();
-            System.out.println(" == Fail to load file! 2");
+
+            // Datei fehlerhaft beschrieben oder so, deshalb neu schrieben und nochmal versuchen
             fillWithExampleData();
             return getBrandsFromFile();
 
         } catch (ClassNotFoundException e) {
-            System.out.println(" == Fail to load file! 3");
 
             e.printStackTrace();
-
-
         }
         // Never Reached
         return null;
     }
 
     public void addBrand(Marke m) {
-        //this.marken = getBrandsFromFile();
+
         if (marken == null) {
             marken = new ArrayList<>();
         }
@@ -110,8 +105,8 @@ public class MarkenManager {
     }
 
     public void removeBrand(Marke m) {
+
         System.out.println("remove  " + marken.size() + "  " + m.name);
-        //this.marken = getBrandsFromFile();
         if (marken == null || !marken.contains(m)) {
             return;
         }
@@ -119,7 +114,7 @@ public class MarkenManager {
         marken.remove(m);
 
         saveBrandsToFile(marken);
-        printList();
+
 
     }
 
@@ -139,7 +134,7 @@ public class MarkenManager {
 
 
     public void fillWithExampleData() {
-        // TODO: Gescheide Namen/Farben + Mehr marken!
+
         List<Marke> data = new ArrayList<>();
         Marke schöller = new Marke("Schöller");
         schöller.addEis(new Eis("Kaktus", 2.00f, Color.parseColor("#15612b")));
