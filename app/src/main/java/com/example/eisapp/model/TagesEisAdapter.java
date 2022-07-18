@@ -73,16 +73,16 @@ public class TagesEisAdapter extends RecyclerView.Adapter<TagesEisAdapter.DayVie
     public void onBindViewHolder(@NonNull DayViewHolder holder, int position) {
         Eis eissorte = this.eislist.get(position);
         int anzahl = this.anzlist.get(position);
-        float summe = eissorte.getPreis() * anzahl;
+        float summe =  Math.round( ( eissorte.getPreis() * anzahl) *100f)/100f;
 
         TextView t1 = holder.eisNameText;
-        t1.setText(eissorte.getName());
+        t1.setText(eissorte.getName() + " ("+eissorte.getPreis()+"€)");
 
         TextView t2 = holder.eisAnzahlText;
         t2.setText("x " + anzahl);
 
         TextView t3 = holder.eisSummeText;
-        t3.setText("= " + summe);
+        t3.setText("= " + summe + "€");
 
     } // onBindViewHolder ok
 

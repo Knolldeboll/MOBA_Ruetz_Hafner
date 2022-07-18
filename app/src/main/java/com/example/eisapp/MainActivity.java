@@ -1,11 +1,14 @@
 package com.example.eisapp;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,7 +16,6 @@ import android.view.View;
 
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
-
 import android.widget.ImageButton;
 
 import com.example.eisapp.model.BottomFragment;
@@ -22,23 +24,26 @@ import com.example.eisapp.model.MarkenManager;
 import com.example.eisapp.model.Economy;
 import com.example.eisapp.model.Eis;
 import com.example.eisapp.model.OverviewFragment;
-import com.example.eisapp.model.SaleMarkenAdapter;
 import com.example.eisapp.model.MenuFragment;
 import com.example.eisapp.model.PaymentHandler;
 import com.example.eisapp.model.SaleFragment;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Daten von Model per Observer übergeben
+
     Economy eco;
     PaymentHandler pay;
-    List<Eis> eises;
-
-
     TextView teis;
     MarkenManager markenManager;
+    public static boolean save = true;
 
     ImageButton payButton;
     ImageButton undoButton;
@@ -53,14 +58,57 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        try {
+            FileInputStream fis = this.openFileInput("economy.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+            Economy e = (Economy) ois.readObject();
+            if(e != null){
+
+                Economy.Instance = e;
+
+                // Ansonsten passiert nix und es wird eine neue Economy erzeugt!
+            }
+
+
+
+
+        } catch (FileNotFoundException e) {
+
+            // Noch keine Datei da! Ist bei erstem Start aber ok!
+
+            e.printStackTrace();
+        } catch (IOException e) {
+
+
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+
+
+            e.printStackTrace();
+        }
+
+
+
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.main_color)));
+
 
         teis = findViewById(R.id.textVieweis);
         System.out.println(teis);
 
         markenManager = MarkenManager.getInstance(this);
-        //markenManager.fillWithExampleData();
         markenManager.printList();
 
         eco = Economy.getInstance();
@@ -72,49 +120,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.framemain, saleFragment, "salefrag");
         fragmentTransaction.commit();
 
-
-        //Dann : press auf zahlen!
-
-        //pay.currentSum = eco.getCurrentValue();
-
-        /*
-        Marke m = new Marke("Langneso");
-        m.addEis(new Eis("Vanillollololol",2.0f));
-        m.addEis(new Eis("Vanillolol",2.0f));
-        m.addEis(new Eis("Vanillollool",2.0f));
-        m.addEis(new Eis("Vanllolol",2.0f));
-        m.addEis(new Eis("Erde",2.0f));
-
-        markenManager.addBrand(m);*/
-
-
-        //eco.printDay();
-       /* markenManager.removeBrand(markenManager.marken.get(3));
-        markenManager.removeBrand(markenManager.marken.get(4));
-        markenManager.removeBrand(markenManager.marken.get(5));
-*/
         //MarkenManager.Instance.fillWithExampleData();
-
-        //pay.currentSum = eco.getCurrentValue();
-
-        // Wenn summenfeld geändert: ändere auch currentvalue im pay
-        //pay.currentSum = inputfieldsum.value oder so
-        //Tagestrinkgeld errechnet sich dann aus daylist.getsum - dailysum
-
-        //gegeben entern!
-        // on enter:
-        //pay.getChange(inputfieldgegeben.value)
-        //System.out.println(pay.getChange(50));
-
-
-        // Wenn <0: nochmal! zu wenig gegeben!
-
-        // Wenn >=0 : anzeige im rückgeldfeld
-        //Dann : pay
-
-        //pay.pay();
-
-        eco.printDay();
 
 
         payButton = (ImageButton) findViewById(R.id.payButton);
@@ -209,7 +215,54 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+
+
     }
+
+
+    protected  void onStop() {
+
+        super.onStop();
+        System.out.println("ONSTOP");
+
+
+            try {
+                FileOutputStream fos = this.openFileOutput("economy.txt",Context.MODE_PRIVATE);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+                if(save) {
+                    oos.writeObject(Economy.getInstance());
+                }else{
+                    // Nix reinschreiben
+                    oos.writeObject(null);
+                }
+
+                    oos.close();
+                    fos.close();
+                    System.out.println("Saved economy to file!");
+
+
+
+            } catch (FileNotFoundException e) {
+
+
+                e.printStackTrace();
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+
+
+
+
+    }
+
+
 
     public void displayCheckImage() {
         undoButton.setImageResource(R.mipmap.check);

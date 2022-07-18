@@ -1,14 +1,15 @@
 package com.example.eisapp.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class Economy {
+public class Economy implements Serializable {
 
     LinkedHashMap<Eis, Integer> dailySoldIce;
     LinkedHashMap<Eis, Integer> currentSoldIce;
-    PaymentHandler paymentHandler;
+    //PaymentHandler paymentHandler;
     public static Economy Instance;
 
     // Soll Summe aller verkauften Eis sein - wird nach finishcurrent aktualisiert
@@ -25,6 +26,9 @@ public class Economy {
     public static Economy getInstance() {
         if (Instance == null) {
 
+
+
+            // Checken, ob datei vorhanden (bei Start)
             Instance = new Economy();
 
         }
@@ -36,9 +40,9 @@ public class Economy {
 
 
     public Economy() {
-        MarkenManager mm = MarkenManager.getInstance(null);
 
-        paymentHandler = new PaymentHandler();
+
+        //paymentHandler = new PaymentHandler();
         //LinkedHashmap hat den vorteil der stabilen reihenfolge
         // (Last added last)
         dailySoldIce = new LinkedHashMap<Eis, Integer>();
@@ -106,8 +110,10 @@ public class Economy {
 
         );
 
-        dailySum += getSum(currentSoldIce);
-        dailyTip = dailyIncome -dailySum;
+        dailySum +=    Math.round( (getSum(currentSoldIce)) *100f)/100f;
+        dailyTip =   Math.round( ( dailyIncome -dailySum) *100f)/100f;
+
+
         currentSoldIce.clear();
     }
 
