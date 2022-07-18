@@ -20,7 +20,7 @@
         android:layout_height="70dp"
 
         android:layout_marginTop="5dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
         android:backgroundTint="@color/background_main"
         android:text="@string/abschluss"
         android:textColor="#FFFFFF"
@@ -34,11 +34,11 @@
 
         android:layout_width="190dp"
         android:layout_height="70dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
 
         android:layout_marginTop="5dp"
         android:backgroundTint="@color/background_main"
-        android:text="Sorte hinzufügen"
+        android:text="@string/sorte_hinzuf_gen"
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
 
@@ -51,10 +51,10 @@
         android:layout_width="190dp"
         android:layout_height="70dp"
         android:layout_marginTop="5dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
 
         android:backgroundTint="#808080"
-        android:text="@string/home"
+        android:text="@string/verkauf"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
 
@@ -66,11 +66,11 @@
 
         android:layout_width="190dp"
         android:layout_height="70dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_weight="1"
         android:backgroundTint="@color/background_main"
-        android:text="Sorte Löschen"
+        android:text="@string/sorte_l_schen"
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -19,6 +19,19 @@
 
     <string name="xicon">x icon</string>
     <string name="remove">remove</string>
+    <string name="sorte_hinzuf_gen">Sorte hinzufügen</string>
+    <string name="verkauf">Verkauf</string>
+    <string name="sorte_l_schen">Sorte Löschen</string>
+    <string name="Pay">pay</string>
+    <string name="undo">undo</string>
+    <string name="neue_marke"><![CDATA[> Neue Marke]]></string>
+    <string name="bestehende_marke"><![CDATA[> Bestehende Marke]]></string>
+    <string name="Preis">Preis (€)</string>
+    <string name="hinzuf_gen">Hinzufügen</string>
+    <string name="marke">Marke</string>
+    <string name="sorte">Sorte</string>
+    <string name="Marke">Marke</string>
+    <string name="farbe">Farbe</string>
 
 
 </resources>

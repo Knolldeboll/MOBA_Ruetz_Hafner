@@ -14,8 +14,8 @@
         android:layout_marginStart="144dp"
         android:layout_marginBottom="140dp"
         android:textAlignment="center"
-        android:textOff="> Neue Marke"
-        android:textOn="> Bestehende Marke"
+        android:textOff="@string/neue_marke"
+        android:textOn="@string/bestehende_marke"
         app:layout_constraintBottom_toTopOf="@+id/editTextSorte"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        android:text="Hinzufügen"
+        android:text="@string/hinzuf_gen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -37,11 +37,12 @@
         android:layout_marginStart="92dp"
         android:layout_marginBottom="50dp"
         android:ems="10"
-        android:hint="Preis (€)"
+        android:hint="@string/Preis"
         android:inputType="numberDecimal"
         android:minHeight="55dp"
         app:layout_constraintBottom_toTopOf="@+id/colorText"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
 
     <EditText
         android:id="@+id/editTextMarke"
@@ -50,7 +51,7 @@
         android:layout_marginStart="92dp"
         android:layout_marginBottom="50dp"
         android:ems="10"
-        android:hint="Marke"
+        android:hint="@string/marke"
         android:inputType="textPersonName"
         android:minHeight="55dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextSorte"
@@ -63,7 +64,7 @@
         android:layout_marginStart="92dp"
         android:layout_marginBottom="50dp"
         android:ems="10"
-        android:hint="Sorte"
+        android:hint="@string/sorte"
         android:inputType="textPersonName"
         android:minHeight="55dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextNumberPreis"
@@ -75,7 +76,7 @@
         android:layout_height="71dp"
         android:layout_marginStart="92dp"
         android:layout_marginBottom="50dp"
-        android:contentDescription="Marke"
+        android:contentDescription="@string/Marke"
         android:spinnerMode="dialog"
         app:layout_constraintBottom_toTopOf="@+id/editTextSorte"
         app:layout_constraintStart_toStartOf="parent" />
@@ -85,7 +86,7 @@
         android:layout_width="97dp"
         android:layout_height="38dp"
         android:layout_marginBottom="50dp"
-        android:text="Farbe"
+        android:text="@string/farbe"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/addButton"
         app:layout_constraintEnd_toEndOf="parent"

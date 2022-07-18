@@ -127,9 +127,9 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
                                     }
                                 })
 
-                        .attachBrightnessSlideBar(true)  // the default value is true.
+                        .attachBrightnessSlideBar(true)
                         .attachAlphaSlideBar(false)
-                        .setBottomSpace(12) // set a bottom space between the last slidebar and buttons.
+                        .setBottomSpace(12)
                         .show();
 
             }
