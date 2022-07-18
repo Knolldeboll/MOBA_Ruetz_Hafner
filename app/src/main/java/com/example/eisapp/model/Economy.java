@@ -7,8 +7,8 @@ import java.util.Map;
 
 public class Economy implements Serializable {
 
-    LinkedHashMap<Eis, Integer> dailySoldIce;
-    LinkedHashMap<Eis, Integer> currentSoldIce;
+    public LinkedHashMap<Eis, Integer> dailySoldIce;
+    public LinkedHashMap<Eis, Integer> currentSoldIce;
 
     public static Economy Instance;
 

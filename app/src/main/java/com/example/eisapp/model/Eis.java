@@ -6,10 +6,10 @@ import java.io.Serializable;
 
 public class Eis implements Serializable {
 
-    String name;
-    float preis;
-    int backGroundColor;
-    int textColor;
+    public String name;
+    public float preis;
+    public int backGroundColor;
+    public int textColor;
 
     public Eis(String name, float preis, int bgcolor) {
         this.name = name;

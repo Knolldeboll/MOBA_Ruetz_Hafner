@@ -18,14 +18,14 @@ import android.widget.TextView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.eisapp.model.BottomFragment;
+import com.example.eisapp.model.Fragments.BottomFragment;
 
 import com.example.eisapp.model.MarkenManager;
 import com.example.eisapp.model.Economy;
 import com.example.eisapp.model.Eis;
-import com.example.eisapp.model.OverviewFragment;
-import com.example.eisapp.model.MenuFragment;
-import com.example.eisapp.model.SaleFragment;
+import com.example.eisapp.model.Fragments.OverviewFragment;
+import com.example.eisapp.model.Fragments.MenuFragment;
+import com.example.eisapp.model.Fragments.SaleFragment;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

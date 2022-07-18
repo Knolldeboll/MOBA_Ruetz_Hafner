@@ -1,7 +1,6 @@
-package com.example.eisapp.model;
+package com.example.eisapp.model.Adapters;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eisapp.R;
+import com.example.eisapp.model.Marke;
 
 import java.util.List;
 

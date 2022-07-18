@@ -12,7 +12,7 @@
     android:paddingEnd="0dp"
     android:paddingRight="0dp"
     android:paddingBottom="0dp"
-    tools:context=".model.OverviewFragment">
+    tools:context=".model.Fragments.OverviewFragment">
 
 
     <FrameLayout

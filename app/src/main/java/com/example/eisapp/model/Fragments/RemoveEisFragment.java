@@ -1,25 +1,24 @@
-package com.example.eisapp.model;
+package com.example.eisapp.model.Fragments;
 
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.eisapp.MainActivity;
 import com.example.eisapp.R;
+import com.example.eisapp.model.Eis;
+import com.example.eisapp.model.Marke;
+import com.example.eisapp.model.MarkenManager;
+import com.example.eisapp.model.Adapters.SaleMarkenAdapter;
 
 public class RemoveEisFragment extends Fragment {
 

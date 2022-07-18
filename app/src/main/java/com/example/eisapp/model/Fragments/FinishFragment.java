@@ -1,4 +1,4 @@
-package com.example.eisapp.model;
+package com.example.eisapp.model.Fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eisapp.MainActivity;
 import com.example.eisapp.R;
+import com.example.eisapp.model.Economy;
+import com.example.eisapp.model.Adapters.TagesEisAdapter;
 
 public class FinishFragment extends Fragment {
 

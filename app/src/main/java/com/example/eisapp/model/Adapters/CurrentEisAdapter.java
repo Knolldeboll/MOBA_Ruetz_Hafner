@@ -1,4 +1,4 @@
-package com.example.eisapp.model;
+package com.example.eisapp.model.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,15 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eisapp.R;
+import com.example.eisapp.model.Economy;
 import com.example.eisapp.model.Eis;
-
-import org.w3c.dom.Text;
+import com.example.eisapp.model.Fragments.OverviewFragment;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-public class CurrentEisAdapter extends RecyclerView.Adapter<com.example.eisapp.model.CurrentEisAdapter.CurrentViewHolder> {
+public class CurrentEisAdapter extends RecyclerView.Adapter<CurrentEisAdapter.CurrentViewHolder> {
 
     private LinkedHashMap<Eis, Integer> datalist;
     private List<Eis> eislist;
@@ -53,12 +53,12 @@ public class CurrentEisAdapter extends RecyclerView.Adapter<com.example.eisapp.m
 
     @NonNull
     @Override
-    public com.example.eisapp.model.CurrentEisAdapter.CurrentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CurrentEisAdapter.CurrentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
         View currentView = inflater.inflate(R.layout.overviewitemlayout, parent, false);
-        com.example.eisapp.model.CurrentEisAdapter.CurrentViewHolder currentViewHolder = new com.example.eisapp.model.CurrentEisAdapter.CurrentViewHolder(currentView);
+        CurrentEisAdapter.CurrentViewHolder currentViewHolder = new CurrentEisAdapter.CurrentViewHolder(currentView);
 
         currentView.findViewById(R.id.removeButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +84,7 @@ public class CurrentEisAdapter extends RecyclerView.Adapter<com.example.eisapp.m
     }
 
     @Override
-    public void onBindViewHolder(@NonNull com.example.eisapp.model.CurrentEisAdapter.CurrentViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CurrentEisAdapter.CurrentViewHolder holder, int position) {
 
         Eis eissorte = this.eislist.get(position);
         int anzahl = this.anzlist.get(position);

@@ -1,4 +1,4 @@
-package com.example.eisapp.model;
+package com.example.eisapp.model.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,10 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.eisapp.R;
+import com.example.eisapp.model.Economy;
 
 public class BottomFragment extends Fragment {
 

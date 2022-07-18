@@ -1,4 +1,4 @@
-package com.example.eisapp.model;
+package com.example.eisapp.model.Fragments;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -22,6 +22,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.example.eisapp.R;
+import com.example.eisapp.model.Eis;
+import com.example.eisapp.model.Marke;
+import com.example.eisapp.model.MarkenManager;
 import com.skydoves.colorpickerview.ColorEnvelope;
 import com.skydoves.colorpickerview.ColorPickerDialog;
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;

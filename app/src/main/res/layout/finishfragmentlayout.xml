@@ -13,27 +13,27 @@
         android:layout_width="337dp"
         android:layout_height="300dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="100dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/finishSum"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/finishbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="112dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/tagesabschluss"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/finishTip" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/finishIncome"
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:textAlignment="center"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/finishSum" />
+        app:layout_constraintBottom_toTopOf="@+id/finishTip"
+        app:layout_constraintStart_toEndOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView"
@@ -42,44 +42,44 @@
         android:layout_marginStart="36dp"
         android:text="Einnahmen gesamt  (inkl Trinkgeld)"
         android:textAlignment="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="40dp"
         android:text="Summe"
         android:textAlignment="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/finishrecv" />
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/finishSum"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginTop="40dp"
         android:textAlignment="center"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/finishrecv" />
+        app:layout_constraintBottom_toTopOf="@+id/finishIncome"
+        app:layout_constraintStart_toEndOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_marginStart="36dp"
+        android:layout_marginBottom="40dp"
         android:text="Trinkgeld"
         android:textAlignment="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintBottom_toTopOf="@+id/finishbutton"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/finishTip"
         android:layout_width="100dp"
         android:layout_height="40dp"
+        android:layout_marginBottom="40dp"
         android:textAlignment="center"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/finishIncome" />
+        app:layout_constraintBottom_toTopOf="@+id/finishbutton"
+        app:layout_constraintStart_toEndOf="@+id/textView4" />
 </androidx.constraintlayout.widget.ConstraintLayout>

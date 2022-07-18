@@ -1,4 +1,4 @@
-package com.example.eisapp.model;
+package com.example.eisapp.model.Fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,11 +9,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.eisapp.R;
+import com.example.eisapp.model.Economy;
 
 public class MenuFragment extends Fragment {
 

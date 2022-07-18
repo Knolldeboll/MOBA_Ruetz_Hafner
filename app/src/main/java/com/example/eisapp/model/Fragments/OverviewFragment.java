@@ -1,21 +1,17 @@
-package com.example.eisapp.model;
-
-import static com.example.eisapp.model.FinishFragment.linearLayoutManager;
+package com.example.eisapp.model.Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eisapp.R;
-
-import java.util.ArrayList;
+import com.example.eisapp.model.Adapters.CurrentEisAdapter;
+import com.example.eisapp.model.Economy;
 
 public class OverviewFragment extends Fragment {
 

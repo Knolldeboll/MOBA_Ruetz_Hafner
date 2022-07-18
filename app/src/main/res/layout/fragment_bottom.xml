@@ -12,7 +12,7 @@
     android:paddingEnd="0dp"
     android:paddingRight="0dp"
     android:paddingBottom="0dp"
-    tools:context=".model.BottomFragment">
+    tools:context=".model.Fragments.BottomFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,7 +1,5 @@
-package com.example.eisapp.model;
+package com.example.eisapp.model.Fragments;
 
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eisapp.MainActivity;
 import com.example.eisapp.R;
+import com.example.eisapp.model.Economy;
+import com.example.eisapp.model.MarkenManager;
+import com.example.eisapp.model.Adapters.SaleMarkenAdapter;
 
 public class SaleFragment extends Fragment {
 
