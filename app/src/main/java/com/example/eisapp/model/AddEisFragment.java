@@ -42,7 +42,6 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
     private TextView colortext;
     private ToggleButton toggleButton;
     private ArrayAdapter<String> arrayAdapter;
-    //private static String listenmarke;
     private static String neuemarke;
     private int color;
 
@@ -64,8 +63,6 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
         colortext = (TextView) view.findViewById(R.id.colorText);
         color = 0;
 
-
-        // Problem: Markennamen wird beim hinzufügen nciht aktualisiert!
         List<String> markennamen = new ArrayList<String>();
         for (Marke m : MarkenManager.getInstance(view.getContext()).marken) {
             markennamen.add(m.name);
@@ -109,12 +106,10 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
                                 new ColorEnvelopeListener() {
                                     @Override
                                     public void onColorSelected(ColorEnvelope envelope, boolean fromUser) {
+
                                         // Set Selected Color!
-
                                         color = envelope.getColor();
-
                                         // Textfarbe S/W, je nach RGB-Wert
-
                                         if (color > -8388607) {
                                             colortext.setTextColor(Color.BLACK);
                                         } else {
@@ -122,10 +117,6 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
                                         }
 
                                         colortext.setBackgroundColor(color);
-
-                                        // Komplementärfarbe - auch gut, aber zu bunt mmn
-                                        //colortext.setTextColor(color ^ 0x00ffffff);
-
                                     }
                                 })
                         .setNegativeButton("Abbrechen",
@@ -137,6 +128,7 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
                                 })
 
                         .attachBrightnessSlideBar(true)  // the default value is true.
+                        .attachAlphaSlideBar(false)
                         .setBottomSpace(12) // set a bottom space between the last slidebar and buttons.
                         .show();
 
@@ -151,7 +143,7 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
 
                 if (sortetext.getText().toString().equals("") || preistext.getText().toString().equals("") || color == 0) {
 
-                    Toast.makeText(view.getContext(),"Eingabe fehlt!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(view.getContext(), "Eingabe fehlt!", Toast.LENGTH_LONG).show();
 
                     return;
 
@@ -166,25 +158,20 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
                             MarkenManager.getInstance(view.getContext()).addBrand(marke1);
 
                             MarkenManager.Instance.save();
-                            System.out.println("Eis und Marke hinzugefügt");
                             Toast.makeText(view.getContext(), marke1.name + " und " + sortetext.getText().toString() + " hinzugefügt!", Toast.LENGTH_LONG).show();
 
                             markennamen.add(marke1.name);
                             arrayAdapter.notifyDataSetChanged();
-                            // markenspinner.setAdapter(arrayAdapter);
                         }
 
                     } else {
+                        // Bestehende Marke
                         if (markenspinner.getSelectedItem() != null) {
 
-                            System.out.println(markenspinner.getSelectedItem().toString());
                             Marke m = MarkenManager.getInstance(view.getContext()).getMarkeByName(markenspinner.getSelectedItem().toString());
                             m.addEis(new Eis(sortetext.getText().toString(), Float.valueOf(preistext.getText().toString()).floatValue(), color));
 
-
                             MarkenManager.Instance.save();
-                            System.out.println("Eis zu Marke hinzugefügt");
-
                             Toast.makeText(view.getContext(), m.name + ": " + sortetext.getText().toString() + " hinzugefügt!", Toast.LENGTH_LONG).show();
 
                         }
@@ -206,12 +193,12 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
                 if (b) {
-                    // An, neue marke
+
                     marketext.setVisibility(View.VISIBLE);
                     markenspinner.setVisibility(View.GONE);
 
                 } else {
-                    // Aus
+
                     marketext.setVisibility(View.GONE);
                     markenspinner.setVisibility(View.VISIBLE);
                 }
@@ -223,25 +210,15 @@ public class AddEisFragment extends Fragment implements AdapterView.OnItemSelect
     }
 
 
-    // Liste Selected
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-        // String input = (String)adapterView.getItemAtPosition(i);
-        // System.out.println(input + "Selected!");
-
-        // Marke m = getMarkeByName!
-        // listenmarke = input;
-
-        // Wenn neue: input öffnen
-
-        // Wenn alte: Text in markentext
 
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-        System.out.println("Nothing Selected!");
+
 
     }
 

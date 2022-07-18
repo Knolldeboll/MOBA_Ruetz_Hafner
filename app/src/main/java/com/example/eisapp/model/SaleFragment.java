@@ -55,8 +55,6 @@ public class SaleFragment extends Fragment {
                 if (totaltext != null) {
                     totaltext.setText(String.valueOf(Economy.getInstance().getCurrentValue()) + "€");
                 }
-
-                Economy.getInstance().printCurr();
             }
         }, R.drawable.markeitem_background);
 

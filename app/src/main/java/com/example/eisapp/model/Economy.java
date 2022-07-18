@@ -9,26 +9,22 @@ public class Economy implements Serializable {
 
     LinkedHashMap<Eis, Integer> dailySoldIce;
     LinkedHashMap<Eis, Integer> currentSoldIce;
-    //PaymentHandler paymentHandler;
+
     public static Economy Instance;
 
-    // Soll Summe aller verkauften Eis sein - wird nach finishcurrent aktualisiert
+    // Soll Summe aller verkauften Eis sein - wird nach finishCurrentSale aktualisiert
     public double dailySum;
 
-    // Soll Summe aller Einahmen sein (mit Trinkgeld) addieren nur bei abschluss!
+    // Soll Summe aller Einahmen sein (mit Trinkgeld)
     public double dailyIncome;
-    // public double currentIncome;
 
     //Tagestrinkgeld
     public double dailyTip;
 
-
+    // TODO: Alles auf das umstellen
     public static Economy getInstance() {
         if (Instance == null) {
 
-
-
-            // Checken, ob datei vorhanden (bei Start)
             Instance = new Economy();
 
         }
@@ -36,20 +32,14 @@ public class Economy implements Serializable {
 
     }
 
-    //Optional: Einkommen/Verkaufte eis pro Film
-
-
     public Economy() {
 
-
-        //paymentHandler = new PaymentHandler();
-        //LinkedHashmap hat den vorteil der stabilen reihenfolge
+        //LinkedHashmap hat den vorteil der stabilen Reihenfolge
         // (Last added last)
         dailySoldIce = new LinkedHashMap<Eis, Integer>();
         currentSoldIce = new LinkedHashMap<Eis, Integer>();
     }
 
-    // Bei Tagesende wird getsum von dailysales berechnet. Differenz zum gesamtertrag gibt tip
     private float getSum(LinkedHashMap<Eis, Integer> list) {
 
         float val = 0;
@@ -58,12 +48,12 @@ public class Economy implements Serializable {
 
         }
 
-        return Math.round( (val) *100f)/100f;
+        return Math.round((val) * 100f) / 100f;
 
     }
 
-    // Remove aus current liste
-    // kopplung an "-" Button
+    // Entferne aus currentSoldIce-Liste
+    // Kopplung an "x" Buttons
     public void removeSoldIce(Eis eis) {
         if (currentSoldIce.containsKey(eis)) {
             currentSoldIce.put(eis, currentSoldIce.get(eis) - 1);
@@ -76,8 +66,8 @@ public class Economy implements Serializable {
         return;
     }
 
-    // zählt gedrücktes eis zu current dazu
-    //Kopplung an eisbutton
+    // Zählt gedrücktes eis zu currentSoldIce dazu
+    // Kopplung an Eisbutton
     public void addSoldIce(Eis eis) {
 
         if (currentSoldIce.containsKey(eis)) {
@@ -88,15 +78,13 @@ public class Economy implements Serializable {
 
     }
 
-    // View holt sich dies
     public float getCurrentValue() {
         return getSum(currentSoldIce);
 
     }
 
 
-    // zählt currentsoldice zu daily dazu
-    // Wert addition kommt vom paymentmanager
+    // Zählt currentSoldIce zu dailySoldIce dazu
     public void finishCurrentSale() {
 
         currentSoldIce.forEach((key, value) -> {
@@ -110,21 +98,10 @@ public class Economy implements Serializable {
 
         );
 
-        dailySum +=    Math.round( (getSum(currentSoldIce)) *100f)/100f;
-        dailyTip =   Math.round( ( dailyIncome -dailySum) *100f)/100f;
+        dailySum += Math.round((getSum(currentSoldIce)) * 100f) / 100f;
+        dailyTip = Math.round((dailyIncome - dailySum) * 100f) / 100f;
 
 
         currentSoldIce.clear();
-    }
-
-
-    public void printDay() {
-        System.out.println("DAILY SALES:");
-        dailySoldIce.forEach((key, value) -> System.out.println(key.name + ":" + value));
-    }
-
-    public void printCurr() {
-        System.out.println("Current sales:");
-        currentSoldIce.forEach((key, value) -> System.out.println(key.name + ":" + value));
     }
 }

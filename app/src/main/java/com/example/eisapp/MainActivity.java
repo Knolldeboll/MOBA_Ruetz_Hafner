@@ -60,10 +60,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
 
-
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -73,14 +69,12 @@ public class MainActivity extends AppCompatActivity {
             ObjectInputStream ois = new ObjectInputStream(fis);
 
             Economy e = (Economy) ois.readObject();
-            if(e != null){
+            if (e != null) {
 
                 Economy.Instance = e;
 
                 // Ansonsten passiert nix und es wird eine neue Economy erzeugt!
             }
-
-
 
 
         } catch (FileNotFoundException e) {
@@ -97,8 +91,6 @@ public class MainActivity extends AppCompatActivity {
 
             e.printStackTrace();
         }
-
-
 
 
         ActionBar actionBar = getSupportActionBar();
@@ -120,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.framemain, saleFragment, "salefrag");
         fragmentTransaction.commit();
 
+        // Zu Testzwecken:
         //MarkenManager.Instance.fillWithExampleData();
 
 
@@ -174,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
                     lastEis = null;
                 }
                 if (payViewOpen) {
-                    if(!bottomFragment.checkout()){
+                    if (!bottomFragment.checkout()) {
                         return;
                     }
                     totalText.setText("Gesamt: 0€");
@@ -194,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         totalText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!overviewOpen) {
+                if (!overviewOpen) {
                     overviewFragment = new OverviewFragment();
                     transaction = getSupportFragmentManager().beginTransaction();
 
@@ -217,51 +210,43 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
     }
 
 
-    protected  void onStop() {
+    protected void onStop() {
 
         super.onStop();
         System.out.println("ONSTOP");
 
 
-            try {
-                FileOutputStream fos = this.openFileOutput("economy.txt",Context.MODE_PRIVATE);
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
+        try {
+            FileOutputStream fos = this.openFileOutput("economy.txt", Context.MODE_PRIVATE);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
 
-                if(save) {
-                    oos.writeObject(Economy.getInstance());
-                }else{
-                    // Nix reinschreiben
-                    oos.writeObject(null);
-                }
-
-                    oos.close();
-                    fos.close();
-                    System.out.println("Saved economy to file!");
-
-
-
-            } catch (FileNotFoundException e) {
-
-
-                e.printStackTrace();
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (save) {
+                oos.writeObject(Economy.getInstance());
+            } else {
+                // Nix reinschreiben
+                oos.writeObject(null);
             }
 
+            oos.close();
+            fos.close();
+            System.out.println("Saved economy to file!");
 
 
+        } catch (FileNotFoundException e) {
 
+
+            e.printStackTrace();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
     }
-
 
 
     public void displayCheckImage() {
@@ -281,7 +266,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Nur ein Menuitem, deshalb keine Fallunterscheidung
-
 
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

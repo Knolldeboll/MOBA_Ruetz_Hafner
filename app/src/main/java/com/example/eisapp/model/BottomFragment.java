@@ -30,13 +30,11 @@ public class BottomFragment extends Fragment {
     private float change = 0.00f;
 
     private Economy economy = Economy.getInstance();
-    //private PaymentHandler paymentHandler = new PaymentHandler();
 
     public BottomFragment() {
 
     }
 
-    // TODO: Rename and change types and number of parameters
     public static BottomFragment newInstance(String param1, String param2) {
         BottomFragment fragment = new BottomFragment();
         return fragment;
@@ -72,7 +70,6 @@ public class BottomFragment extends Fragment {
                     // Summe mit Trinkgeld
                     totalWTip = Float.parseFloat(charSequence.toString());
                     if (totalWTip > 0 && given > 0 && economy.getCurrentValue() > 0) {
-
 
 
                         change = given - totalWTip;
@@ -113,12 +110,10 @@ public class BottomFragment extends Fragment {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence.length() > 0) {
 
-                    // Gegeben - Hier überprüfen!!
                     given = Float.parseFloat(charSequence.toString());
                     if (totalWTip > 0 && given > 0 && economy.getCurrentValue() > 0) {
-                        // given >= totalWtip
 
-                        change = Math.round( (given - totalWTip) *100f)/100f;
+                        change = Math.round((given - totalWTip) * 100f) / 100f;
                         changeResult.setText(String.format("%.2f", change) + "€");
                     }
                 }
@@ -130,31 +125,23 @@ public class BottomFragment extends Fragment {
             }
         });
 
-        // Inflate the layout for this fragment
         return view;
     }
 
-    // TODO: Hier die Economy einbinden bzw richtig auf die summen addieren
-    // TODO: Die kacke hier in den paymenthandler verschieben
-
     public boolean checkout() {
 
+        if (given != 0.00f && given >= totalWTip && totalWTip >= Economy.Instance.getCurrentValue()) {
 
-        // paymentHandler.currentSum = Economy.Instance.getCurrentValue();
-
-        if(given != 0.00f && given >= totalWTip && totalWTip >= Economy.Instance.getCurrentValue()){
-
-            // TODO: Runden auf zwei nachkommastellen
-            given = Math.round(given*100f)/100f;
-            Economy.getInstance().dailyIncome +=   Math.round( (totalWTip) *100f)/100f;
+            given = Math.round(given * 100f) / 100f;
+            Economy.getInstance().dailyIncome += Math.round((totalWTip) * 100f) / 100f;
             Economy.getInstance().finishCurrentSale();
             toggleKeyboard();
             return true;
 
-        }else{
+        } else {
 
-            if(Economy.Instance.getCurrentValue()!= 0){
-                Toast.makeText(this.getContext(),"Zu wenig gegeben!", Toast.LENGTH_SHORT).show();
+            if (Economy.Instance.getCurrentValue() != 0) {
+                Toast.makeText(this.getContext(), "Zu wenig gegeben!", Toast.LENGTH_SHORT).show();
             }
 
             return false;

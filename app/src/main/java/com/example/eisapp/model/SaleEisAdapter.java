@@ -34,7 +34,7 @@ public class SaleEisAdapter extends RecyclerView.Adapter<SaleEisAdapter.ChildVie
             // Die textviews aus der xml holen
             et1 = (TextView) itemView.findViewById(R.id.textVieweis);
             accessTextView = et1;
-            frameLayout = (FrameLayout)itemView.findViewById(R.id.eisframe);
+            frameLayout = (FrameLayout) itemView.findViewById(R.id.eisframe);
 
         }
 
@@ -77,7 +77,7 @@ public class SaleEisAdapter extends RecyclerView.Adapter<SaleEisAdapter.ChildVie
         eist1.setTextColor(eis.textColor);
 
 
-       // eist1.setOnClickListener(childocl);
+        // eist1.setOnClickListener(childocl);
 
         // Eventuell der Selbe shit wie im Editor xml ausgewählt ==?
 

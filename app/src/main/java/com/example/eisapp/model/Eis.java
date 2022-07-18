@@ -10,16 +10,15 @@ public class Eis implements Serializable {
     float preis;
     int backGroundColor;
     int textColor;
-    // TODO: Image irgendwie speichern, als pfad oder so
 
     public Eis(String name, float preis, int bgcolor) {
         this.name = name;
         this.preis = preis;
         this.backGroundColor = bgcolor;
 
-        if(bgcolor > - 8388607){
+        if (bgcolor > -8388607) {
             this.textColor = Color.BLACK;
-        }else{
+        } else {
             this.textColor = Color.WHITE;
         }
 
@@ -37,9 +36,6 @@ public class Eis implements Serializable {
         return preis;
     }
 
-    public void setPreis(float preis) {
-        this.preis = preis;
-    }
 
     public int getBackGroundColor() {
         return backGroundColor;

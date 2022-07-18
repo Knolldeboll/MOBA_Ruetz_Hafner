@@ -3,6 +3,8 @@ package com.example.eisapp.model;
 import android.content.Context;
 import android.graphics.Color;
 
+import com.example.eisapp.R;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -137,21 +139,29 @@ public class MarkenManager {
 
 
     public void fillWithExampleData() {
+        // TODO: Gescheide Namen/Farben + Mehr marken!
         List<Marke> data = new ArrayList<>();
         Marke schöller = new Marke("Schöller");
-        schöller.addEis(new Eis("Kaktus", 1.50f, Color.GREEN));
-        schöller.addEis(new Eis("Pirulo", 2.00f,Color.YELLOW));
-        schöller.addEis(new Eis("Frutti", 1.40f,Color.BLUE));
-        schöller.addEis(new Eis("Nutti", 1.40f,Color.BLACK));
-        schöller.addEis(new Eis("Pluutti", 1.40f, Color.RED));
+        schöller.addEis(new Eis("Kaktus", 2.00f, Color.parseColor("#15612b")));
+        schöller.addEis(new Eis("Pirulo", 2.20f, Color.YELLOW));
+        schöller.addEis(new Eis("Bum Bum", 2.50f, Color.parseColor("#d41f23")));
+        schöller.addEis(new Eis("Himbi", 2.50f, Color.parseColor("#d41e6b")));
+        schöller.addEis(new Eis("Smarties", 1.40f, Color.parseColor("#6635e2")));
 
         Marke magnum = new Marke("Magnum");
-        magnum.addEis(new Eis("Classic", 2.00f, Color.WHITE));
-        magnum.addEis(new Eis("Black Almond", 2.20f, Color.BLACK));
-        magnum.addEis(new Eis("White Almond", 2.20f, Color.DKGRAY));
+        magnum.addEis(new Eis("Classic", 2.00f, Color.parseColor("#5a1212")));
+        magnum.addEis(new Eis("Black Almond", 2.20f, Color.parseColor("#000000")));
+        magnum.addEis(new Eis("White", 2.20f, Color.parseColor("#ededed")));
+
+
+        Marke benjerrys = new Marke("Ben & Jerry's");
+        benjerrys.addEis(new Eis("Chocolate Fudge Brownie", 3.50f, Color.parseColor("#5f4600")));
+        benjerrys.addEis(new Eis("Cookie Dough", 3.50f, Color.parseColor("#ffd3a6")));
+        benjerrys.addEis(new Eis("Peanut Butter Cup", 3.50f, Color.parseColor("#fd9146")));
 
         data.add(schöller);
         data.add(magnum);
+        data.add(benjerrys);
 
         saveBrandsToFile(data);
     }

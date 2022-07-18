@@ -9,8 +9,6 @@ public class PaymentHandler {
     // Oder als Member von Economy erzeugen + darafu zugreifen. !!!!
 
 
-
-
     // Summe der current ausgeben lassen
     // Evtl summe mit trinkgeld eingeben
     // Gegebenes eingeben + prüfen
@@ -20,9 +18,7 @@ public class PaymentHandler {
     public void pay(float given) {
 
 
-
         // TODO: Passt gegebenes geld ?
-
 
 
         Economy.getInstance().dailyIncome += given;
@@ -38,7 +34,7 @@ public class PaymentHandler {
 
     public float getChange(float given, float total) {
 
-        return given -  total;
+        return given - total;
     }
 
 }

@@ -52,18 +52,14 @@ public class FinishFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
 
 
-
         incomeText.setText("= " + Math.round((Economy.Instance.dailyIncome) * 100f) / 100f + "€");
         sumText.setText("= " + Math.round((Economy.Instance.dailySum) * 100f) / 100f + "€");
         tipText.setText("= " + Math.round((Economy.Instance.dailyTip) * 100f) / 100f + "€");
 
 
-
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
 
 
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(view.getContext());  // Evtl mit getActivity() ?
@@ -72,7 +68,6 @@ public class FinishFragment extends Fragment {
                 alertDialogBuilder.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
 
 
                         MainActivity.save = false;
@@ -88,14 +83,11 @@ public class FinishFragment extends Fragment {
                     public void onClick(DialogInterface dialogInterface, int i) { // Evtl mit getActivity.getContext??
 
 
-
-
                     }
                 });
 
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
-
 
 
             }

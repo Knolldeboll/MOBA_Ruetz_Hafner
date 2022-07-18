@@ -20,19 +20,19 @@ import java.util.List;
 
 public class CurrentEisAdapter extends RecyclerView.Adapter<com.example.eisapp.model.CurrentEisAdapter.CurrentViewHolder> {
 
-    private LinkedHashMap<Eis,Integer> datalist;
+    private LinkedHashMap<Eis, Integer> datalist;
     private List<Eis> eislist;
     private List<Integer> anzlist;
     private OverviewFragment overviewFragment;
 
 
-    public class CurrentViewHolder extends RecyclerView.ViewHolder{
+    public class CurrentViewHolder extends RecyclerView.ViewHolder {
 
         public TextView eisNameText;
         public TextView eisAnzahlText;
         public TextView eisSummeText;
 
-        public CurrentViewHolder(View currentView){
+        public CurrentViewHolder(View currentView) {
 
             super(currentView);
             eisNameText = (TextView) currentView.findViewById(R.id.NameText);
@@ -41,10 +41,11 @@ public class CurrentEisAdapter extends RecyclerView.Adapter<com.example.eisapp.m
         }
     }
 
-    public CurrentEisAdapter(LinkedHashMap<Eis,Integer> eisList, OverviewFragment overviewFragment) {
+    public CurrentEisAdapter(LinkedHashMap<Eis, Integer> eisList, OverviewFragment overviewFragment) {
         this.overviewFragment = overviewFragment;
         datalist = eisList;
-        // Noch separieren
+
+        // Noch separieren für spätere Benutzung
         this.eislist = new ArrayList<Eis>(eisList.keySet());
         this.anzlist = new ArrayList<Integer>(eisList.values());
 
@@ -56,7 +57,7 @@ public class CurrentEisAdapter extends RecyclerView.Adapter<com.example.eisapp.m
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View currentView = inflater.inflate(R.layout.overviewitemlayout,parent,false);
+        View currentView = inflater.inflate(R.layout.overviewitemlayout, parent, false);
         com.example.eisapp.model.CurrentEisAdapter.CurrentViewHolder currentViewHolder = new com.example.eisapp.model.CurrentEisAdapter.CurrentViewHolder(currentView);
 
         currentView.findViewById(R.id.removeButton).setOnClickListener(new View.OnClickListener() {
@@ -66,7 +67,6 @@ public class CurrentEisAdapter extends RecyclerView.Adapter<com.example.eisapp.m
                 for (Eis eis : eislist) {
                     if (eis.getName().equals(currentViewHolder.eisNameText.getText())) {
 
-                        // Problem: wird zwar aus economy entfernt, aber nicht hier aus der liste!
                         economy.removeSoldIce(eis);
                         datalist = economy.currentSoldIce;
                         eislist = new ArrayList<Eis>(datalist.keySet());
@@ -85,6 +85,7 @@ public class CurrentEisAdapter extends RecyclerView.Adapter<com.example.eisapp.m
 
     @Override
     public void onBindViewHolder(@NonNull com.example.eisapp.model.CurrentEisAdapter.CurrentViewHolder holder, int position) {
+
         Eis eissorte = this.eislist.get(position);
         int anzahl = this.anzlist.get(position);
         float summe = eissorte.getPreis() * anzahl;
@@ -93,7 +94,7 @@ public class CurrentEisAdapter extends RecyclerView.Adapter<com.example.eisapp.m
         t1.setText(eissorte.getName());
 
         TextView t2 = holder.eisAnzahlText;
-        t2.setText("x "+ anzahl);
+        t2.setText("x " + anzahl);
 
         TextView t3 = holder.eisSummeText;
         t3.setText("= " + String.format("%.2f", summe) + "€");
