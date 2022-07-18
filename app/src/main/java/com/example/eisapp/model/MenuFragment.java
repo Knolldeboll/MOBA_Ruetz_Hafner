@@ -66,6 +66,8 @@ public class MenuFragment extends Fragment {
 
                     getActivity().onOptionsItemSelected(null);
 
+                    getActivity().findViewById(R.id.framenav).setVisibility(View.INVISIBLE);
+
                     FinishFragment ff = new FinishFragment();
                     FragmentTransaction fragmentTransaction1 = getParentFragmentManager().beginTransaction();
                     fragmentTransaction1.replace(R.id.framemain, ff, "finishfrag");
@@ -92,6 +94,7 @@ public class MenuFragment extends Fragment {
                     disableButton(b2);
                     enableButtonsExcept(b2);
 
+                    getActivity().findViewById(R.id.framenav).setVisibility(View.INVISIBLE);
                     getActivity().onOptionsItemSelected(null);
                     AddEisFragment aef = new AddEisFragment();
                     FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
@@ -112,6 +115,7 @@ public class MenuFragment extends Fragment {
                 disableButton(b3);
                 enableButtonsExcept(b3);
 
+                getActivity().findViewById(R.id.framenav).setVisibility(View.VISIBLE);
                 getActivity().onOptionsItemSelected(null);
                 SaleFragment saleFragment = new SaleFragment();
                 FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
@@ -133,6 +137,7 @@ public class MenuFragment extends Fragment {
                     disableButton(b4);
                     enableButtonsExcept(b4);
 
+                    getActivity().findViewById(R.id.framenav).setVisibility(View.INVISIBLE);
                     getActivity().onOptionsItemSelected(null);
                     RemoveEisFragment removeEisFragment = new RemoveEisFragment();
                     FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();

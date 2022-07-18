@@ -11,9 +11,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/finishrecv"
         android:layout_width="337dp"
-        android:layout_height="350dp"
+        android:layout_height="300dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="112dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:text="@string/tagesabschluss"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/finishTip" />

@@ -74,7 +74,7 @@ public class BottomFragment extends Fragment {
                     if (totalWTip > 0 && given > 0 && economy.getCurrentValue() > 0) {
 
 
-                        // TODO: ersetze mit paymenthandler
+
                         change = given - totalWTip;
 
 
@@ -146,14 +146,17 @@ public class BottomFragment extends Fragment {
 
             // TODO: Runden auf zwei nachkommastellen
             given = Math.round(given*100f)/100f;
-            Economy.getInstance().dailyIncome += given;
+            Economy.getInstance().dailyIncome +=   Math.round( (totalWTip) *100f)/100f;
             Economy.getInstance().finishCurrentSale();
             toggleKeyboard();
             return true;
 
         }else{
 
-            Toast.makeText(this.getContext(),"Zu wenig gegeben!", Toast.LENGTH_LONG).show();
+            if(Economy.Instance.getCurrentValue()!= 0){
+                Toast.makeText(this.getContext(),"Zu wenig gegeben!", Toast.LENGTH_SHORT).show();
+            }
+
             return false;
 
         }
